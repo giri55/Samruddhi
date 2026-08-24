@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ಹೊಸ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ - ಸಮೃದ್ಧಿ</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
   <style>
     .form-card {
       background: #ffffff;
@@ -56,8 +62,6 @@
       color: #065f46;
       font-weight: 800;
     }
-
-    /* Clean UPI Payment Box without personal name */
     .upi-pay-box {
       display: none;
       background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
@@ -142,14 +146,13 @@
         
         <div style="font-size: 11.5px; font-weight: 700; color: #0f172a;">UPI ID: <span style="color: #059669; font-weight: 800;">giricoolgili@okhdfcbank</span></div>
 
-        <!-- Direct UPI App Open Buttons for Mobile -->
         <div class="upi-app-links">
           <a id="upiPayDirect" href="#" class="upi-btn" style="background: #059669;">⚡ PhonePe / GPay ನಲ್ಲಿ ನೇರ ಪಾವತಿಸಿ</a>
         </div>
 
         <div class="form-group" style="margin-top: 10px; text-align: left;">
           <label class="form-label">📲 Payment UTR / ರೆಫರೆನ್ಸ್ ಸಂಖ್ಯೆ (ಪಾವತಿ ನಂತರ)</label>
-          <input type="text" class="form-input" id="ad_utr" placeholder="12 ಅಂಕಿಗಳ UTR ಸಂಖ್ಯೆ (ಉದಾ: 423871928374)">
+          <input type="text" class="form-input" id="ad_utr" placeholder="12 ಅಂಕಿಗಳ UTR ಸಂಖ್ಯೆ">
         </div>
       </div>
 
@@ -184,6 +187,11 @@
       </div>
 
       <div class="form-group">
+        <label class="form-label">📷 ಉತ್ಪನ್ನ / ವಾಹನದ ಫೋಟೋ (ಉಚಿತ ಕ್ಲೌಡ್ ಅಪ್ಲೋಡ್)</label>
+        <input type="file" class="form-input" id="ad_image_file" accept="image/*">
+      </div>
+
+      <div class="form-group">
         <label class="form-label">💰 ನಿಗದಿಪಡಿಸಿದ ಬೆಲೆ / ಸಂಬಳ</label>
         <input type="text" class="form-input" id="ad_price" placeholder="ಉದಾ: ₹450 ಅಥವಾ ಮಾತುಕತೆ ಮೂಲಕ">
       </div>
@@ -198,8 +206,8 @@
         <input type="tel" class="form-input" id="ad_phone" placeholder="10 ಅಂಕಿಗಳ ಮೊಬೈಲ್ ನಂಬರ್" required>
       </div>
 
-      <button type="submit" style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: #fff; border: none; padding: 11px; border-radius: 25px; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);">
-        🚀 WhatsApp ಮೂಲಕ ಪ್ರಕಟಿಸಲು ಕಳುಹಿಸಿ
+      <button type="submit" id="submitBtn" style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: #fff; border: none; padding: 12px; border-radius: 25px; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);">
+        🚀 ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ & WhatsApp ಗೆ ಕಳುಹಿಸಿ
       </button>
     </form>
   </div>
@@ -238,8 +246,12 @@
       }
     }
 
-    function handleAdSubmit(e) {
+    async function handleAdSubmit(e) {
       e.preventDefault();
+      var btn = document.getElementById('submitBtn');
+      btn.innerText = "⏳ ಫೋಟೋ & ವಿವರ ಸೇವ್ ಆಗುತ್ತಿದೆ...";
+      btn.disabled = true;
+
       var plan = document.getElementById('selected_plan').value;
       var amt = document.getElementById('selected_amount').value;
       var utr = document.getElementById('ad_utr') ? document.getElementById('ad_utr').value : '';
@@ -249,13 +261,59 @@
       var price = document.getElementById('ad_price').value;
       var desc = document.getElementById('ad_desc').value;
       var phone = document.getElementById('ad_phone').value;
+      var fileInput = document.getElementById('ad_image_file');
 
+      var imageUrl = "";
+
+      // 1. Upload to Cloudinary (mkuurlzy)
+      if (fileInput.files.length > 0) {
+        try {
+          var formData = new FormData();
+          formData.append("file", fileInput.files[0]);
+          formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+
+          var res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+            method: "POST",
+            body: formData
+          });
+          var data = await res.json();
+          if(data.secure_url) {
+            imageUrl = data.secure_url;
+          }
+        } catch(err) {
+          console.log("Image upload error:", err);
+        }
+      }
+
+      // 2. Save to Firebase Database
+      if (typeof db !== 'undefined') {
+        try {
+          await db.collection("ads").add({
+            plan: plan,
+            amount: amt,
+            utr: utr,
+            city: city,
+            category: cat,
+            title: title,
+            price: price,
+            desc: desc,
+            phone: phone,
+            imageUrl: imageUrl,
+            status: "pending",
+            createdAt: new Date().toISOString()
+          });
+        } catch(err) {
+          console.log("Database save error:", err);
+        }
+      }
+
+      // 3. Forward to WhatsApp
       var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು*%0A%0A" +
                   "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A";
       
       if (amt > 0) {
         waMsg += "💰 *ಪಾವತಿ ಮೊತ್ತ:* ₹" + encodeURIComponent(amt) + "%0A" +
-                 "🧾 *Payment UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ/ಸ್ಕ್ಯಾನ್') + "%0A";
+                 "🧾 *Payment UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ') + "%0A";
       }
 
       waMsg += "📍 *ನಗರ:* " + encodeURIComponent(city) + "%0A" +
@@ -265,7 +323,13 @@
                "📄 *ವಿವರ:* " + encodeURIComponent(desc) + "%0A" +
                "📱 *ಸಂಪರ್ಕ:* " + encodeURIComponent(phone);
 
+      if (imageUrl) {
+        waMsg += "%0A🖼️ *ಫೋಟೋ ಲಿಂಕ್:* " + encodeURIComponent(imageUrl);
+      }
+
       window.open("https://wa.me/918431649984?text=" + waMsg, "_blank");
+      btn.innerText = "🚀 ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ & WhatsApp ಗೆ ಕಳುಹಿಸಿ";
+      btn.disabled = false;
     }
   </script>
 
