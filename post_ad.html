@@ -100,10 +100,27 @@
       display: block;
       background: #fff;
     }
+    .upi-app-links {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .upi-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 800;
+      text-decoration: none;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
     .share-modal-card {
       display: none;
       background: #ffffff;
-      margin: 12px 14px;
+      margin: 12px 14px 80px;
       padding: 18px;
       border-radius: 16px;
       border: 2px solid #22c55e;
@@ -149,7 +166,7 @@
     <a href="index.html" class="header-post-btn" style="background: #334155;">✕ ರದ್ದು</a>
   </header>
 
-  <!-- Share Panel (After Posting) -->
+  <!-- Share Panel (After Successful Post) -->
   <div id="shareSuccessCard" class="share-modal-card">
     <div style="font-size: 32px; margin-bottom: 4px;">🎉</div>
     <h3 style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಕೆಯಾಗಿದೆ!</h3>
@@ -167,12 +184,13 @@
     </button>
   </div>
 
-  <!-- Form Card -->
+  <!-- Main Ad Form -->
   <div id="adFormCard" class="form-card">
     <h2 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 10px;">📝 ನಿಮ್ಮ ಜಾಹೀರಾತಿನ ವಿವರ ನಮೂದಿಸಿ</h2>
     
     <form id="postAdForm" onsubmit="handleAdSubmit(event)">
       
+      <!-- 1. Plan Selection -->
       <div class="form-group">
         <label class="form-label">ಪ್ಲಾನ್ ಆಯ್ಕೆಮಾಡಿ</label>
         <div class="plan-selector-grid">
@@ -193,17 +211,24 @@
         <input type="hidden" id="selected_amount" value="0">
       </div>
 
+      <!-- 2. Clean UPI Payment Box -->
       <div id="upiPaymentSection" class="upi-pay-box">
         <div style="font-size: 12px; font-weight: 800; color: #15803d;">💳 UPI ಮೂಲಕ ಪಾವತಿಸಿ (<span id="payAmtLabel">₹49</span>)</div>
         <div style="font-size: 10px; color: #475569;">GPay, PhonePe, Paytm ಮೂಲಕ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಪಾವತಿಸಿ</div>
         <img id="upiQrImage" class="upi-qr-img" src="" alt="UPI QR Code">
         <div style="font-size: 11.5px; font-weight: 700; color: #0f172a;">UPI ID: <span style="color: #059669; font-weight: 800;">giricoolgili@okhdfcbank</span></div>
+        
+        <div class="upi-app-links">
+          <a id="upiPayDirect" href="#" class="upi-btn" style="background: #059669;">⚡ PhonePe / GPay ನಲ್ಲಿ ನೇರ ಪಾವತಿಸಿ</a>
+        </div>
+
         <div class="form-group" style="margin-top: 10px; text-align: left;">
           <label class="form-label">📲 Payment UTR / ರೆಫರೆನ್ಸ್ ಸಂಖ್ಯೆ</label>
           <input type="text" class="form-input" id="ad_utr" placeholder="12 ಅಂಕಿಗಳ UTR ಸಂಖ್ಯೆ">
         </div>
       </div>
 
+      <!-- 3. City -->
       <div class="form-group">
         <label class="form-label">📍 ನಗರ (City)</label>
         <select class="form-select" id="ad_city" required>
@@ -217,6 +242,7 @@
         </select>
       </div>
 
+      <!-- 4. Category -->
       <div class="form-group">
         <label class="form-label">📂 ವಿಭಾಗ (Category)</label>
         <select class="form-select" id="ad_cat" required>
@@ -229,11 +255,13 @@
         </select>
       </div>
 
+      <!-- 5. Title -->
       <div class="form-group">
         <label class="form-label">🏷️ ಜಾಹೀರಾತಿನ ಶೀರ್ಷಿಕೆ (Title)</label>
         <input type="text" class="form-input" id="ad_title" placeholder="ಉದಾ: ಶುದ್ಧ ಹಸುವಿನ ತುಪ್ಪ ಮಾರಾಟಕ್ಕಿದೆ" required>
       </div>
 
+      <!-- 6. Photo Upload Box -->
       <div class="form-group">
         <label class="form-label">📷 ಉತ್ಪನ್ನ / ವಾಹನದ ಫೋಟೋ ಅಥವಾ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</label>
         <div class="photo-upload-container" onclick="document.getElementById('ad_image_file').click()">
@@ -249,16 +277,19 @@
         </div>
       </div>
 
+      <!-- 7. Price -->
       <div class="form-group">
         <label class="form-label">💰 ನಿಗದಿಪಡಿಸಿದ ಬೆಲೆ / ಸಂಬಳ</label>
         <input type="text" class="form-input" id="ad_price" placeholder="ಉದಾ: ₹450 ಅಥವಾ ಮಾತುಕತೆ ಮೂಲಕ">
       </div>
 
+      <!-- 8. Description -->
       <div class="form-group">
         <label class="form-label">📄 ಸಂಪೂರ್ಣ ವಿವರಣೆ (Description)</label>
         <textarea class="form-textarea" id="ad_desc" rows="3" placeholder="ಉತ್ಪನ್ನ ಅಥವಾ ಸೇವೆಯ ಬಗ್ಗೆ ವಿವರವಾಗಿ ಬರೆಯಿರಿ..." required></textarea>
       </div>
 
+      <!-- 9. Phone Number -->
       <div class="form-group">
         <label class="form-label">📱 ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (WhatsApp)</label>
         <input type="tel" class="form-input" id="ad_phone" placeholder="10 ಅಂಕಿಗಳ ಮೊಬೈಲ್ ನಂಬರ್" required>
@@ -270,6 +301,7 @@
     </form>
   </div>
 
+  <!-- Bottom Nav -->
   <nav class="modern-bottom-nav">
     <a href="index.html" class="nav-tab-link"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
     <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
@@ -294,6 +326,7 @@
         document.getElementById('payAmtLabel').innerText = "₹" + amount;
         var upiUri = "upi://pay?pa=" + upiId + "&pn=" + encodeURIComponent(payeeName) + "&am=" + amount + "&cu=INR&tn=" + encodeURIComponent("Samruddhi Ad " + planName);
         document.getElementById('upiQrImage').src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(upiUri);
+        document.getElementById('upiPayDirect').href = upiUri;
       } else {
         upiBox.style.display = 'none';
       }
@@ -329,7 +362,7 @@
 
       var imageUrl = "";
 
-      // 1. Upload Photo to Cloudinary
+      // 1. Instant Cloudinary Photo Upload
       if (fileInput.files && fileInput.files.length > 0) {
         try {
           var formData = new FormData();
@@ -351,10 +384,10 @@
         }
       }
 
-      // 2. Direct Save to Firestore
+      // 2. Direct Firestore Save
       if (typeof db !== 'undefined') {
         try {
-          await db.collection("ads").add({
+          var dbPromise = db.collection("ads").add({
             plan: plan,
             amount: amt,
             utr: utr,
@@ -368,6 +401,8 @@
             status: "pending",
             createdAt: new Date().toISOString()
           });
+          var dbTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 3000));
+          await Promise.race([dbPromise, dbTimeout]);
         } catch(err) {
           console.warn("Firestore save issue:", err);
         }

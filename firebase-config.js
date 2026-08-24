@@ -15,6 +15,6 @@ if (!firebase.apps.length) {
 }
 const db = firebase.firestore();
 
-// Cloudinary Settings
+// Cloudinary Integrated Settings
 const CLOUDINARY_CLOUD_NAME = "mkuurlzy";
 const CLOUDINARY_UPLOAD_PRESET = "samruddhi";

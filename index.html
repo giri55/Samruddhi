@@ -3,173 +3,113 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</title>
+  <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸ್ಥಳೀಯ ಜಾಹೀರಾತು ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- PWA Settings & Apple Support -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#059669">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="ಸಮೃದ್ಧಿ">
-  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/609/609803.png">
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
+  <style>
+    /* Card Action Footer */
+    .ad-card-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px dashed #e2e8f0;
+    }
+    .btn-action-call {
+      flex: 1;
+      background: #059669;
+      color: #ffffff;
+      padding: 7px 10px;
+      border-radius: 18px;
+      font-size: 11px;
+      font-weight: 800;
+      text-decoration: none;
+      text-align: center;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .btn-action-share-wa {
+      background: #25d366;
+      color: #ffffff;
+      padding: 7px 12px;
+      border-radius: 18px;
+      font-size: 11px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .btn-action-share-native {
+      background: #f1f5f9;
+      color: #334155;
+      padding: 7px 10px;
+      border-radius: 18px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid #cbd5e1;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- App Header -->
+  <!-- Top App Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">🌾</div>
       <div class="brand-title-box">
         <span class="brand-name">ಸಮೃದ್ಧಿ</span>
-        <span class="brand-tag">ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</span>
+        <span class="brand-tag">ಸ್ಥಳೀಯ ಪೋರ್ಟಲ್</span>
       </div>
     </a>
-    <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
+    <div style="display: flex; gap: 6px; align-items: center;">
+      <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
+    </div>
   </header>
 
-  <!-- Live Rate Scroller -->
-  <div class="rate-ticker-bar">
-    <div class="rate-badge-pulse">
-      <span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ
-    </div>
-    <div class="ticker-content-track">
-      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
-      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
-    </div>
+  <!-- City Filter Bar (All 7 Cities) -->
+  <div class="city-filter-container">
+    <div class="city-chip active" onclick="filterByCity('all', this, '')">🌐 ಎಲ್ಲಾ ಊರು</div>
+    <div class="city-chip" onclick="filterByCity('ಶಿವಮೊಗ್ಗ', this, 'shivamogga')">📍 ಶಿವಮೊಗ್ಗ</div>
+    <div class="city-chip" onclick="filterByCity('ದಾವಣಗೆರೆ', this, 'davanagere')">📍 ದಾವಣಗೆರೆ</div>
+    <div class="city-chip" onclick="filterByCity('ಮೈಸೂರು', this, 'mysuru')">📍 ಮೈಸೂರು</div>
+    <div class="city-chip" onclick="filterByCity('ಬೆಳಗಾವಿ', this, 'belagavi')">📍 ಬೆಳಗಾವಿ</div>
+    <div class="city-chip" onclick="filterByCity('ಮಂಗಳೂರು', this, 'mangaluru')">📍 ಮಂಗಳೂರು</div>
+    <div class="city-chip" onclick="filterByCity('ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ', this, 'hubballi')">📍 ಹುಬ್ಬಳ್ಳಿ</div>
+    <div class="city-chip" onclick="filterByCity('ತುಮಕೂರು', this, 'tumakuru')">📍 ತುಮಕೂರು</div>
   </div>
 
-  <!-- Smart PWA Install Strip (No Security Warnings) -->
-  <div id="pwaInstallBanner" style="display: none; background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff; padding: 10px 14px; margin: 10px 14px 2px; border-radius: 14px; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px rgba(49,46,129,0.3); border: 1px solid #6366f1;">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <span style="font-size: 20px;">📲</span>
-      <div>
-        <div style="font-size: 12px; font-weight: 800; color: #fef08a;">ಸಮೃದ್ಧಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ</div>
-        <div style="font-size: 10px; color: #c7d2fe;">ಹೋಮ್ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಿ, ವೇಗವಾಗಿ ಬಳಸಿ</div>
-      </div>
-    </div>
-    <button id="pwaInstallBtn" onclick="installPWA()" style="background: #22c55e; color: #fff; border: none; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; cursor: pointer;">
-      ⬇️ ಇನ್‌ಸ್ಟಾಲ್
-    </button>
+  <!-- Ticker News Bar -->
+  <div class="news-ticker-wrap">
+    <div class="ticker-badge">⚡ ತಾಜಾ ಸುದ್ದಿ</div>
+    <div class="ticker-text" id="liveTickerText">🏛️ ಸ್ಥಳೀಯ ನೈಜ ಉತ್ಪನ್ನಗಳಿಗೆ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಭಾರಿ ಬೇಡಿಕೆ! • ಅಡಿಕೆ ರಾಶಿ ₹54,500 • ಕೊಬ್ಬರಿ ₹13,200 • ಮೆಕ್ಕೆಜೋಳ ₹2,150</div>
   </div>
 
-  <!-- 1. 30-Second Featured Ad Showcase (With Neat Small Font Buttons) -->
-  <div class="showcase-ad-card">
-    <div class="showcase-top-row">
-      <span class="sp-badge">⭐ ಪ್ರಾಯೋಜಿತ ಜಾಹೀರಾತು</span>
-      <span class="ad-timer-badge">⏱️ <span id="adSeconds">30</span>s</span>
-    </div>
-    
-    <div class="ad-progress-track">
-      <div class="ad-progress-fill" id="adProgress"></div>
-    </div>
-
-    <!-- Slide 1 -->
-    <div class="ad-slide-box active" id="ad1">
-      <div class="ad-title-text">🚜 ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
-      <div class="ad-desc-text">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
-      <div class="ad-btn-row-small">
-        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಅಡಿಕೆ%20ಮಷಿನ್%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp</a>
-      </div>
-    </div>
-
-    <!-- Slide 2 -->
-    <div class="ad-slide-box" id="ad2">
-      <div class="ad-title-text">🥛 100% ಶುದ್ಧ ಗಿರ್ ಹಸುವಿನ ಹಾಲು, ಹಳ್ಳಿ ಬೆಣ್ಣೆ & ತುಪ್ಪ!</div>
-      <div class="ad-desc-text">ಯಾವುದೇ ರಾಸಾಯನಿಕವಿಲ್ಲದ ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಜ ಡೈರಿ ಉತ್ಪನ್ನಗಳು ಪ್ರತಿದಿನ ಲಭ್ಯ.</div>
-      <div class="ad-btn-row-small">
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಹಾಲು%20ತುಪ್ಪದ%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp: 8431649984</a>
-        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ</a>
-      </div>
-    </div>
-
-    <!-- Slide 3 -->
-    <div class="ad-slide-box" id="ad3">
-      <div class="ad-title-text">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
-      <div class="ad-desc-text">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನದ ವಿವರ ಕಳುಹಿಸಿ, ಕೇವಲ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
-      <div class="ad-btn-row-small">
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%2059%20ರೂಪಾಯಿ%20ಪೋಸ್ಟರ್%20ಡಿಸೈನ್%20ಮಾಡಬೇಕು" class="ad-cta-wa-sm" style="background: #ea580c;">🎨 ಪೋಸ್ಟರ್: 8431649984</a>
-      </div>
-    </div>
+  <!-- City Highlights & Special Offer Banner -->
+  <div id="cityHighlightBanner" style="display:none; margin: 10px 14px; padding: 12px; background: #fef2f2; border: 1.5px solid #fecaca; border-radius: 14px;">
+    <div style="font-size: 12px; font-weight: 800; color: #b91c1c;" id="bannerOfferTitle">🔥 ಇಂದಿನ ವಿಶೇಷ ಆಫರ್</div>
+    <div style="font-size: 11px; color: #475569;" id="bannerOfferDesc"></div>
   </div>
 
-  <!-- 2. Dual Side-by-Side News Section -->
-  <div class="section-title-strip">
-    <span class="sec-head">⚡ ತಾಜಾ ಸಮಾಚಾರ & ಮಾರುಕಟ್ಟೆ</span>
-    <span style="font-size: 10.5px; color: #059669; font-weight: 700;">ಲೈವ್ ಅಪ್‌ಡೇಟ್</span>
+  <!-- Ads Feed Container -->
+  <div class="feed-section-header">
+    <span class="feed-title">📢 ಇತ್ತೀಚಿನ ಜಾಹೀರಾತುಗಳು</span>
+    <span id="adTotalCount" style="font-size: 11px; font-weight: 700; color: #059669;">ಲೋಡ್ ಆಗುತ್ತಿದೆ...</span>
   </div>
 
-  <div class="news-dual-wrapper">
-    <!-- Market News Card -->
-    <a href="news_detail.html?type=market" class="news-interactive-card market-theme">
-      <div>
-        <div class="news-pill-tag tag-green">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</div>
-        <div class="news-snippet-item" id="news_adike"><strong>ಅಡಿಕೆ:</strong> ರಾಶಿ ₹54,500/ಕ್ವಿಂ</div>
-        <div class="news-snippet-item" id="news_kobbari"><strong>ಕೊಬ್ಬರಿ:</strong> ₹13,200/ಕ್ವಿಂ</div>
-        <div class="news-snippet-item" id="news_maize"><strong>ಮೆಕ್ಕೆಜೋಳ:</strong> ₹2,150/ಕ್ವಿಂ</div>
-      </div>
-      <div class="read-more-link">ಸಂಪೂರ್ಣ ಓದಿ ➔</div>
-    </a>
-
-    <!-- Top News Card -->
-    <a href="news_detail.html?type=top" class="news-interactive-card topnews-theme">
-      <div>
-        <div class="news-pill-tag tag-amber">⚡ TOP ನ್ಯೂಸ್</div>
-        <div class="news-snippet-item" id="news_top1">🏛️ ಸ್ಥಳೀಯ ನೈಜ ಉತ್ಪನ್ನಗಳಿಗೆ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಭಾರಿ ಬೇಡಿಕೆ!</div>
-        <div class="news-snippet-item" id="news_top2">⚡ ನಗರದ ಪ್ರಮುಖ ಬಡಾವಣೆಗಳಲ್ಲಿ ನಾಳೆ 10 ರಿಂದ ವಿದ್ಯುತ್ ನಿರ್ವಹಣೆ.</div>
-      </div>
-      <div class="read-more-link">ಸಂಪೂರ್ಣ ಓದಿ ➔</div>
-    </a>
-  </div>
-
-  <!-- 3. Cities Grid Section -->
-  <div class="section-title-strip">
-    <span class="sec-head">📍 ನಗರಗಳು (Select City)</span>
-    <span style="font-size: 10.5px; color: #64748b; font-weight: 700;">7 ಪ್ರಮುಖ ಊರುಗಳು</span>
-  </div>
-
-  <div class="city-tiles-grid">
-    <a href="shivamogga.html" class="city-tile c-shivamogga">
-      <span class="city-tile-icon">🌳</span>
-      <span class="city-tile-name">ಶಿವಮೊಗ್ಗ</span>
-    </a>
-    <a href="davanagere.html" class="city-tile c-davanagere">
-      <span class="city-tile-icon">🌾</span>
-      <span class="city-tile-name">ದಾವಣಗೆರೆ</span>
-    </a>
-    <a href="mysuru.html" class="city-tile c-mysuru">
-      <span class="city-tile-icon">🏰</span>
-      <span class="city-tile-name">ಮೈಸೂರು</span>
-    </a>
-    <a href="belagavi.html" class="city-tile c-belagavi">
-      <span class="city-tile-icon">🍃</span>
-      <span class="city-tile-name">ಬೆಳಗಾವಿ</span>
-    </a>
-    <a href="mangaluru.html" class="city-tile c-mangaluru">
-      <span class="city-tile-icon">🌊</span>
-      <span class="city-tile-name">ಮಂಗಳೂರು</span>
-    </a>
-    <a href="hubballi-dharwad.html" class="city-tile c-hubballi">
-      <span class="city-tile-icon">🏙️</span>
-      <span class="city-tile-name">ಹುಬ್ಬಳ್ಳಿ-ಧಾ.</span>
-    </a>
-    <a href="tumakuru.html" class="city-tile c-tumakuru" style="grid-column: span 3;">
-      <span class="city-tile-icon">🥥</span>
-      <span class="city-tile-name">ತುಮಕೂರು ನಗರ & ಗ್ರಾಮಾಂತರ</span>
-    </a>
-  </div>
-
-  <!-- iOS (iPhone) Modal Guide -->
-  <div id="iosInstallModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; align-items: flex-end; justify-content: center;">
-    <div style="background: #fff; width: 100%; max-width: 500px; padding: 20px; border-radius: 20px 20px 0 0; text-align: center;">
-      <h3 style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">📲 iPhone ನಲ್ಲಿ ಆ್ಯಪ್ ಸೇರಿಸಲು:</h3>
-      <p style="font-size: 12px; color: #475569; line-height: 1.5; margin-bottom: 12px;">
-        1. ಕೆಳಗಿನ Safari ಮೆನುವಿನಲ್ಲಿರುವ <strong>Share ( <span style="font-size:14px;">⬆️</span> )</strong> ಬಟನ್ ಒತ್ತಿ.<br>
-        2. ನಂತರ <strong>'Add to Home Screen ( ➕ )'</strong> ಆಯ್ಕೆಮಾಡಿ.
-      </p>
-      <button onclick="document.getElementById('iosInstallModal').style.display='none'" style="width: 100%; background: #059669; color: #fff; border: none; padding: 10px; border-radius: 20px; font-weight: 800; font-size: 13px;">ಸರಿ, ತಿಳಿಯಿತು</button>
-    </div>
+  <div id="adsFeedList" class="ads-grid-container">
+    <div style="text-align:center; padding: 30px; font-size: 12px; color: #64748b;">ಜಾಹೀರಾತುಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</div>
   </div>
 
   <!-- Bottom Nav -->
@@ -178,80 +118,134 @@
     <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
     <a href="post_ad.html" class="nav-center-plus">➕</a>
     <a href="admin.html" class="nav-tab-link"><span class="nav-tab-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
-    <a href="https://wa.me/918431649984?text=ಸಮೃದ್ಧಿ%20ಪೋರ್ಟಲ್%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
+    <a href="https://wa.me/918431649984?text=ಸಮೃದ್ಧಿ%20ಪೋರ್ಟಲ್%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಸಹಾಯ</span></a>
   </nav>
 
-  <!-- JavaScript for News Sync, Ad Rotation & PWA Install -->
   <script>
-    // 1. Sync Live News from Admin
-    window.addEventListener('DOMContentLoaded', function() {
+    var currentCity = "all";
+    var allApprovedAds = [];
+
+    // 1. Fetch Realtime Approved Ads from Firebase
+    function loadLiveAds() {
+      if (typeof db !== 'undefined') {
+        db.collection("ads").where("status", "==", "approved").onSnapshot((snapshot) => {
+          allApprovedAds = [];
+          snapshot.forEach((doc) => {
+            allApprovedAds.push({ id: doc.id, ...doc.data() });
+          });
+          renderAds();
+        });
+      }
+      loadCustomNews();
+    }
+
+    // 2. Render Cards for All Selected Cities
+    function renderAds() {
+      var feed = document.getElementById("adsFeedList");
+      var filtered = currentCity === "all" ? allApprovedAds : allApprovedAds.filter(a => a.city === currentCity);
+      
+      document.getElementById("adTotalCount").innerText = filtered.length + " ಜಾಹೀರಾತುಗಳು";
+
+      if (filtered.length === 0) {
+        feed.innerHTML = `
+          <div style="text-align:center; padding: 40px 20px; background:#fff; margin:10px 14px; border-radius:16px; border:1px solid #e2e8f0;">
+            <div style="font-size:32px;">📭</div>
+            <div style="font-size:13px; font-weight:800; color:#0f172a; margin:6px 0;">ಈ ಊರಿನಲ್ಲಿ ಇನ್ನೂ ಜಾಹೀರಾತುಗಳಿಲ್ಲ</div>
+            <div style="font-size:11px; color:#64748b; margin-bottom:12px;">ಮೊದಲಿಗರಾಗಿ ನಿಮ್ಮ ಜಾಹೀರಾತನ್ನು ಉಚಿತವಾಗಿ ಪ್ರಕಟಿಸಿ!</div>
+            <a href="post_ad.html" style="background:#059669; color:#fff; padding:8px 18px; border-radius:20px; font-size:11.5px; font-weight:800; text-decoration:none;">➕ ಉಚಿತ ಜಾಹೀರಾತು ಹಾಕಿ</a>
+          </div>`;
+        return;
+      }
+
+      feed.innerHTML = "";
+      filtered.forEach((ad) => {
+        var isSuper = ad.plan && ad.plan.includes("₹99");
+        var isHighlight = ad.plan && ad.plan.includes("₹49");
+        var cardClass = isSuper ? "ad-card super-card" : (isHighlight ? "ad-card highlight-card" : "ad-card");
+
+        feed.innerHTML += `
+          <div class="${cardClass}">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span class="ad-tag-chip">📍 ${ad.city} • ${ad.category || 'ಇತರೆ'}</span>
+              ${ad.price ? `<span style="font-size:12px; font-weight:800; color:#059669;">💰 ${ad.price}</span>` : ''}
+            </div>
+
+            <h3 style="font-size:13.5px; font-weight:800; color:#0f172a; margin-bottom:4px;">${ad.title}</h3>
+            
+            ${ad.imageUrl ? `<img src="${ad.imageUrl}" alt="${ad.title}" style="width:100%; max-height:200px; object-fit:cover; border-radius:10px; margin:6px 0; border:1px solid #e2e8f0;">` : ''}
+            
+            <p style="font-size:11.5px; color:#475569; line-height:1.4; margin:4px 0 8px;">${ad.desc}</p>
+
+            <!-- Bottom Action Row: Call & Instant Viral Share on Every Card -->
+            <div class="ad-card-actions">
+              <a href="tel:${ad.phone}" class="btn-action-call">📞 ${ad.phone}</a>
+              <button onclick="shareAdWhatsApp('${ad.title.replace(/'/g, "\\'")}', '${ad.city}', '${ad.phone}', '${ad.price || ''}')" class="btn-action-share-wa">
+                💬 ಶೇರ್
+              </button>
+              <button onclick="shareNativeAd('${ad.title.replace(/'/g, "\\'")}', '${ad.desc.replace(/'/g, "\\'")}')" class="btn-action-share-native">
+                🔗
+              </button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    // 3. WhatsApp Direct Share Action
+    function shareAdWhatsApp(title, city, phone, price) {
+      var priceText = price ? `💰 ಬೆಲೆ: ${price}%0A` : '';
+      var text = `📢 *${title}*%0A📍 ಸ್ಥಳ: ${city}%0A${priceText}📞 ಸಂಪರ್ಕಿಸಿ: ${phone}%0A%0Aನಮ್ಮೂರ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಈ ಜಾಹೀರಾತು ನೋಡಿ: ${window.location.origin}`;
+      window.open(`https://api.whatsapp.com/send?text=${text}`, "_blank");
+    }
+
+    // 4. Native Browser Share / Copy
+    function shareNativeAd(title, desc) {
+      if (navigator.share) {
+        navigator.share({
+          title: title,
+          text: `${title} - ${desc}`,
+          url: window.location.origin
+        }).catch(() => {});
+      } else {
+        navigator.clipboard.writeText(window.location.origin);
+        alert("✅ ಜಾಹೀರಾತಿನ ವೆಬ್ ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!");
+      }
+    }
+
+    // 5. City Filter & Load City Offers
+    function filterByCity(city, el, cityKey) {
+      currentCity = city;
+      document.querySelectorAll('.city-chip').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      renderAds();
+
+      // Load Special Offer Banner for that city
+      var banner = document.getElementById("cityHighlightBanner");
+      if (cityKey) {
+        var saved = localStorage.getItem('city_data_' + cityKey);
+        if (saved) {
+          var d = JSON.parse(saved);
+          if (d.title || d.desc || d.today) {
+            banner.style.display = "block";
+            document.getElementById("bannerOfferTitle").innerText = "🔥 " + (d.title || `${city} ವಿಶೇಷ`);
+            document.getElementById("bannerOfferDesc").innerText = (d.desc ? d.desc + " | " : "") + (d.today || "");
+            return;
+          }
+        }
+      }
+      banner.style.display = "none";
+    }
+
+    // 6. Load Live Admin News
+    function loadCustomNews() {
       var savedNews = localStorage.getItem('samruddhi_news_data');
       if (savedNews) {
-        var d = JSON.parse(savedNews);
-        if(d.adike) document.getElementById('news_adike').innerHTML = "<strong>ಅಡಿಕೆ:</strong> " + d.adike;
-        if(d.kobbari) document.getElementById('news_kobbari').innerHTML = "<strong>ಕೊಬ್ಬರಿ:</strong> " + d.kobbari;
-        if(d.maize) document.getElementById('news_maize').innerHTML = "<strong>ಮೆಕ್ಕೆಜೋಳ:</strong> " + d.maize;
-        if(d.top1) document.getElementById('news_top1').innerText = d.top1;
-        if(d.top2) document.getElementById('news_top2').innerText = d.top2;
-      }
-    });
-
-    // 2. 30s Ad Switch Timer with Progress Bar
-    var currentSlide = 1;
-    var totalSlides = 3;
-    var maxSeconds = 30;
-    var remaining = maxSeconds;
-
-    setInterval(function() {
-      remaining--;
-      if (remaining <= 0) {
-        document.getElementById('ad' + currentSlide).classList.remove('active');
-        currentSlide = (currentSlide % totalSlides) + 1;
-        document.getElementById('ad' + currentSlide).classList.add('active');
-        remaining = maxSeconds;
-      }
-      document.getElementById('adSeconds').innerText = remaining;
-      var percent = (remaining / maxSeconds) * 100;
-      document.getElementById('adProgress').style.width = percent + '%';
-    }, 1000);
-
-    // 3. Service Worker Register
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js').catch(err => console.log(err));
-    }
-
-    // 4. PWA Installation Handler
-    let deferredPrompt;
-    const installBanner = document.getElementById('pwaInstallBanner');
-
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      installBanner.style.display = 'flex';
-    });
-
-    function installPWA() {
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-      
-      if (isIOS) {
-        document.getElementById('iosInstallModal').style.display = 'flex';
-      } else if (deferredPrompt) {
-        deferredPrompt.prompt();
-        deferredPrompt.userChoice.then((choiceResult) => {
-          if (choiceResult.outcome === 'accepted') {
-            installBanner.style.display = 'none';
-          }
-          deferredPrompt = null;
-        });
-      } else {
-        alert("ನಿಮ್ಮ ಬ್ರೌಸರ್ ಮೆನುವಿನಲ್ಲಿರುವ (⋮) 3 ಚುಕ್ಕೆಗಳನ್ನು ಒತ್ತಿ 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
+        var n = JSON.parse(savedNews);
+        document.getElementById('liveTickerText').innerText = `${n.top1 || ''} • ಅಡಿಕೆ: ${n.adike || ''} • ಕೊಬ್ಬರಿ: ${n.kobbari || ''} • ಮೆಕ್ಕೆಜೋಳ: ${n.maize || ''}`;
       }
     }
 
-    // 5. WhatsApp In-App Browser Detection
-    if (navigator.userAgent.includes("WhatsApp")) {
-      installBanner.style.display = 'flex';
-    }
+    window.addEventListener('DOMContentLoaded', loadLiveAds);
   </script>
 
 </body>
