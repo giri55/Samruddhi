@@ -248,7 +248,7 @@
         <input type="text" class="form-input" id="ad_title" placeholder="ಉದಾ: ಶುದ್ಧ ಹಸುವಿನ ತುಪ್ಪ ಮಾರಾಟಕ್ಕಿದೆ" required>
       </div>
 
-      <!-- 6. Photo Upload Box (Dedicated) -->
+      <!-- 6. Dedicated Photo Upload Box -->
       <div class="form-group">
         <label class="form-label">📷 ಉತ್ಪನ್ನ / ವಾಹನದ ಫೋಟೋ ಅಥವಾ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</label>
         <div class="photo-upload-container" onclick="document.getElementById('ad_image_file').click()">
@@ -348,30 +348,36 @@
 
       var imageUrl = "";
 
-      // 1. Upload Photo to Cloudinary
-      if (fileInput.files.length > 0) {
+      // 1. Upload Photo with 5-sec Timeout Protection
+      if (fileInput.files && fileInput.files.length > 0) {
         try {
           var formData = new FormData();
           formData.append("file", fileInput.files[0]);
-          formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
+          formData.append("upload_preset", (typeof CLOUDINARY_UPLOAD_PRESET !== 'undefined') ? CLOUDINARY_UPLOAD_PRESET : "samruddhi");
 
-          var res = await fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
+          var cloudName = (typeof CLOUDINARY_CLOUD_NAME !== 'undefined') ? CLOUDINARY_CLOUD_NAME : "mkuurlzy";
+          
+          var uploadPromise = fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
             method: "POST",
             body: formData
-          });
-          var data = await res.json();
-          if(data.secure_url) {
+          }).then(res => res.json());
+
+          // 6 seconds timeout so form never hangs
+          var timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 6000));
+          
+          var data = await Promise.race([uploadPromise, timeoutPromise]);
+          if (data && data.secure_url) {
             imageUrl = data.secure_url;
           }
         } catch(err) {
-          console.log("Image upload error:", err);
+          console.warn("Cloudinary upload skipped or timed out:", err);
         }
       }
 
-      // 2. Save to Firebase
+      // 2. Save to Firebase with Timeout Protection
       if (typeof db !== 'undefined') {
         try {
-          await db.collection("ads").add({
+          var savePromise = db.collection("ads").add({
             plan: plan,
             amount: amt,
             utr: utr,
@@ -385,34 +391,44 @@
             status: "pending",
             createdAt: new Date().toISOString()
           });
+          
+          var dbTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('DB Timeout')), 4000));
+          await Promise.race([savePromise, dbTimeout]);
         } catch(err) {
-          console.log("Database save error:", err);
+          console.warn("Firebase save skipped or timed out:", err);
         }
       }
 
-      // 3. Social Share Links
+      // 3. Social Share Links Setup
       var shareText = `📢 *${title}*%0A📍 ಸ್ಥಳ: ${city}%0A💰 ಬೆಲೆ: ${price}%0A📄 ವಿವರ: ${desc}%0A📞 ಸಂಪರ್ಕಿಸಿ: ${phone}%0A%0Aನಮ್ಮೂರ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ನೋಡಿ: ${window.location.origin}`;
       document.getElementById('shareWaBtn').href = "https://api.whatsapp.com/send?text=" + shareText;
       document.getElementById('shareFbBtn').href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.origin);
       document.getElementById('shareTgBtn').href = "https://t.me/share/url?url=" + encodeURIComponent(window.location.origin) + "&text=" + shareText;
 
-      // 4. WhatsApp Message
+      // 4. Send Message to Admin WhatsApp
       var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು*%0A%0A" +
-                  "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A" +
-                  "📍 *ನಗರ:* " + encodeURIComponent(city) + "%0A" +
-                  "📂 *ವಿಭಾಗ:* " + encodeURIComponent(cat) + "%0A" +
-                  "🏷️ *ಶೀರ್ಷಿಕೆ:* " + encodeURIComponent(title) + "%0A" +
-                  "💰 *ಬೆಲೆ:* " + encodeURIComponent(price) + "%0A" +
-                  "📄 *ವಿವರ:* " + encodeURIComponent(desc) + "%0A" +
-                  "📱 *ಸಂಪರ್ಕ:* " + encodeURIComponent(phone);
+                  "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A";
+
+      if (amt > 0) {
+        waMsg += "💰 *ಪಾವತಿ ಮೊತ್ತ:* ₹" + encodeURIComponent(amt) + "%0A" +
+                 "🧾 *Payment UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ') + "%0A";
+      }
+
+      waMsg += "📍 *ನಗರ:* " + encodeURIComponent(city) + "%0A" +
+               "📂 *ವಿಭಾಗ:* " + encodeURIComponent(cat) + "%0A" +
+               "🏷️ *ಶೀರ್ಷಿಕೆ:* " + encodeURIComponent(title) + "%0A" +
+               "💰 *ಬೆಲೆ:* " + encodeURIComponent(price) + "%0A" +
+               "📄 *ವಿವರ:* " + encodeURIComponent(desc) + "%0A" +
+               "📱 *ಸಂಪರ್ಕ:* " + encodeURIComponent(phone);
 
       if (imageUrl) {
         waMsg += "%0A🖼️ *ಫೋಟೋ ಲಿಂಕ್:* " + encodeURIComponent(imageUrl);
       }
 
+      // Trigger WhatsApp
       window.open("https://wa.me/918431649984?text=" + waMsg, "_blank");
 
-      // 5. Show Share Box
+      // 5. Show Share Box Instantly
       document.getElementById('adFormCard').style.display = 'none';
       document.getElementById('shareSuccessCard').style.display = 'block';
     }
