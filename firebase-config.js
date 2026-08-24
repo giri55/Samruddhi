@@ -1,4 +1,4 @@
-// Samruddhi Firebase & Cloudinary Master Configuration
+// Samruddhi Master Firebase & Cloudinary Configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCuAqvEpWRa1PK8zEig0K1iBYkNrWoQ560",
   authDomain: "samruddhi-fee93.firebaseapp.com",
@@ -9,12 +9,13 @@ const firebaseConfig = {
   measurementId: "G-90CQLHR34H"
 };
 
-// Initialize Firebase SDK (CDN Compatible)
+// Initialize Firebase SDK
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
+const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Cloudinary Settings
+// Cloudinary Integrated Settings
 const CLOUDINARY_CLOUD_NAME = "mkuurlzy";
 const CLOUDINARY_UPLOAD_PRESET = "samruddhi";
