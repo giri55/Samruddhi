@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="kn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ಅಡ್ಮಿನ್ ಕಂಟ್ರೋಲ್ ಪ್ಯಾನೆಲ್ - ಸಮೃದ್ಧಿ</title>
+  <link rel="stylesheet" href="style.css">
+  
+    <style>
+      :root {
+        --primary: #4f46e5;
+        --primary-dark: #3730a3;
+        --accent: #059669;
+        --bg-light: #eef2ff;
+        --border-tint: #c7d2fe;
+        --badge-grad: linear-gradient(135deg, #4f46e5, #3730a3);
+      }
+    </style>
+    
+  <style>
+    .admin-tab-btn {
+      padding: 6px 12px;
+      font-size: 11.5px;
+      font-weight: 700;
+      border-radius: 20px;
+      border: 1px solid #cbd5e1;
+      background: #f8fafc;
+      cursor: pointer;
+    }
+    .admin-tab-btn.active {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <a href="index.html" class="brand-badge">← ಮುಖಪುಟ</a>
+    <span style="font-size: 13px; font-weight: 800; color: #1e293b;">⚙️ ಅಡ್ಮಿನ್ ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</span>
+    <span class="admin-badge-active">🟢 ONLINE</span>
+  </header>
+
+  <div class="tagline-strip">
+    🛠️ ಸಮೃದ್ಧಿ ಸೂಪರ್ ಪೋರ್ಟಲ್ - ಅಡ್ಮಿನ್ ಮ್ಯಾನೇಜ್‌ಮೆಂಟ್
+  </div>
+
+  <!-- Admin Sub Navigation Tabs -->
+  <div style="display: flex; gap: 6px; padding: 10px 12px; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--border);">
+    <button class="admin-tab-btn active" onclick="switchAdminTab('adsTab', this)">📥 ಆ್ಯಡ್ಸ್ ಅಪ್ರೂವಲ್ (3)</button>
+    <button class="admin-tab-btn" onclick="switchAdminTab('tickerTab', this)">🪙 ದರ & ಟಿಕ್ಕರ್</button>
+    <button class="admin-tab-btn" onclick="switchAdminTab('offersTab', this)">🔥 ಆಫರ್ಸ್ & ಜಾಬ್ಸ್</button>
+    <button class="admin-tab-btn" onclick="switchAdminTab('eventsTab', this)">🚩 ಕಾರ್ಯಕ್ರಮಗಳು</button>
+  </div>
+
+  <!-- TAB 1: Pending Ads Approval -->
+  <div id="adsTab" class="form-card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <h3 style="font-size: 14px; font-weight: 800; color: #0f172a;">📥 ಪರಿಶೀಲನೆಗೆ ಬಂದಿರುವ ಜಾಹೀರಾತುಗಳು</h3>
+      <span class="admin-badge-pending">3 ಹೊಸತು</span>
+    </div>
+
+    <!-- Item 1 -->
+    <div class="admin-item-row" id="adRow1">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+        <span style="font-size: 11px; font-weight: 700; color: var(--primary);">📍 ಶಿವಮೊಗ್ಗ • ಹಾಲು/ಡೈರಿ</span>
+        <span class="admin-badge-pending">₹49 ಪ್ಲಾನ್</span>
+      </div>
+      <h4 style="font-size: 13px; font-weight: 800; color: #0f172a; margin-bottom: 3px;">ಶುದ್ಧ ಗಿರ್ ಹಸುವಿನ ಹಾಲು ಮತ್ತು ಸಾವಯವ ತುಪ್ಪ</h4>
+      <p style="font-size: 11.5px; color: #64748b; margin-bottom: 6px;">ಬೆಲೆ: ₹65/L • ಸಂಪರ್ಕ: 9845112299 • ಸಾಗರ ರಸ್ತೆ</p>
+      <div style="display: flex; gap: 8px;">
+        <button class="admin-btn-approve" onclick="approveAd('adRow1')">✓ ಅಪ್ರೂವ್ ಮಾಡಿ</button>
+        <button class="admin-btn-reject" onclick="rejectAd('adRow1')">✕ ತಿರಸ್ಕರಿಸಿ</button>
+      </div>
+    </div>
+
+    <!-- Item 2 -->
+    <div class="admin-item-row" id="adRow2">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+        <span style="font-size: 11px; font-weight: 700; color: #d97706;">📍 ದಾವಣಗೆರೆ • ಸಣ್ಣ ವ್ಯಾಪಾರಿ</span>
+        <span class="admin-badge-active">ಉಚಿತ ಪ್ಲಾನ್</span>
+      </div>
+      <h4 style="font-size: 13px; font-weight: 800; color: #0f172a; margin-bottom: 3px;">ಮಂಡಿಪೇಟೆ ದಿನಸಿ ಸಾಮಗ್ರಿಗಳ ಹೋಲ್‌ಸೇಲ್ ಮಳಿಗೆ</h4>
+      <p style="font-size: 11.5px; color: #64748b; margin-bottom: 6px;">ಬೆಲೆ: ರಿಯಾಯಿತಿ ದರ • ಸಂಪರ್ಕ: 9448445566</p>
+      <div style="display: flex; gap: 8px;">
+        <button class="admin-btn-approve" onclick="approveAd('adRow2')">✓ ಅಪ್ರೂವ್ ಮಾಡಿ</button>
+        <button class="admin-btn-reject" onclick="rejectAd('adRow2')">✕ ತಿರಸ್ಕರಿಸಿ</button>
+      </div>
+    </div>
+
+    <!-- Item 3 -->
+    <div class="admin-item-row" id="adRow3">
+      <div style="display: flex; justify-content: space-between; margin-bottom: 4px;">
+        <span style="font-size: 11px; font-weight: 700; color: #7c3aed;">📍 ಮೈಸೂರು • ಸರ್ವೀಸ್</span>
+        <span class="admin-badge-pending">₹99 ಪ್ರೀಮಿಯಂ</span>
+      </div>
+      <h4 style="font-size: 13px; font-weight: 800; color: #0f172a; margin-bottom: 3px;">ಮನೆ ಪೇಂಟಿಂಗ್ & ವಾಟರ್ ಪ್ರೂಫಿಂಗ್ ಸೇವೆ</h4>
+      <p style="font-size: 11.5px; color: #64748b; margin-bottom: 6px;">ಬೆಲೆ: ಸಮಂಜಸ ದರ • ಸಂಪರ್ಕ: 9845012345</p>
+      <div style="display: flex; gap: 8px;">
+        <button class="admin-btn-approve" onclick="approveAd('adRow3')">✓ ಅಪ್ರೂವ್ ಮಾಡಿ</button>
+        <button class="admin-btn-reject" onclick="rejectAd('adRow3')">✕ ತಿರಸ್ಕರಿಸಿ</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: Gold & Silver / Fuel Updates -->
+  <div id="tickerTab" class="form-card" style="display: none;">
+    <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">🪙 ದಿನನಿತ್ಯದ ದರ ಅಪ್‌ಡೇಟ್</h3>
+    <form onsubmit="event.preventDefault(); alert('ದರಗಳು ಯಶಸ್ವಿಯಾಗಿ ಅಪ್‌ಡೇಟ್ ಆಗಿವೆ!');">
+      <label style="font-size: 11.5px; font-weight: 700;">22K ಚಿನ್ನದ ಬೆಲೆ (1 ಗ್ರಾಂ)</label>
+      <input type="text" class="form-input" value="₹6,745">
+      
+      <label style="font-size: 11.5px; font-weight: 700;">24K ಚಿನ್ನದ ಬೆಲೆ (1 ಗ್ರಾಂ)</label>
+      <input type="text" class="form-input" value="₹7,355">
+      
+      <label style="font-size: 11.5px; font-weight: 700;">ಬೆಳ್ಳಿ ಬೆಲೆ (1 ಕೆಜಿ)</label>
+      <input type="text" class="form-input" value="₹88,500">
+
+      <label style="font-size: 11.5px; font-weight: 700;">ಪೆಟ್ರೋಲ್ ಬೆಲೆ (1 ಲೀಟರ್)</label>
+      <input type="text" class="form-input" value="₹102.80">
+
+      <button type="submit" style="width: 100%; background: var(--primary); color: #fff; border: none; padding: 10px; border-radius: 20px; font-weight: 700; font-size: 13px;">💾 ಟಿಕ್ಕರ್ ದರಗಳನ್ನು ಸೇವ್ ಮಾಡಿ</button>
+    </form>
+  </div>
+
+  <!-- TAB 3: Offers & Jobs Updates -->
+  <div id="offersTab" class="form-card" style="display: none;">
+    <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">🔥 ದಿನದ ಆಫರ್ & ಜಾಬ್ಸ್ ಅಪ್‌ಡೇಟ್</h3>
+    <form onsubmit="event.preventDefault(); alert('ಆಫರ್ & ಜಾಬ್ಸ್ ಅಪ್‌ಡೇಟ್ ಆಗಿವೆ!');">
+      <label style="font-size: 11.5px; font-weight: 700;">ನಗರ ಆಯ್ಕೆಮಾಡಿ</label>
+      <select class="form-input">
+        <option>ಶಿವಮೊಗ್ಗ</option>
+        <option>ದಾವಣಗೆರೆ</option>
+        <option>ಮೈಸೂರು</option>
+        <option>ಬೆಳಗಾವಿ</option>
+        <option>ಮಂಗಳೂರು</option>
+        <option>ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ</option>
+        <option>ತುಮಕೂರು</option>
+      </select>
+
+      <label style="font-size: 11.5px; font-weight: 700;">ಬ್ಲಿಂಕಿಂಗ್ ಆಫರ್ ಶೀರ್ಷಿಕೆ</label>
+      <input type="text" class="form-input" value="⚡ ಇಂದಿನ ಮೆಗಾ ಆಫರ್: 40% ರಿಯಾಯಿತಿ!">
+
+      <label style="font-size: 11.5px; font-weight: 700;">ಆಫರ್ ವಿವರಣೆ & ಫೋನ್ ನಂಬರ್</label>
+      <textarea class="form-input" rows="2">ಪ್ರಮುಖ ಶಾಪ್‌ನಲ್ಲಿ ಇಂದು ಮಾತ್ರ ಸೀರೆ & ಬಟ್ಟೆಗಳ ಮೇಲೆ ವಿಶೇಷ ಕಡಿತ.</textarea>
+
+      <label style="font-size: 11.5px; font-weight: 700;">ಸ್ಕ್ರೋಲಿಂಗ್ ಜಾಬ್ಸ್ ಬುಲೆಟಿನ್</label>
+      <textarea class="form-input" rows="2">ಡೆಲಿವರಿ ಬಾಯ್ಸ್ ಬೇಕಾಗಿದ್ದಾರೆ (₹16,000) • ಆಸ್ಪತ್ರೆಗೆ ನರ್ಸಿಂಗ್ & ರಿಸೆಪ್ಷನಿಸ್ಟ್</textarea>
+
+      <button type="submit" style="width: 100%; background: #059669; color: #fff; border: none; padding: 10px; border-radius: 20px; font-weight: 700; font-size: 13px;">🚀 ಆಫರ್ ಲೈವ್ ಮಾಡಿ</button>
+    </form>
+  </div>
+
+  <!-- TAB 4: Events & Cinema Updates -->
+  <div id="eventsTab" class="form-card" style="display: none;">
+    <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">🚩 ಊರಿನ ಇಂದಿನ ಕಾರ್ಯಕ್ರಮಗಳು & ಸಿನಿಮಾ</h3>
+    <form onsubmit="event.preventDefault(); alert('ಕಾರ್ಯಕ್ರಮಗಳ ಮಾಹಿತಿ ಸೇವ್ ಆಗಿದೆ!');">
+      <label style="font-size: 11.5px; font-weight: 700;">ನಗರ ಆಯ್ಕೆಮಾಡಿ</label>
+      <select class="form-input">
+        <option>ಶಿವಮೊಗ್ಗ</option>
+        <option>ದಾವಣಗೆರೆ</option>
+        <option>ಮೈಸೂರು</option>
+        <option>ಬೆಳಗಾವಿ</option>
+        <option>ಮಂಗಳೂರು</option>
+        <option>ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ</option>
+        <option>ತುಮಕೂರು</option>
+      </select>
+
+      <label style="font-size: 11.5px; font-weight: 700;">ಇಂದಿನ ಪೂಜೆ / ಜಾತ್ರೆ / ಶಿಬಿರಗಳು</label>
+      <textarea class="form-input" rows="2">🚩 ಕೋಟೆ ಶ್ರೀ ಸೀತಾರಾಮಾಂಜನೇಯ ಸ್ವಾಮಿ ದೇಗುಲದಲ್ಲಿ ಮಹಾಪೂಜೆ & ಪ್ರಸಾದ</textarea>
+
+      <label style="font-size: 11.5px; font-weight: 700;">ವಿದ್ಯುತ್ ಕಡಿತ / ಮುನ್ಸೂಚನೆ</label>
+      <input type="text" class="form-input" value="ವಿದ್ಯಾನಗರ & ಗೋಪಾಲಗೌಡ ಬಡಾವಣೆಯಲ್ಲಿ ನಾಳೆ 10 ರಿಂದ 2 ರವರೆಗೆ ನಿರ್ವಹಣೆ">
+
+      <label style="font-size: 11.5px; font-weight: 700;">ಸಿನಿಮಾ & ಕ್ರೀಡೆ ಅಪ್‌ಡೇಟ್</label>
+      <input type="text" class="form-input" value="ಮಲ್ಲಿಕಾರ್ಜುನ & ಭಾರತ್ ಚಿತ್ರಮಂದಿರಗಳಲ್ಲಿ ಹೊಸ ಚಿತ್ರ ಪ್ರದರ್ಶನ">
+
+      <button type="submit" style="width: 100%; background: #7c3aed; color: #fff; border: none; padding: 10px; border-radius: 20px; font-weight: 700; font-size: 13px;">✨ ಸೇವ್ ಮಾಡಿ</button>
+    </form>
+  </div>
+
+  <!-- Bottom Navigation Bar -->
+  <nav class="bottom-nav">
+    <a href="index.html" class="b-tab">
+      <span class="b-icon">🏠</span>
+      <span>ಮುಖಪುಟ</span>
+    </a>
+    <a href="order_poster.html" class="b-tab">
+      <span class="b-icon">🎨</span>
+      <span>ಪೋಸ್ಟರ್ ₹59</span>
+    </a>
+    <a href="post_ad.html" class="b-post-circle">
+      <span>➕</span>
+    </a>
+    <a href="admin.html" class="b-tab active">
+      <span class="b-icon">⚙️</span>
+      <span>ಅಡ್ಮಿನ್</span>
+    </a>
+    <a href="https://wa.me/919876543210?text=ಸಹಾಯ%20ಬೇಕು" class="b-tab">
+      <span class="b-icon">💬</span>
+      <span>ಹೆಲ್ಪ್‌ಲೈನ್</span>
+    </a>
+  </nav>
+
+  <script>
+    function switchAdminTab(tabId, btn) {
+      document.getElementById('adsTab').style.display = 'none';
+      document.getElementById('tickerTab').style.display = 'none';
+      document.getElementById('offersTab').style.display = 'none';
+      document.getElementById('eventsTab').style.display = 'none';
+
+      document.querySelectorAll('.admin-tab-btn').forEach(function(b) {
+        b.classList.remove('active');
+      });
+
+      document.getElementById(tabId).style.display = 'block';
+      btn.classList.add('active');
+    }
+
+    function approveAd(rowId) {
+      document.getElementById(rowId).style.background = '#f0fdf4';
+      document.getElementById(rowId).innerHTML = '<div style="color: #15803d; font-weight: 800; font-size: 12.5px; padding: 6px 0;">✓ ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಅಪ್ರೂವ್ ಆಗಿದೆ ಮತ್ತು ಲೈವ್ ಆಗಿದೆ!</div>';
+    }
+
+    function rejectAd(rowId) {
+      document.getElementById(rowId).style.background = '#fef2f2';
+      document.getElementById(rowId).innerHTML = '<div style="color: #b91c1c; font-weight: 800; font-size: 12.5px; padding: 6px 0;">✕ ಜಾಹೀರಾತನ್ನು ತಿರಸ್ಕರಿಸಲಾಗಿದೆ.</div>';
+    }
+  </script>
+
+</body>
+</html>
