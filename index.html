@@ -5,6 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- PWA Settings & Apple Support -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#059669">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ಸಮೃದ್ಧಿ">
+  <link rel="apple-touch-icon" href="https://cdn-icons-png.flaticon.com/512/609/609803.png">
 </head>
 <body>
 
@@ -29,6 +37,20 @@
       <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
       <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
     </div>
+  </div>
+
+  <!-- Smart PWA Install Strip (No Security Warnings) -->
+  <div id="pwaInstallBanner" style="display: none; background: linear-gradient(135deg, #1e1b4b, #312e81); color: #fff; padding: 10px 14px; margin: 10px 14px 2px; border-radius: 14px; align-items: center; justify-content: space-between; box-shadow: 0 4px 12px rgba(49,46,129,0.3); border: 1px solid #6366f1;">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 20px;">📲</span>
+      <div>
+        <div style="font-size: 12px; font-weight: 800; color: #fef08a;">ಸಮೃದ್ಧಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ</div>
+        <div style="font-size: 10px; color: #c7d2fe;">ಹೋಮ್ ಸ್ಕ್ರೀನ್‌ಗೆ ಸೇರಿಸಿ, ವೇಗವಾಗಿ ಬಳಸಿ</div>
+      </div>
+    </div>
+    <button id="pwaInstallBtn" onclick="installPWA()" style="background: #22c55e; color: #fff; border: none; padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; cursor: pointer;">
+      ⬇️ ಇನ್‌ಸ್ಟಾಲ್
+    </button>
   </div>
 
   <!-- 1. 30-Second Featured Ad Showcase (With Neat Small Font Buttons) -->
@@ -138,6 +160,18 @@
     </a>
   </div>
 
+  <!-- iOS (iPhone) Modal Guide -->
+  <div id="iosInstallModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 9999; align-items: flex-end; justify-content: center;">
+    <div style="background: #fff; width: 100%; max-width: 500px; padding: 20px; border-radius: 20px 20px 0 0; text-align: center;">
+      <h3 style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">📲 iPhone ನಲ್ಲಿ ಆ್ಯಪ್ ಸೇರಿಸಲು:</h3>
+      <p style="font-size: 12px; color: #475569; line-height: 1.5; margin-bottom: 12px;">
+        1. ಕೆಳಗಿನ Safari ಮೆನುವಿನಲ್ಲಿರುವ <strong>Share ( <span style="font-size:14px;">⬆️</span> )</strong> ಬಟನ್ ಒತ್ತಿ.<br>
+        2. ನಂತರ <strong>'Add to Home Screen ( ➕ )'</strong> ಆಯ್ಕೆಮಾಡಿ.
+      </p>
+      <button onclick="document.getElementById('iosInstallModal').style.display='none'" style="width: 100%; background: #059669; color: #fff; border: none; padding: 10px; border-radius: 20px; font-weight: 800; font-size: 13px;">ಸರಿ, ತಿಳಿಯಿತು</button>
+    </div>
+  </div>
+
   <!-- Bottom Nav -->
   <nav class="modern-bottom-nav">
     <a href="index.html" class="nav-tab-link active"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
@@ -147,8 +181,9 @@
     <a href="https://wa.me/918431649984?text=ಸಮೃದ್ಧಿ%20ಪೋರ್ಟಲ್%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
 
-  <!-- Auto Load Saved News & 30s Ad Switch Script -->
+  <!-- JavaScript for News Sync, Ad Rotation & PWA Install -->
   <script>
+    // 1. Sync Live News from Admin
     window.addEventListener('DOMContentLoaded', function() {
       var savedNews = localStorage.getItem('samruddhi_news_data');
       if (savedNews) {
@@ -161,6 +196,7 @@
       }
     });
 
+    // 2. 30s Ad Switch Timer with Progress Bar
     var currentSlide = 1;
     var totalSlides = 3;
     var maxSeconds = 30;
@@ -178,6 +214,44 @@
       var percent = (remaining / maxSeconds) * 100;
       document.getElementById('adProgress').style.width = percent + '%';
     }, 1000);
+
+    // 3. Service Worker Register
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(err => console.log(err));
+    }
+
+    // 4. PWA Installation Handler
+    let deferredPrompt;
+    const installBanner = document.getElementById('pwaInstallBanner');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installBanner.style.display = 'flex';
+    });
+
+    function installPWA() {
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+      
+      if (isIOS) {
+        document.getElementById('iosInstallModal').style.display = 'flex';
+      } else if (deferredPrompt) {
+        deferredPrompt.prompt();
+        deferredPrompt.userChoice.then((choiceResult) => {
+          if (choiceResult.outcome === 'accepted') {
+            installBanner.style.display = 'none';
+          }
+          deferredPrompt = null;
+        });
+      } else {
+        alert("ನಿಮ್ಮ ಬ್ರೌಸರ್ ಮೆನುವಿನಲ್ಲಿರುವ (⋮) 3 ಚುಕ್ಕೆಗಳನ್ನು ಒತ್ತಿ 'Add to Home screen' ಆಯ್ಕೆಮಾಡಿ.");
+      }
+    }
+
+    // 5. WhatsApp In-App Browser Detection
+    if (navigator.userAgent.includes("WhatsApp")) {
+      installBanner.style.display = 'flex';
+    }
   </script>
 
 </body>
