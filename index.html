@@ -5,435 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #059669;
-      --primary-dark: #047857;
-      --accent-gold: #d97706;
-      --bg-light: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #0f172a;
-      --text-sub: #475569;
-    }
-
-    body {
-      background: #f1f5f9;
-      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-      margin: 0;
-      padding-bottom: 80px;
-      color: var(--text-main);
-    }
-
-    /* Modern App Header */
-    .app-header-modern {
-      background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
-      color: #ffffff;
-      padding: 12px 14px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      box-shadow: 0 4px 20px rgba(5, 150, 105, 0.25);
-    }
-    .brand-logo-wrap {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: #ffffff;
-    }
-    .brand-icon {
-      width: 34px;
-      height: 34px;
-      background: #ffffff;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-    .brand-title-box {
-      display: flex;
-      flex-direction: column;
-    }
-    .brand-name {
-      font-size: 16px;
-      font-weight: 800;
-      line-height: 1.1;
-      letter-spacing: -0.3px;
-    }
-    .brand-tag {
-      font-size: 9.5px;
-      color: #a7f3d0;
-      font-weight: 700;
-    }
-    .header-post-btn {
-      background: linear-gradient(135deg, #f59e0b, #d97706);
-      color: #ffffff;
-      font-size: 11.5px;
-      font-weight: 800;
-      padding: 6px 14px;
-      border-radius: 20px;
-      text-decoration: none;
-      box-shadow: 0 3px 10px rgba(217, 119, 6, 0.4);
-      display: flex;
-      align-items: center;
-      gap: 4px;
-    }
-
-    /* Glowing Live Gold Ticker */
-    .rate-ticker-bar {
-      background: linear-gradient(90deg, #92400e 0%, #b45309 50%, #d97706 100%);
-      color: #ffffff;
-      padding: 7px 0;
-      display: flex;
-      align-items: center;
-      font-size: 11.5px;
-      font-weight: 800;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(180, 83, 9, 0.25);
-    }
-    .rate-badge-pulse {
-      background: #451a03;
-      color: #fde68a;
-      padding: 3px 8px;
-      margin: 0 8px;
-      border-radius: 6px;
-      font-size: 10.5px;
-      font-weight: 800;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      border: 1px solid #f59e0b;
-    }
-    .pulse-dot {
-      width: 7px;
-      height: 7px;
-      background: #22c55e;
-      border-radius: 50%;
-      box-shadow: 0 0 8px #22c55e;
-      animation: blink 1.2s infinite;
-    }
-    @keyframes blink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
-    .ticker-content-track {
-      display: inline-flex;
-      white-space: nowrap;
-      animation: marqueeScroll 22s linear infinite;
-    }
-    @keyframes marqueeScroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* Section Titles */
-    .section-title-strip {
-      padding: 12px 14px 6px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .sec-head {
-      font-size: 13.5px;
-      font-weight: 800;
-      color: #0f172a;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    /* 30-Second Dynamic Ad Showcase with Progress Bar (TOP POSITION) */
-    .showcase-ad-card {
-      margin: 12px 12px 14px;
-      background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
-      border-radius: 18px;
-      padding: 14px;
-      color: #ffffff;
-      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.25);
-      border: 1.5px solid #4338ca;
-      position: relative;
-      overflow: hidden;
-    }
-    .showcase-top-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-    }
-    .sp-badge {
-      background: #f59e0b;
-      color: #451a03;
-      font-size: 9.5px;
-      font-weight: 800;
-      padding: 2px 7px;
-      border-radius: 5px;
-      letter-spacing: 0.3px;
-    }
-    .ad-timer-badge {
-      font-size: 10.5px;
-      color: #c7d2fe;
-      font-weight: 700;
-    }
-    .ad-progress-track {
-      width: 100%;
-      height: 3px;
-      background: rgba(255,255,255,0.15);
-      border-radius: 2px;
-      margin-bottom: 10px;
-      overflow: hidden;
-    }
-    .ad-progress-fill {
-      height: 100%;
-      width: 100%;
-      background: #38bdf8;
-      transition: width 1s linear;
-    }
-    .ad-slide-box {
-      display: none;
-      animation: fadeInSlide 0.4s ease;
-    }
-    .ad-slide-box.active { display: block; }
-    @keyframes fadeInSlide {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .ad-title-text {
-      font-size: 14px;
-      font-weight: 800;
-      color: #fef08a;
-      margin-bottom: 4px;
-      line-height: 1.3;
-    }
-    .ad-desc-text {
-      font-size: 11.5px;
-      color: #e2e8f0;
-      line-height: 1.4;
-      margin-bottom: 10px;
-    }
-    .ad-btn-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    .ad-cta-btn {
-      background: #22c55e;
-      color: #ffffff;
-      padding: 7px 14px;
-      border-radius: 25px;
-      font-size: 11.5px;
-      font-weight: 800;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 3px 10px rgba(34, 197, 94, 0.4);
-    }
-    .ad-cta-wa {
-      background: #25d366;
-      color: #ffffff;
-      padding: 7px 14px;
-      border-radius: 25px;
-      font-size: 11.5px;
-      font-weight: 800;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 3px 10px rgba(37, 211, 102, 0.4);
-    }
-
-    /* Dual Side-by-Side News Cards */
-    .news-dual-wrapper {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      padding: 0 12px 14px;
-    }
-    .news-interactive-card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 12px;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
-      position: relative;
-      border: 1.5px solid transparent;
-      transition: transform 0.2s ease;
-    }
-    .news-interactive-card:active {
-      transform: scale(0.98);
-    }
-    .market-theme {
-      background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 60%);
-      border-color: #a7f3d0;
-    }
-    .topnews-theme {
-      background: linear-gradient(180deg, #fffbeb 0%, #ffffff 60%);
-      border-color: #fde68a;
-    }
-    .news-pill-tag {
-      font-size: 10.5px;
-      font-weight: 800;
-      padding: 3px 7px;
-      border-radius: 6px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      margin-bottom: 8px;
-    }
-    .tag-green { background: #d1fae5; color: #047857; }
-    .tag-amber { background: #fef3c7; color: #b45309; }
-
-    .news-snippet-item {
-      font-size: 11.5px;
-      color: #334155;
-      line-height: 1.35;
-      margin-bottom: 6px;
-      padding-bottom: 5px;
-      border-bottom: 1px dashed #e2e8f0;
-    }
-    .news-snippet-item:last-child { border-bottom: none; }
-    .read-more-link {
-      font-size: 10px;
-      font-weight: 800;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 3px;
-      margin-top: 6px;
-    }
-    .market-theme .read-more-link { color: #059669; }
-    .topnews-theme .read-more-link { color: #d97706; }
-
-    /* Compact City Grid (BELOW NEWS) */
-    .city-tiles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 9px;
-      padding: 0 12px 14px;
-    }
-    .city-tile {
-      background: #ffffff;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 14px;
-      padding: 10px 4px;
-      text-align: center;
-      text-decoration: none;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-      transition: all 0.2s ease;
-      position: relative;
-      overflow: hidden;
-    }
-    .city-tile:active {
-      transform: scale(0.96);
-    }
-    .city-tile::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-    }
-    .c-shivamogga::before { background: #059669; }
-    .c-davanagere::before { background: #d97706; }
-    .c-mysuru::before { background: #7c3aed; }
-    .c-belagavi::before { background: #0891b2; }
-    .c-mangaluru::before { background: #0284c7; }
-    .c-hubballi::before { background: #c026d3; }
-    .c-tumakuru::before { background: #16a34a; }
-
-    .city-tile-icon { font-size: 22px; }
-    .city-tile-name {
-      font-size: 12px;
-      font-weight: 800;
-      color: #1e293b;
-    }
-
-    /* Quick Action Categories */
-    .quick-services-wrap {
-      display: flex;
-      gap: 8px;
-      padding: 0 12px 14px;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .quick-services-wrap::-webkit-scrollbar { display: none; }
-    .q-service-chip {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 20px;
-      padding: 6px 12px;
-      font-size: 11px;
-      font-weight: 700;
-      color: #334155;
-      text-decoration: none;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.02);
-    }
-
-    /* Floating Bottom Nav */
-    .modern-bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(12px);
-      border-top: 1px solid #e2e8f0;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      padding: 6px 0 8px;
-      z-index: 999;
-      box-shadow: 0 -4px 15px rgba(0,0,0,0.05);
-    }
-    .nav-tab-link {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: #64748b;
-      font-size: 10px;
-      font-weight: 700;
-      gap: 2px;
-    }
-    .nav-tab-link.active {
-      color: #059669;
-    }
-    .nav-tab-icon { font-size: 18px; }
-    .nav-center-plus {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, #059669, #047857);
-      color: #ffffff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 22px;
-      box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
-      margin-top: -16px;
-      border: 3px solid #ffffff;
-      text-decoration: none;
-    }
-  </style>
 </head>
 <body>
 
@@ -449,7 +20,7 @@
     <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
   </header>
 
-  <!-- Live Gold/Silver Scroller with Pulsing Light -->
+  <!-- Live Rate Scroller -->
   <div class="rate-ticker-bar">
     <div class="rate-badge-pulse">
       <span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ
@@ -460,11 +31,11 @@
     </div>
   </div>
 
-  <!-- 1. 30-Second Rotating Featured Ad (With Phone & WhatsApp: 8431649984) -->
+  <!-- 1. 30-Second Featured Ad Showcase (With Neat Small Font Buttons) -->
   <div class="showcase-ad-card">
     <div class="showcase-top-row">
       <span class="sp-badge">⭐ ಪ್ರಾಯೋಜಿತ ಜಾಹೀರಾತು</span>
-      <span class="ad-timer-badge">⏱️ <span id="adSeconds">30</span> ಸೆಕೆಂಡ್</span>
+      <span class="ad-timer-badge">⏱️ <span id="adSeconds">30</span>s</span>
     </div>
     
     <div class="ad-progress-track">
@@ -474,20 +45,20 @@
     <!-- Slide 1 -->
     <div class="ad-slide-box active" id="ad1">
       <div class="ad-title-text">🚜 ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
-      <div class="ad-desc-text">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಮನೆ ಬಾಗಿಲಿಗೆ ಉಚಿತ ಡೆಲಿವರಿ.</div>
-      <div class="ad-btn-row">
-        <a href="tel:8431649984" class="ad-cta-btn">📞 ಕರೆ ಮಾಡಿ: 8431649984</a>
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಅಡಿಕೆ%20ಮಷಿನ್%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa">💬 WhatsApp</a>
+      <div class="ad-desc-text">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
+      <div class="ad-btn-row-small">
+        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
+        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಅಡಿಕೆ%20ಮಷಿನ್%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp</a>
       </div>
     </div>
 
     <!-- Slide 2 -->
     <div class="ad-slide-box" id="ad2">
       <div class="ad-title-text">🥛 100% ಶುದ್ಧ ಗಿರ್ ಹಸುವಿನ ಹಾಲು, ಹಳ್ಳಿ ಬೆಣ್ಣೆ & ತುಪ್ಪ!</div>
-      <div class="ad-desc-text">ಯಾವುದೇ ರಾಸಾಯನಿಕವಿಲ್ಲದ ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಜ ಡೈರಿ ಉತ್ಪನ್ನಗಳು ಪ್ರತಿದಿನ ಮನೆ ಬಾಗಿಲಿಗೆ.</div>
-      <div class="ad-btn-row">
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಹಾಲು%20ತುಪ್ಪದ%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa">💬 WhatsApp ಆರ್ಡರ್: 8431649984</a>
-        <a href="tel:8431649984" class="ad-cta-btn">📞 ಕರೆ ಮಾಡಿ</a>
+      <div class="ad-desc-text">ಯಾವುದೇ ರಾಸಾಯನಿಕವಿಲ್ಲದ ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಜ ಡೈರಿ ಉತ್ಪನ್ನಗಳು ಪ್ರತಿದಿನ ಲಭ್ಯ.</div>
+      <div class="ad-btn-row-small">
+        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಹಾಲು%20ತುಪ್ಪದ%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp: 8431649984</a>
+        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ</a>
       </div>
     </div>
 
@@ -495,16 +66,16 @@
     <div class="ad-slide-box" id="ad3">
       <div class="ad-title-text">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
       <div class="ad-desc-text">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನದ ವಿವರ ಕಳುಹಿಸಿ, ಕೇವಲ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
-      <div class="ad-btn-row">
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%2059%20ರೂಪಾಯಿ%20ಪೋಸ್ಟರ್%20ಡಿಸೈನ್%20ಮಾಡಬೇಕು" class="ad-cta-wa" style="background: #ea580c;">🎨 ಪೋಸ್ಟರ್ ಆರ್ಡರ್: 8431649984</a>
+      <div class="ad-btn-row-small">
+        <a href="https://wa.me/918431649984?text=ನನಗೆ%2059%20ರೂಪಾಯಿ%20ಪೋಸ್ಟರ್%20ಡಿಸೈನ್%20ಮಾಡಬೇಕು" class="ad-cta-wa-sm" style="background: #ea580c;">🎨 ಪೋಸ್ಟರ್: 8431649984</a>
       </div>
     </div>
   </div>
 
-  <!-- 2. Side-by-Side Dual News Section -->
+  <!-- 2. Dual Side-by-Side News Section -->
   <div class="section-title-strip">
     <span class="sec-head">⚡ ತಾಜಾ ಸಮಾಚಾರ & ಮಾರುಕಟ್ಟೆ</span>
-    <span style="font-size: 11px; color: #059669; font-weight: 700;">ಲೈವ್ ಅಪ್‌ಡೇಟ್</span>
+    <span style="font-size: 10.5px; color: #059669; font-weight: 700;">ಲೈವ್ ಅಪ್‌ಡೇಟ್</span>
   </div>
 
   <div class="news-dual-wrapper">
@@ -533,7 +104,7 @@
   <!-- 3. Cities Grid Section -->
   <div class="section-title-strip">
     <span class="sec-head">📍 ನಗರಗಳು (Select City)</span>
-    <span style="font-size: 11px; color: #64748b; font-weight: 700;">7 ಪ್ರಮುಖ ಊರುಗಳು</span>
+    <span style="font-size: 10.5px; color: #64748b; font-weight: 700;">7 ಪ್ರಮುಖ ಊರುಗಳು</span>
   </div>
 
   <div class="city-tiles-grid">
@@ -567,39 +138,16 @@
     </a>
   </div>
 
-  <!-- 4. Quick Category Pills -->
-  <div style="padding: 0 14px 10px;">
-    <div class="quick-services-wrap">
-      <a href="shivamogga.html" class="q-service-chip">🚜 ಕೃಷಿ & ಉಪಕರಣ</a>
-      <a href="davanagere.html" class="q-service-chip">🥛 ಹಾಲು & ತುಪ್ಪ</a>
-      <a href="mysuru.html" class="q-service-chip">🚗 ವಾಹನಗಳು</a>
-      <a href="tumakuru.html" class="q-service-chip">🥥 ತೆಂಗು-ಕೊಬ್ಬರಿ</a>
-      <a href="order_poster.html" class="q-service-chip" style="border-color: #f59e0b; color: #b45309;">🎨 ₹59 ಪೋಸ್ಟರ್</a>
-    </div>
-  </div>
-
-  <!-- Floating Bottom Navigation -->
+  <!-- Bottom Nav -->
   <nav class="modern-bottom-nav">
-    <a href="index.html" class="nav-tab-link active">
-      <span class="nav-tab-icon">🏠</span>
-      <span>ಮುಖಪುಟ</span>
-    </a>
-    <a href="order_poster.html" class="nav-tab-link">
-      <span class="nav-tab-icon">🎨</span>
-      <span>ಪೋಸ್ಟರ್ ₹59</span>
-    </a>
+    <a href="index.html" class="nav-tab-link active"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
+    <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
     <a href="post_ad.html" class="nav-center-plus">➕</a>
-    <a href="admin.html" class="nav-tab-link">
-      <span class="nav-tab-icon">⚙️</span>
-      <span>ಅಡ್ಮಿನ್</span>
-    </a>
-    <a href="https://wa.me/918431649984?text=ಸಮೃದ್ಧಿ%20ಪೋರ್ಟಲ್%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link">
-      <span class="nav-tab-icon">💬</span>
-      <span>ಹೆಲ್ಪ್‌ಲೈನ್</span>
-    </a>
+    <a href="admin.html" class="nav-tab-link"><span class="nav-tab-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
+    <a href="https://wa.me/918431649984?text=ಸಮೃದ್ಧಿ%20ಪೋರ್ಟಲ್%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
 
-  <!-- Auto Load Saved News & 30s Visual Progress Ad Script -->
+  <!-- Auto Load Saved News & 30s Ad Switch Script -->
   <script>
     window.addEventListener('DOMContentLoaded', function() {
       var savedNews = localStorage.getItem('samruddhi_news_data');

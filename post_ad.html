@@ -3,203 +3,269 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ - ಸಮೃದ್ಧಿ</title>
+  <title>ಹೊಸ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ - ಸಮೃದ್ಧಿ</title>
   <link rel="stylesheet" href="style.css">
-  
-    <style>
-      :root {
-        --primary: #2563eb;
-        --primary-dark: #1d4ed8;
-        --accent: #059669;
-        --bg-light: #eff6ff;
-        --border-tint: #bfdbfe;
-        --badge-grad: linear-gradient(135deg, #2563eb, #1d4ed8);
-      }
-    </style>
-    
   <style>
-    .step-tag {
-      background: var(--primary);
-      color: #fff;
+    .form-card {
+      background: #ffffff;
+      margin: 12px 14px;
+      padding: 16px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+    .form-group { margin-bottom: 12px; }
+    .form-label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #334155;
+      margin-bottom: 5px;
+    }
+    .form-input, .form-select, .form-textarea {
+      width: 100%;
+      padding: 9px 12px;
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      font-size: 12.5px;
+      outline: none;
+      background: #f8fafc;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: #059669;
+      background: #ffffff;
+    }
+    .plan-selector-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .plan-card-opt {
+      border: 1.5px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 8px 4px;
+      text-align: center;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.2s ease;
+    }
+    .plan-card-opt.selected {
+      border-color: #059669;
+      background: #ecfdf5;
+      color: #065f46;
+      font-weight: 800;
+    }
+
+    /* Clean UPI Payment Box without personal name */
+    .upi-pay-box {
+      display: none;
+      background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
+      border: 1.5px solid #86efac;
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+    .upi-qr-img {
+      width: 150px;
+      height: 150px;
+      border: 2px solid #059669;
+      border-radius: 10px;
+      margin: 8px auto;
+      display: block;
+      background: #fff;
+    }
+    .upi-app-links {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      margin-top: 8px;
+    }
+    .upi-btn {
+      padding: 6px 14px;
+      border-radius: 20px;
       font-size: 11px;
       font-weight: 800;
-      padding: 2px 8px;
-      border-radius: 8px;
-      margin-right: 4px;
+      text-decoration: none;
+      color: #fff;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="app-header">
-    <a href="index.html" class="brand-badge">← ಮುಖಪುಟ</a>
-    <span style="font-size: 13.5px; font-weight: 800;">📝 ಜಾಹೀರಾತು ಪೋಸ್ಟಿಂಗ್</span>
-    <a href="order_poster.html" class="header-upload-btn" style="background: #ea580c;">🎨 ಪೋಸ್ಟರ್ ₹59</a>
+  <header class="app-header-modern">
+    <a href="index.html" class="brand-logo-wrap">
+      <div class="brand-icon">➕</div>
+      <div class="brand-title-box">
+        <span class="brand-name">ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ</span>
+        <span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span>
+      </div>
+    </a>
+    <a href="index.html" class="header-post-btn" style="background: #334155;">✕ ರದ್ದು</a>
   </header>
 
-  <div class="tagline-strip">
-    ✨ ನಮ್ಮೂರ ಜನರಿಗಾಗಿ ನೈಜ ವಸ್ತುಗಳ ತಾಣ ✨
-  </div>
-
   <div class="form-card">
-    <h3 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">
-      <span class="step-tag">1</span> ನಗರವನ್ನು ಆಯ್ಕೆಮಾಡಿ
-    </h3>
-    <select id="ad_city" class="form-input" style="margin-bottom: 14px;" required>
-      <option value="ಶಿವಮೊಗ್ಗ">ಶಿವಮೊಗ್ಗ (Shivamogga)</option>
-      <option value="ದಾವಣಗೆರೆ">ದಾವಣಗೆರೆ (Davanagere)</option>
-      <option value="ಮೈಸೂರು">ಮೈಸೂರು (Mysuru)</option>
-      <option value="ಬೆಳಗಾವಿ">ಬೆಳಗಾವಿ (Belagavi)</option>
-      <option value="ಮಂಗಳೂರು">ಮಂಗಳೂರು (Mangaluru)</option>
-      <option value="ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ">ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ (Hubballi-Dharwad)</option>
-      <option value="ತುಮಕೂರು">ತುಮಕೂರು (Tumakuru)</option>
-    </select>
-
-    <h3 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
-      <span class="step-tag">2</span> ವ್ಯಾಪಾರದ ವಿಭಾಗವನ್ನು ಆಯ್ಕೆಮಾಡಿ
-    </h3>
-    <div class="cat-choice-grid">
-      <label class="cat-choice-item">
-        <input type="radio" name="ad_cat" value="ಹಾಲು / ಡೈರಿ ಪ್ರಾಡಕ್ಟ್ಸ್ / ಬೇಕರಿ" checked>
-        <span>🥛 ಹಾಲು / ಡೈರಿ / ಬೇಕರಿ</span>
-      </label>
-      <label class="cat-choice-item">
-        <input type="radio" name="ad_cat" value="ಸಣ್ಣ ವ್ಯಾಪಾರಿಗಳು / ಮಳಿಗೆಗಳು">
-        <span>🏪 ಸಣ್ಣ ವ್ಯಾಪಾರಿ / ಶಾಪ್</span>
-      </label>
-      <label class="cat-choice-item">
-        <input type="radio" name="ad_cat" value="ತೋಟಗಾರಿಕೆ / ಪಶುಸಂಗೋಪನೆ">
-        <span>🌱 ತೋಟಗಾರಿಕೆ / ಪಶು</span>
-      </label>
-      <label class="cat-choice-item">
-        <input type="radio" name="ad_cat" value="ಕೃಷಿ ಯಂತ್ರೋಪಕರಣ / ಆಹಾರ ಉತ್ಪನ್ನಗಳು">
-        <span>🚜 ಕೃಷಿ / ಆಹಾರ ವಸ್ತು</span>
-      </label>
-      <label class="cat-choice-item">
-        <input type="radio" name="ad_cat" value="ಬಟ್ಟೆ / ಲೈಫ್‌ಸ್ಟೈಲ್">
-        <span>👗 ಬಟ್ಟೆ / ಲೈಫ್‌ಸ್ಟೈಲ್</span>
-      </label>
-      <label class="cat-choice-item">
-        <input type="radio" name="ad_cat" value="ಸರ್ವೀಸ್ ಸೆಕ್ಟರ್">
-        <span>🛠️ ಸರ್ವೀಸ್ ಸೆಕ್ಟರ್</span>
-      </label>
-      <label class="cat-choice-item" style="grid-column: span 2;">
-        <input type="radio" name="ad_cat" value="ಹಾರ್ಡ್‌ವೇರ್ಸ್ / ಆಟೋಮೊಬೈಲ್">
-        <span>🔧 ಹಾರ್ಡ್‌ವೇರ್ಸ್ / ಆಟೋಮೊಬೈಲ್</span>
-      </label>
-    </div>
-
-    <h3 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
-      <span class="step-tag">3</span> ಜಾಹೀರಾತು ಪ್ಲಾನ್ ಆಯ್ಕೆಮಾಡಿ
-    </h3>
-    <div class="plan-choice-row">
-      <label class="plan-choice-box">
-        <input type="radio" name="ad_plan" value="ಉಚಿತ (Free)" checked>
-        <strong>ಉಚಿತ (Free)</strong>
-        <span>1 ಫೋಟೋ • 3 ದಿನ</span>
-      </label>
-      <label class="plan-choice-box">
-        <input type="radio" name="ad_plan" value="₹49 ಸ್ಟ್ಯಾಂಡರ್ಡ್">
-        <strong style="color: #2563eb;">₹49 ಪ್ಲಾನ್ ⭐</strong>
-        <span>3 ಫೋಟೋ • 7 ದಿನ</span>
-      </label>
-      <label class="plan-choice-box">
-        <input type="radio" name="ad_plan" value="₹99 ಪ್ರೀಮಿಯಂ">
-        <strong style="color: #b45309;">₹99 ಪ್ರೀಮಿಯಂ 👑</strong>
-        <span>4 ಫೋಟೋ • 12 ದಿನ</span>
-      </label>
-    </div>
-
-    <h3 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">
-      <span class="step-tag">4</span> ನೈಜ ಉತ್ಪನ್ನ / ವ್ಯಾಪಾರದ ವಿವರಗಳು
-    </h3>
-    <form id="dedicatedAdForm" onsubmit="handleDedicatedSubmit(event)">
-      <input type="text" id="d_title" class="form-input" placeholder="ಜಾಹೀರಾತು ಶೀರ್ಷಿಕೆ (ಉದಾ: ಶುದ್ಧ ಹಸುವಿನ ಹಾಲು & ತುಪ್ಪ)" required>
-      <input type="text" id="d_price" class="form-input" placeholder="ಬೆಲೆ / ಆಫರ್ ವಿವರ (ಉದಾ: ₹50 / ಲೀಟರ್ ಅಥವಾ ರಿಯಾಯಿತಿ ದರ)">
-      <textarea id="d_desc" class="form-input" rows="3" placeholder="ಸಂಪೂರ್ಣ ವಿವರಣೆ ಮತ್ತು ಅಂಗಡಿ ವಿಳಾಸ/ಸ್ಥಳ*" required></textarea>
+    <h2 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 10px;">📝 ನಿಮ್ಮ ಜಾಹೀರಾತಿನ ವಿವರ ನಮೂದಿಸಿ</h2>
+    
+    <form id="postAdForm" onsubmit="handleAdSubmit(event)">
       
-      <label style="font-size: 11.5px; font-weight: 700; color: #334155; display: block; margin-bottom: 2px;">ಫೋಟೋಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ*</label>
-      <input type="file" id="d_file" class="form-input" accept="image/*" multiple required>
-
-      <input type="tel" id="d_phone" class="form-input" placeholder="ಸಂಪರ್ಕ ಸಂಖ್ಯೆ (WhatsApp/Mobile)*" required>
-
-      <div class="approval-notice">
-        🛡️ <strong>ಅಡ್ಮಿನ್ ಅಪ್ರೂವಲ್ ನಿಯಮ:</strong> ನೀವು ಅಪ್ಲೋಡ್ ಮಾಡಿದ ಜಾಹೀರಾತನ್ನು ನಮ್ಮ ಅಡ್ಮಿನ್ ತಂಡವು ಪರಿಶೀಲಿಸಿ <strong>15-30 ನಿಮಿಷಗಳಲ್ಲಿ ಲೈವ್</strong> ಮಾಡುತ್ತದೆ.
+      <div class="form-group">
+        <label class="form-label">ಪ್ಲಾನ್ ಆಯ್ಕೆಮಾಡಿ</label>
+        <div class="plan-selector-grid">
+          <div class="plan-card-opt selected" onclick="setPlan(this, 'ಉಚಿತ (Free)', 0)">
+            <div style="font-size: 11px;">🆓 ಉಚಿತ</div>
+            <div style="font-size: 9px; color: #64748b;">ಸಾಮಾನ್ಯ ಆ್ಯಡ್</div>
+          </div>
+          <div class="plan-card-opt" onclick="setPlan(this, '₹49 ಸ್ಟ್ಯಾಂಡರ್ಡ್', 49)">
+            <div style="font-size: 11px;">⭐ ₹49</div>
+            <div style="font-size: 9px; color: #64748b;">ಹೈಲೈಟ್ ಆ್ಯಡ್</div>
+          </div>
+          <div class="plan-card-opt" onclick="setPlan(this, '₹99 ಸೂಪರ್', 99)">
+            <div style="font-size: 11px;">👑 ₹99</div>
+            <div style="font-size: 9px; color: #64748b;">ದೊಡ್ಡ ಬಾಕ್ಸ್ ಆ್ಯಡ್</div>
+          </div>
+        </div>
+        <input type="hidden" id="selected_plan" value="ಉಚಿತ (Free)">
+        <input type="hidden" id="selected_amount" value="0">
       </div>
 
-      <button type="submit" style="width: 100%; background: linear-gradient(135deg, #059669, #10b981); color: #fff; border: none; padding: 12px; border-radius: 25px; font-weight: 800; font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 3px 10px rgba(16,185,129,0.3);">
-        🚀 ಜಾಹೀರಾತನ್ನು ಸಬ್ಮಿಟ್ ಮಾಡಿ
+      <!-- Live Clean UPI QR & Payment Box -->
+      <div id="upiPaymentSection" class="upi-pay-box">
+        <div style="font-size: 12px; font-weight: 800; color: #15803d;">💳 UPI ಮೂಲಕ ಪಾವತಿಸಿ (<span id="payAmtLabel">₹49</span>)</div>
+        <div style="font-size: 10px; color: #475569;">GPay, PhonePe, Paytm ಮೂಲಕ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಪಾವತಿಸಿ</div>
+        
+        <img id="upiQrImage" class="upi-qr-img" src="" alt="UPI QR Code">
+        
+        <div style="font-size: 11.5px; font-weight: 700; color: #0f172a;">UPI ID: <span style="color: #059669; font-weight: 800;">giricoolgili@okhdfcbank</span></div>
+
+        <!-- Direct UPI App Open Buttons for Mobile -->
+        <div class="upi-app-links">
+          <a id="upiPayDirect" href="#" class="upi-btn" style="background: #059669;">⚡ PhonePe / GPay ನಲ್ಲಿ ನೇರ ಪಾವತಿಸಿ</a>
+        </div>
+
+        <div class="form-group" style="margin-top: 10px; text-align: left;">
+          <label class="form-label">📲 Payment UTR / ರೆಫರೆನ್ಸ್ ಸಂಖ್ಯೆ (ಪಾವತಿ ನಂತರ)</label>
+          <input type="text" class="form-input" id="ad_utr" placeholder="12 ಅಂಕಿಗಳ UTR ಸಂಖ್ಯೆ (ಉದಾ: 423871928374)">
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">📍 ನಗರ (City)</label>
+        <select class="form-select" id="ad_city" required>
+          <option value="ಶಿವಮೊಗ್ಗ">ಶಿವಮೊಗ್ಗ</option>
+          <option value="ದಾವಣಗೆರೆ">ದಾವಣಗೆರೆ</option>
+          <option value="ಮೈಸೂರು">ಮೈಸೂರು</option>
+          <option value="ಬೆಳಗಾವಿ">ಬೆಳಗಾವಿ</option>
+          <option value="ಮಂಗಳೂರು">ಮಂಗಳೂರು</option>
+          <option value="ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ">ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ</option>
+          <option value="ತುಮಕೂರು">ತುಮಕೂರು</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">📂 ವಿಭಾಗ (Category)</label>
+        <select class="form-select" id="ad_cat" required>
+          <option value="ಕೃಷಿ ಮತ್ತು ಉಪಕರಣ">🚜 ಕೃಷಿ ಮತ್ತು ಉಪಕರಣ</option>
+          <option value="ರಿಯಲ್ ಎಸ್ಟೇಟ್ / ಮನೆ / ಸೈಟ್">🏡 ರಿಯಲ್ ಎಸ್ಟೇಟ್ / ಮನೆ / ಸೈಟ್</option>
+          <option value="ಹಾಲು / ಡೈರಿ / ಹಳ್ಳಿ ಉತ್ಪನ್ನ">🥛 ಹಾಲು / ಡೈರಿ / ಹಳ್ಳಿ ಉತ್ಪನ್ನ</option>
+          <option value="ವಾಹನ ಮಾರಾಟ (ಕಾರು / ಬೈಕ್)">🚗 ವಾಹನ ಮಾರಾಟ (ಕಾರು / ಬೈಕ್)</option>
+          <option value="ಉದ್ಯೋಗಾವಕಾಶಗಳು">📢 ಉದ್ಯೋಗಾವಕಾಶಗಳು</option>
+          <option value="ದಿನಸಿ / ಗೃಹೋಪಯೋಗಿ / ಇತರ">🛒 ದಿನಸಿ / ಗೃಹೋಪಯೋಗಿ / ಇತರ</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">🏷️ ಜಾಹೀರಾತಿನ ಶೀರ್ಷಿಕೆ (Title)</label>
+        <input type="text" class="form-input" id="ad_title" placeholder="ಉದಾ: ಶುದ್ಧ ಹಸುವಿನ ತುಪ್ಪ ಮಾರಾಟಕ್ಕಿದೆ" required>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">💰 ನಿಗದಿಪಡಿಸಿದ ಬೆಲೆ / ಸಂಬಳ</label>
+        <input type="text" class="form-input" id="ad_price" placeholder="ಉದಾ: ₹450 ಅಥವಾ ಮಾತುಕತೆ ಮೂಲಕ">
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">📄 ಸಂಪೂರ್ಣ ವಿವರಣೆ (Description)</label>
+        <textarea class="form-textarea" id="ad_desc" rows="3" placeholder="ಉತ್ಪನ್ನ ಅಥವಾ ಸೇವೆಯ ಬಗ್ಗೆ ವಿವರವಾಗಿ ಬರೆಯಿರಿ..." required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">📱 ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (WhatsApp)</label>
+        <input type="tel" class="form-input" id="ad_phone" placeholder="10 ಅಂಕಿಗಳ ಮೊಬೈಲ್ ನಂಬರ್" required>
+      </div>
+
+      <button type="submit" style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: #fff; border: none; padding: 11px; border-radius: 25px; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);">
+        🚀 WhatsApp ಮೂಲಕ ಪ್ರಕಟಿಸಲು ಕಳುಹಿಸಿ
       </button>
     </form>
   </div>
 
-  <!-- Share Modal -->
-  <div id="shareModal" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 14px;">
-    <div style="background: #ffffff; border-radius: 18px; max-width: 440px; width: 100%; padding: 18px; text-align: center; position: relative;">
-      <span style="font-size: 40px;">🎉</span>
-      <h3 style="font-size: 16px; font-weight: 800; color: #059669; margin: 6px 0;">ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಕೆಯಾಗಿದೆ!</h3>
-      <p style="font-size: 12px; color: #475569;">ಅಡ್ಮಿನ್ ಪರಿಶೀಲನೆಯ ನಂತರ ಇದು ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಕಾಣಿಸಿಕೊಳ್ಳುತ್ತದೆ.</p>
-
-      <div style="background: #f8fafc; border: 1px dashed #2563eb; padding: 12px; border-radius: 10px; margin: 12px 0;">
-        <h4 id="s_title" style="font-size: 13.5px; font-weight: 800; color: #0f172a;"></h4>
-        <p id="s_meta" style="font-size: 11px; color: #64748b; margin: 4px 0;"></p>
-        <p style="font-size: 11.5px; color: #2563eb; font-weight: 700;">ಈ ಜಾಹೀರಾತನ್ನು ನಿಮ್ಮ ಗ್ರಾಹಕರಿಗೆ & WhatsApp ಗ್ರೂಪ್‌ಗಳಿಗೆ ಶೇರ್ ಮಾಡಿ!</p>
-        
-        <a id="s_walink" href="#" target="_blank" style="background: #25d366; color: #ffffff; padding: 10px 16px; border-radius: 25px; text-decoration: none; font-size: 13px; font-weight: 700; display: inline-flex; align-items: center; gap: 6px; margin-top: 8px;">
-          💬 WhatsApp ನಲ್ಲಿ ಶೇರ್ ಮಾಡಿ
-        </a>
-      </div>
-
-      <button onclick="window.location.href='index.html'" style="background: #f1f5f9; border: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 700; color: #475569; cursor: pointer;">ಮುಖಪುಟಕ್ಕೆ ಹೋಗಿ</button>
-    </div>
-  </div>
-
   <!-- Bottom Nav -->
-  <nav class="bottom-nav">
-    <a href="index.html" class="b-tab">
-      <span class="b-icon">🏠</span>
-      <span>ಮುಖಪುಟ</span>
-    </a>
-    <a href="order_poster.html" class="b-tab">
-      <span class="b-icon">🎨</span>
-      <span>ಪೋಸ್ಟರ್ ₹59</span>
-    </a>
-    <a href="post_ad.html" class="b-post-circle">
-      <span>➕</span>
-    </a>
-    <a href="admin.html" class="b-tab">
-      <span class="b-icon">⚙️</span>
-      <span>ಅಡ್ಮಿನ್</span>
-    </a>
-    <a href="https://wa.me/919876543210?text=ಸಹಾಯ%20ಬೇಕು" class="b-tab">
-      <span class="b-icon">💬</span>
-      <span>ಹೆಲ್ಪ್‌ಲೈನ್</span>
-    </a>
+  <nav class="modern-bottom-nav">
+    <a href="index.html" class="nav-tab-link"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
+    <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
+    <a href="post_ad.html" class="nav-center-plus">➕</a>
+    <a href="admin.html" class="nav-tab-link"><span class="nav-tab-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
+    <a href="https://wa.me/918431649984?text=ಸಮೃದ್ಧಿ%20ಪೋರ್ಟಲ್%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
 
   <script>
-    function handleDedicatedSubmit(e) {
+    var upiId = "giricoolgili@okhdfcbank";
+    var payeeName = "Samruddhi Portal";
+
+    function setPlan(el, planName, amount) {
+      document.querySelectorAll('.plan-card-opt').forEach(p => p.classList.remove('selected'));
+      el.classList.add('selected');
+      document.getElementById('selected_plan').value = planName;
+      document.getElementById('selected_amount').value = amount;
+
+      var upiBox = document.getElementById('upiPaymentSection');
+      if (amount > 0) {
+        upiBox.style.display = 'block';
+        document.getElementById('payAmtLabel').innerText = "₹" + amount;
+        
+        var upiUri = "upi://pay?pa=" + upiId + "&pn=" + encodeURIComponent(payeeName) + "&am=" + amount + "&cu=INR&tn=" + encodeURIComponent("Samruddhi Ad " + planName);
+        var qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(upiUri);
+        
+        document.getElementById('upiQrImage').src = qrUrl;
+        document.getElementById('upiPayDirect').href = upiUri;
+      } else {
+        upiBox.style.display = 'none';
+      }
+    }
+
+    function handleAdSubmit(e) {
       e.preventDefault();
+      var plan = document.getElementById('selected_plan').value;
+      var amt = document.getElementById('selected_amount').value;
+      var utr = document.getElementById('ad_utr') ? document.getElementById('ad_utr').value : '';
       var city = document.getElementById('ad_city').value;
-      var cat = document.querySelector('input[name="ad_cat"]:checked').value;
-      var title = document.getElementById('d_title').value;
-      var price = document.getElementById('d_price').value || "ಉತ್ತಮ ಬೆಲೆ";
-      var phone = document.getElementById('d_phone').value;
+      var cat = document.getElementById('ad_cat').value;
+      var title = document.getElementById('ad_title').value;
+      var price = document.getElementById('ad_price').value;
+      var desc = document.getElementById('ad_desc').value;
+      var phone = document.getElementById('ad_phone').value;
 
-      document.getElementById('s_title').innerText = title;
-      document.getElementById('s_meta').innerText = "📍 " + city + " • " + cat;
+      var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು*%0A%0A" +
+                  "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A";
+      
+      if (amt > 0) {
+        waMsg += "💰 *ಪಾವತಿ ಮೊತ್ತ:* ₹" + encodeURIComponent(amt) + "%0A" +
+                 "🧾 *Payment UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ/ಸ್ಕ್ಯಾನ್') + "%0A";
+      }
 
-      var shareText = "🌾 *ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಜನರಿಗಾಗಿ ನೈಜ ವಸ್ತುಗಳ ತಾಣ (" + encodeURIComponent(city) + ")*%0A%0A" +
-                      "📢 *" + encodeURIComponent(title) + "*%0A" +
-                      "🏷️ ಬೆಲೆ: " + encodeURIComponent(price) + "%0A" +
-                      "📞 ಸಂಪರ್ಕ: " + encodeURIComponent(phone) + "%0A%0A" +
-                      "ನಮ್ಮ ಊರಿನ ಎಲ್ಲಾ ನೈಜ ವಸ್ತುಗಳ ಜಾಹೀರಾತುಗಳನ್ನು ನೋಡಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ:%0A" +
-                      window.location.origin + "/" + city + ".html";
+      waMsg += "📍 *ನಗರ:* " + encodeURIComponent(city) + "%0A" +
+               "📂 *ವಿಭಾಗ:* " + encodeURIComponent(cat) + "%0A" +
+               "🏷️ *ಶೀರ್ಷಿಕೆ:* " + encodeURIComponent(title) + "%0A" +
+               "💰 *ಬೆಲೆ:* " + encodeURIComponent(price) + "%0A" +
+               "📄 *ವಿವರ:* " + encodeURIComponent(desc) + "%0A" +
+               "📱 *ಸಂಪರ್ಕ:* " + encodeURIComponent(phone);
 
-      document.getElementById('s_walink').href = "https://wa.me/?text=" + shareText;
-      document.getElementById('shareModal').style.display = "flex";
-      document.getElementById('dedicatedAdForm').reset();
+      window.open("https://wa.me/918431649984?text=" + waMsg, "_blank");
     }
   </script>
 
