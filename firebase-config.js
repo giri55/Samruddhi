@@ -13,9 +13,8 @@ const firebaseConfig = {
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
 }
-const auth = firebase.auth();
 const db = firebase.firestore();
 
-// Cloudinary Integrated Settings
+// Cloudinary Settings
 const CLOUDINARY_CLOUD_NAME = "mkuurlzy";
 const CLOUDINARY_UPLOAD_PRESET = "samruddhi";

@@ -42,8 +42,6 @@
       border-color: #059669;
       background: #ffffff;
     }
-    
-    /* Photo Upload Box Styling */
     .photo-upload-container {
       border: 2px dashed #059669;
       background: #ecfdf5;
@@ -64,8 +62,6 @@
       border-radius: 10px;
       border: 1.5px solid #059669;
     }
-
-    /* Plan Selector */
     .plan-selector-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -86,8 +82,6 @@
       color: #065f46;
       font-weight: 800;
     }
-
-    /* UPI Pay Box */
     .upi-pay-box {
       display: none;
       background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
@@ -106,8 +100,6 @@
       display: block;
       background: #fff;
     }
-
-    /* Share Panel */
     .share-modal-card {
       display: none;
       background: #ffffff;
@@ -146,7 +138,6 @@
 </head>
 <body>
 
-  <!-- Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">➕</div>
@@ -182,7 +173,6 @@
     
     <form id="postAdForm" onsubmit="handleAdSubmit(event)">
       
-      <!-- 1. Plan -->
       <div class="form-group">
         <label class="form-label">ಪ್ಲಾನ್ ಆಯ್ಕೆಮಾಡಿ</label>
         <div class="plan-selector-grid">
@@ -203,7 +193,6 @@
         <input type="hidden" id="selected_amount" value="0">
       </div>
 
-      <!-- 2. UPI QR -->
       <div id="upiPaymentSection" class="upi-pay-box">
         <div style="font-size: 12px; font-weight: 800; color: #15803d;">💳 UPI ಮೂಲಕ ಪಾವತಿಸಿ (<span id="payAmtLabel">₹49</span>)</div>
         <div style="font-size: 10px; color: #475569;">GPay, PhonePe, Paytm ಮೂಲಕ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಪಾವತಿಸಿ</div>
@@ -215,7 +204,6 @@
         </div>
       </div>
 
-      <!-- 3. City -->
       <div class="form-group">
         <label class="form-label">📍 ನಗರ (City)</label>
         <select class="form-select" id="ad_city" required>
@@ -229,7 +217,6 @@
         </select>
       </div>
 
-      <!-- 4. Category -->
       <div class="form-group">
         <label class="form-label">📂 ವಿಭಾಗ (Category)</label>
         <select class="form-select" id="ad_cat" required>
@@ -242,13 +229,11 @@
         </select>
       </div>
 
-      <!-- 5. Title -->
       <div class="form-group">
         <label class="form-label">🏷️ ಜಾಹೀರಾತಿನ ಶೀರ್ಷಿಕೆ (Title)</label>
         <input type="text" class="form-input" id="ad_title" placeholder="ಉದಾ: ಶುದ್ಧ ಹಸುವಿನ ತುಪ್ಪ ಮಾರಾಟಕ್ಕಿದೆ" required>
       </div>
 
-      <!-- 6. Dedicated Photo Upload Box -->
       <div class="form-group">
         <label class="form-label">📷 ಉತ್ಪನ್ನ / ವಾಹನದ ಫೋಟೋ ಅಥವಾ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</label>
         <div class="photo-upload-container" onclick="document.getElementById('ad_image_file').click()">
@@ -264,19 +249,16 @@
         </div>
       </div>
 
-      <!-- 7. Price -->
       <div class="form-group">
         <label class="form-label">💰 ನಿಗದಿಪಡಿಸಿದ ಬೆಲೆ / ಸಂಬಳ</label>
         <input type="text" class="form-input" id="ad_price" placeholder="ಉದಾ: ₹450 ಅಥವಾ ಮಾತುಕತೆ ಮೂಲಕ">
       </div>
 
-      <!-- 8. Description -->
       <div class="form-group">
         <label class="form-label">📄 ಸಂಪೂರ್ಣ ವಿವರಣೆ (Description)</label>
         <textarea class="form-textarea" id="ad_desc" rows="3" placeholder="ಉತ್ಪನ್ನ ಅಥವಾ ಸೇವೆಯ ಬಗ್ಗೆ ವಿವರವಾಗಿ ಬರೆಯಿರಿ..." required></textarea>
       </div>
 
-      <!-- 9. Phone -->
       <div class="form-group">
         <label class="form-label">📱 ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (WhatsApp)</label>
         <input type="tel" class="form-input" id="ad_phone" placeholder="10 ಅಂಕಿಗಳ ಮೊಬೈಲ್ ನಂಬರ್" required>
@@ -288,7 +270,6 @@
     </form>
   </div>
 
-  <!-- Bottom Nav -->
   <nav class="modern-bottom-nav">
     <a href="index.html" class="nav-tab-link"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
     <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
@@ -348,36 +329,32 @@
 
       var imageUrl = "";
 
-      // 1. Upload Photo with 5-sec Timeout Protection
+      // 1. Upload Photo to Cloudinary
       if (fileInput.files && fileInput.files.length > 0) {
         try {
           var formData = new FormData();
           formData.append("file", fileInput.files[0]);
-          formData.append("upload_preset", (typeof CLOUDINARY_UPLOAD_PRESET !== 'undefined') ? CLOUDINARY_UPLOAD_PRESET : "samruddhi");
+          formData.append("upload_preset", CLOUDINARY_UPLOAD_PRESET);
 
-          var cloudName = (typeof CLOUDINARY_CLOUD_NAME !== 'undefined') ? CLOUDINARY_CLOUD_NAME : "mkuurlzy";
-          
-          var uploadPromise = fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          var uploadPromise = fetch(`https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`, {
             method: "POST",
             body: formData
           }).then(res => res.json());
 
-          // 6 seconds timeout so form never hangs
-          var timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 6000));
-          
+          var timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 5000));
           var data = await Promise.race([uploadPromise, timeoutPromise]);
           if (data && data.secure_url) {
             imageUrl = data.secure_url;
           }
         } catch(err) {
-          console.warn("Cloudinary upload skipped or timed out:", err);
+          console.warn("Cloudinary upload issue:", err);
         }
       }
 
-      // 2. Save to Firebase with Timeout Protection
+      // 2. Direct Save to Firestore
       if (typeof db !== 'undefined') {
         try {
-          var savePromise = db.collection("ads").add({
+          await db.collection("ads").add({
             plan: plan,
             amount: amt,
             utr: utr,
@@ -391,11 +368,8 @@
             status: "pending",
             createdAt: new Date().toISOString()
           });
-          
-          var dbTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('DB Timeout')), 4000));
-          await Promise.race([savePromise, dbTimeout]);
         } catch(err) {
-          console.warn("Firebase save skipped or timed out:", err);
+          console.warn("Firestore save issue:", err);
         }
       }
 
@@ -405,7 +379,7 @@
       document.getElementById('shareFbBtn').href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.origin);
       document.getElementById('shareTgBtn').href = "https://t.me/share/url?url=" + encodeURIComponent(window.location.origin) + "&text=" + shareText;
 
-      // 4. Send Message to Admin WhatsApp
+      // 4. Send Message to WhatsApp
       var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು*%0A%0A" +
                   "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A";
 
@@ -425,7 +399,6 @@
         waMsg += "%0A🖼️ *ಫೋಟೋ ಲಿಂಕ್:* " + encodeURIComponent(imageUrl);
       }
 
-      // Trigger WhatsApp
       window.open("https://wa.me/918431649984?text=" + waMsg, "_blank");
 
       // 5. Show Share Box Instantly
