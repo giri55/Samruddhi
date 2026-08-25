@@ -1,10 +1,11 @@
 {
-  "name": "ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸ್ಥಳೀಯ ಜಾಹೀರಾತು ಪೋರ್ಟಲ್",
+  "name": "ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್",
   "short_name": "ಸಮೃದ್ಧಿ",
+  "description": "ಸ್ಥಳೀಯ ಜಾಹೀರಾತುಗಳು ಹಾಗೂ ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ಮಾಹಿತಿ",
   "start_url": "/index.html",
   "display": "standalone",
-  "background_color": "#065f46",
-  "theme_color": "#059669",
+  "background_color": "#ffffff",
+  "theme_color": "#065f46",
   "orientation": "portrait",
   "icons": [
     {
