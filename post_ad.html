@@ -125,10 +125,10 @@
       margin: 12px 0;
     }
     .share-action-btn {
-      padding: 9px 12px;
+      padding: 10px 12px;
       border-radius: 20px;
       color: #ffffff;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 800;
       text-decoration: none;
       display: flex;
@@ -161,17 +161,17 @@
   <!-- Share Panel (After Posting) -->
   <div id="shareSuccessCard" class="share-modal-card">
     <div style="font-size: 32px; margin-bottom: 4px;">🎉</div>
-    <h3 style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಕೆಯಾಗಿದೆ!</h3>
-    <p style="font-size: 11.5px; color: #475569;">ನಿಮ್ಮ ಜಾಹೀರಾತನ್ನು ಸ್ನೇಹಿತರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳಿಗೆ ಶೇರ್ ಮಾಡಿ:</p>
+    <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಕೆಯಾಗಿದೆ!</h3>
+    <p style="font-size: 12px; color: #475569;">ಅಡ್ಮಿನ್ ಅನುಮೋದಿಸಿದ ತಕ್ಷಣ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಲೈವ್ ಆಗುತ್ತದೆ. ನಿಮ್ಮ ಸ್ನೇಹಿತರು & ಗ್ರೂಪ್‌ಗಳಿಗೆ ಶೇರ್ ಮಾಡಿ:</p>
     
     <div class="share-btn-grid">
-      <a id="shareWaBtn" href="#" class="share-action-btn btn-wa" target="_blank">💬 WhatsApp</a>
-      <a id="shareFbBtn" href="#" class="share-action-btn btn-fb" target="_blank">📘 Facebook</a>
-      <a id="shareTgBtn" href="#" class="share-action-btn btn-tg" target="_blank">✈️ Telegram</a>
+      <a id="shareWaBtn" href="#" class="share-action-btn btn-wa" target="_blank">💬 WhatsApp ಶೇರ್</a>
+      <a id="shareFbBtn" href="#" class="share-action-btn btn-fb" target="_blank">📘 Facebook ಶೇರ್</a>
+      <a id="shareTgBtn" href="#" class="share-action-btn btn-tg" target="_blank">✈️ Telegram ಶೇರ್</a>
       <button onclick="copyShareLink()" class="share-action-btn btn-copy">📋 ಲಿಂಕ್ ಕಾಪಿ</button>
     </div>
 
-    <button onclick="window.location.href='index.html'" style="background: #059669; color: #fff; border: none; padding: 8px 18px; border-radius: 20px; font-weight: 800; font-size: 11.5px; cursor: pointer; margin-top: 6px;">
+    <button onclick="window.location.href='index.html'" style="background: #059669; color: #fff; border: none; padding: 10px 22px; border-radius: 20px; font-weight: 800; font-size: 12px; cursor: pointer; margin-top: 10px;">
       🏠 ಮುಖಪುಟಕ್ಕೆ ಹೋಗಿ
     </button>
   </div>
@@ -215,17 +215,17 @@
         </div>
       </div>
 
-      <!-- 3. City -->
+      <!-- 3. City (Key bug fixed: Uses city_code for reliable filtering) -->
       <div class="form-group">
         <label class="form-label">📍 ನಗರ (City)</label>
         <select class="form-select" id="ad_city" required>
-          <option value="ಶಿವಮೊಗ್ಗ">ಶಿವಮೊಗ್ಗ</option>
-          <option value="ದಾವಣಗೆರೆ">ದಾವಣಗೆರೆ</option>
-          <option value="ಮೈಸೂರು">ಮೈಸೂರು</option>
-          <option value="ಬೆಳಗಾವಿ">ಬೆಳಗಾವಿ</option>
-          <option value="ಮಂಗಳೂರು">ಮಂಗಳೂರು</option>
-          <option value="ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ">ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ</option>
-          <option value="ತುಮಕೂರು">ತುಮಕೂರು</option>
+          <option value="shivamogga">ಶಿವಮೊಗ್ಗ</option>
+          <option value="davanagere">ದಾವಣಗೆರೆ</option>
+          <option value="mysuru">ಮೈಸೂರು</option>
+          <option value="belagavi">ಬೆಳಗಾವಿ</option>
+          <option value="mangaluru">ಮಂಗಳೂರು</option>
+          <option value="hubballi-dharwad">ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ</option>
+          <option value="tumakuru">ತುಮಕೂರು</option>
         </select>
       </div>
 
@@ -250,11 +250,11 @@
 
       <!-- 6. Dedicated Photo Upload Box -->
       <div class="form-group">
-        <label class="form-label">📷 ಉತ್ಪನ್ನ / ವಾಹನದ ಫೋಟೋ ಅಥವಾ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</label>
+        <label class="form-label">📷 ಉತ್ಪನ್ನ / ವಾಹನದ ಫೋಟೋ ಅಥವಾ ಪೋಸ್ಟರ್ (ಐಚ್ಛಿಕ)</label>
         <div class="photo-upload-container" onclick="document.getElementById('ad_image_file').click()">
           <div style="font-size: 26px;">🖼️</div>
           <div style="font-size: 12px; font-weight: 800; color: #059669;">ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ</div>
-          <div style="font-size: 10px; color: #64748b;">(ಗ್ಯಾಲರಿಯಿಂದ ನೇರವಾಗಿ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತದೆ)</div>
+          <div style="font-size: 10px; color: #64748b;">(ಗ್ಯಾಲರಿಯಿಂದ ನೇರವಾಗಿ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ)</div>
         </div>
         <input type="file" id="ad_image_file" accept="image/*" style="display: none;" onchange="previewSelectedImage(this)">
         
@@ -278,12 +278,12 @@
 
       <!-- 9. Phone -->
       <div class="form-group">
-        <label class="form-label">📱 ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (WhatsApp)</label>
+        <label class="form-label">📱 ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (ಪರಿಶೀಲನೆಗೆ ಮಾತ್ರ)</label>
         <input type="tel" class="form-input" id="ad_phone" placeholder="10 ಅಂಕಿಗಳ ಮೊಬೈಲ್ ನಂಬರ್" required>
       </div>
 
       <button type="submit" id="submitBtn" style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: #fff; border: none; padding: 12px; border-radius: 25px; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);">
-        🚀 ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ & WhatsApp ಗೆ ಕಳುಹಿಸಿ
+        🚀 ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ
       </button>
     </form>
   </div>
@@ -332,13 +332,17 @@
     async function handleAdSubmit(e) {
       e.preventDefault();
       var btn = document.getElementById('submitBtn');
-      btn.innerText = "⏳ ಫೋಟೋ & ವಿವರ ಸೇವ್ ಆಗುತ್ತಿದೆ...";
+      btn.innerText = "⏳ ಜಾಹೀರಾತು ಸೇವ್ ಆಗುತ್ತಿದೆ...";
       btn.disabled = true;
 
       var plan = document.getElementById('selected_plan').value;
       var amt = document.getElementById('selected_amount').value;
       var utr = document.getElementById('ad_utr') ? document.getElementById('ad_utr').value : '';
-      var city = document.getElementById('ad_city').value;
+      
+      var citySelect = document.getElementById('ad_city');
+      var cityCode = citySelect.value; // ಉದಾ: shivamogga
+      var cityName = citySelect.options[citySelect.selectedIndex].text; // ಉದಾ: ಶಿವಮೊಗ್ಗ
+
       var cat = document.getElementById('ad_cat').value;
       var title = document.getElementById('ad_title').value;
       var price = document.getElementById('ad_price').value;
@@ -348,94 +352,94 @@
 
       var imageUrl = "";
 
-      // 1. Upload Photo with 5-sec Timeout Protection
+      // 1. Upload Photo to Cloudinary (If uploaded)
       if (fileInput.files && fileInput.files.length > 0) {
         try {
           var formData = new FormData();
           formData.append("file", fileInput.files[0]);
           formData.append("upload_preset", (typeof CLOUDINARY_UPLOAD_PRESET !== 'undefined') ? CLOUDINARY_UPLOAD_PRESET : "samruddhi");
-
           var cloudName = (typeof CLOUDINARY_CLOUD_NAME !== 'undefined') ? CLOUDINARY_CLOUD_NAME : "mkuurlzy";
           
-          var uploadPromise = fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+          var res = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
             method: "POST",
             body: formData
-          }).then(res => res.json());
-
-          // 6 seconds timeout so form never hangs
-          var timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 6000));
-          
-          var data = await Promise.race([uploadPromise, timeoutPromise]);
+          });
+          var data = await res.json();
           if (data && data.secure_url) {
             imageUrl = data.secure_url;
           }
         } catch(err) {
-          console.warn("Cloudinary upload skipped or timed out:", err);
+          console.warn("Cloudinary upload failed:", err);
         }
       }
 
-      // 2. Save to Firebase with Timeout Protection
-      if (typeof db !== 'undefined') {
-        try {
-          var savePromise = db.collection("ads").add({
-            plan: plan,
-            amount: amt,
-            utr: utr,
-            city: city,
-            category: cat,
-            title: title,
-            price: price,
-            desc: desc,
-            phone: phone,
-            imageUrl: imageUrl,
-            status: "pending",
-            createdAt: new Date().toISOString()
-          });
-          
-          var dbTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('DB Timeout')), 4000));
-          await Promise.race([savePromise, dbTimeout]);
-        } catch(err) {
-          console.warn("Firebase save skipped or timed out:", err);
+      // 2. Save into Firebase Firestore
+      try {
+        if (typeof firebase === 'undefined' || !firebase.apps.length) {
+          throw new Error("Firebase ಸರಿಯಾಗಿ initialize ಆಗಿಲ್ಲ! ದಯವಿಟ್ಟು firebase-config.js ಪರಿಶೀಲಿಸಿ.");
         }
+
+        var db = firebase.firestore();
+        await db.collection("ads").add({
+          plan: plan,
+          amount: amt,
+          utr: utr,
+          city: cityCode,          // ಫಿಲ್ಟರ್ ಮಾಡಲು (shivamogga)
+          cityName: cityName,      // ಪೇಜ್‌ನಲ್ಲಿ ತೋರಿಸಲು (ಶಿವಮೊಗ್ಗ)
+          category: cat,
+          title: title,
+          price: price,
+          desc: desc,
+          phone: phone,
+          imageUrl: imageUrl,
+          status: "pending",       // ಅಡ್ಮಿನ್ ಅಪ್ರೂವಲ್‌ಗೆ
+          createdAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+
+      } catch(err) {
+        console.error("Firebase Error:", err);
+        alert("ದೋಷ: ಜಾಹೀರಾತು ಸೇವ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. (" + err.message + ")");
+        btn.innerText = "🚀 ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ";
+        btn.disabled = false;
+        return;
       }
 
-      // 3. Social Share Links Setup
-      var shareText = `📢 *${title}*%0A📍 ಸ್ಥಳ: ${city}%0A💰 ಬೆಲೆ: ${price}%0A📄 ವಿವರ: ${desc}%0A📞 ಸಂಪರ್ಕಿಸಿ: ${phone}%0A%0Aನಮ್ಮೂರ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ನೋಡಿ: ${window.location.origin}`;
+      // 3. Setup Social Share Message & Links (ಫೋನ್ ನಂಬರ್ ಮುಕ್ತ & ವೆಬ್‌ಸೈಟ್ ಲಿಂಕ್‌ನೊಂದಿಗೆ)
+      var currentDomain = window.location.origin;
+      var targetCityUrl = currentDomain + "/" + cityCode + ".html";
+      
+      var shareText = `🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಹೊಸ ಜಾಹೀರಾತು:*%0A📌 *${title}*%0A📍 ಸ್ಥಳ: ${cityName}%0A💰 ಬೆಲೆ: ${price}%0A📝 ವಿವರ: ${desc}%0A%0A👉 ಪೂರ್ತಿ ವಿವರಗಳಿಗೆ ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ: ${targetCityUrl}`;
+
       document.getElementById('shareWaBtn').href = "https://api.whatsapp.com/send?text=" + shareText;
-      document.getElementById('shareFbBtn').href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.origin);
-      document.getElementById('shareTgBtn').href = "https://t.me/share/url?url=" + encodeURIComponent(window.location.origin) + "&text=" + shareText;
+      document.getElementById('shareFbBtn').href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(targetCityUrl);
+      document.getElementById('shareTgBtn').href = "https://t.me/share/url?url=" + encodeURIComponent(targetCityUrl) + "&text=" + shareText;
 
-      // 4. Send Message to Admin WhatsApp
-      var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು*%0A%0A" +
-                  "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A";
+      // 4. Admin WhatsApp Alert
+      var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು ಸಲ್ಲಿಕೆಯಾಗಿದೆ*%0A%0A" +
+                  "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A" +
+                  "📍 *ನಗರ:* " + encodeURIComponent(cityName) + "%0A" +
+                  "🏷️ *ಶೀರ್ಷಿಕೆ:* " + encodeURIComponent(title) + "%0A" +
+                  "💰 *ಬೆಲೆ:* " + encodeURIComponent(price) + "%0A" +
+                  "📄 *ವಿವರ:* " + encodeURIComponent(desc) + "%0A" +
+                  "📱 *ಮೊಬೈಲ್:* " + encodeURIComponent(phone);
 
       if (amt > 0) {
-        waMsg += "💰 *ಪಾವತಿ ಮೊತ್ತ:* ₹" + encodeURIComponent(amt) + "%0A" +
-                 "🧾 *Payment UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ') + "%0A";
+        waMsg += "%0A🧾 *UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ');
       }
 
-      waMsg += "📍 *ನಗರ:* " + encodeURIComponent(city) + "%0A" +
-               "📂 *ವಿಭಾಗ:* " + encodeURIComponent(cat) + "%0A" +
-               "🏷️ *ಶೀರ್ಷಿಕೆ:* " + encodeURIComponent(title) + "%0A" +
-               "💰 *ಬೆಲೆ:* " + encodeURIComponent(price) + "%0A" +
-               "📄 *ವಿವರ:* " + encodeURIComponent(desc) + "%0A" +
-               "📱 *ಸಂಪರ್ಕ:* " + encodeURIComponent(phone);
-
-      if (imageUrl) {
-        waMsg += "%0A🖼️ *ಫೋಟೋ ಲಿಂಕ್:* " + encodeURIComponent(imageUrl);
-      }
-
-      // Trigger WhatsApp
+      // Open admin alert in background/new tab
       window.open("https://wa.me/918431649984?text=" + waMsg, "_blank");
 
-      // 5. Show Share Box Instantly
+      // 5. Show Share Card to User
       document.getElementById('adFormCard').style.display = 'none';
       document.getElementById('shareSuccessCard').style.display = 'block';
     }
 
     function copyShareLink() {
-      navigator.clipboard.writeText(window.location.origin);
-      alert("✅ ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ! ನಿಮ್ಮ ಸ್ನೇಹಿತರಿಗೆ ಕಳುಹಿಸಿ.");
+      var cityCode = document.getElementById('ad_city').value;
+      var link = window.location.origin + "/" + cityCode + ".html";
+      navigator.clipboard.writeText(link);
+      alert("✅ ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ! ನಿಮ್ಮ ಗ್ರೂಪ್‌ಗಳಿಗೆ ಶೇರ್ ಮಾಡಿ.");
     }
   </script>
 
