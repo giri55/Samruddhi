@@ -6,35 +6,32 @@
   <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Firebase Compat SDKs -->
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js"></script>
 
   <style>
-    /* Share Button Styling */
+    /* ಸಣ್ಣ ಮತ್ತು ಅಚ್ಚುಕಟ್ಟಾದ ಶೇರ್ ಬಟನ್‌ಗಳ ಸ್ಟೈಲ್ */
     .ad-share-row {
       display: flex;
-      gap: 8px;
-      margin-top: 10px;
+      gap: 6px;
+      margin-top: 8px;
+      justify-content: flex-end;
     }
     .share-btn-action {
-      flex: 1;
-      padding: 8px 10px;
-      border-radius: 8px;
+      padding: 4px 10px;
+      border-radius: 6px;
       font-size: 11px;
-      font-weight: 800;
+      font-weight: 700;
       text-decoration: none;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
       gap: 4px;
       color: #ffffff;
       border: none;
       cursor: pointer;
-      transition: opacity 0.2s;
     }
-    .share-btn-action:hover { opacity: 0.9; }
     .btn-wa-green { background: #25d366; }
     .btn-fb-blue { background: #1877f2; }
     .ad-city-tag {
@@ -74,7 +71,7 @@
     </div>
   </div>
 
-  <!-- 1. 30-Second Featured Ad Showcase (Connected to Firestore with Auto-Rotate) -->
+  <!-- 1. 30-Second Featured Ad Showcase -->
   <div class="showcase-ad-card">
     <div class="showcase-top-row">
       <span class="sp-badge">⭐ ಪ್ರಾಯೋಜಿತ ಜಾಹೀರಾತು</span>
@@ -85,38 +82,15 @@
       <div class="ad-progress-fill" id="adProgress"></div>
     </div>
 
-    <!-- Live Ads Container (Injected by JS) -->
+    <!-- Live Ads Slider Container -->
     <div id="liveAdsSliderWrapper">
-      <!-- Fallback Slide 1 -->
       <div class="ad-slide-box active" id="ad1">
         <span class="ad-city-tag">📍 ಶಿವಮೊಗ್ಗ & ದಾವಣಗೆರೆ</span>
         <div class="ad-title-text">🚜 ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
         <div class="ad-desc-text">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
         <div class="ad-share-row">
-          <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:* %0A🚜 *ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ ಮಷಿನ್ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-wa-green">💬 WhatsApp ಶೇರ್</a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-fb-blue">📘 Facebook ಶೇರ್</a>
-        </div>
-      </div>
-
-      <!-- Fallback Slide 2 -->
-      <div class="ad-slide-box" id="ad2">
-        <span class="ad-city-tag">📍 ಕರ್ನಾಟಕ</span>
-        <div class="ad-title-text">🥛 100% ಶುದ್ಧ ಗಿರ್ ಹಸುವಿನ ಹಾಲು, ಹಳ್ಳಿ ಬೆಣ್ಣೆ & ತುಪ್ಪ!</div>
-        <div class="ad-desc-text">ಯಾವುದೇ ರಾಸಾಯನಿಕವಿಲ್ಲದ ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಜ ಡೈರಿ ಉತ್ಪನ್ನಗಳು ಪ್ರತಿದಿನ ಲಭ್ಯ.</div>
-        <div class="ad-share-row">
-          <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:* %0A🥛 *ಶುದ್ಧ ಹಸುವಿನ ತುಪ್ಪ & ಹಾಲು ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-wa-green">💬 WhatsApp ಶೇರ್</a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-fb-blue">📘 Facebook ಶೇರ್</a>
-        </div>
-      </div>
-
-      <!-- Fallback Slide 3 -->
-      <div class="ad-slide-box" id="ad3">
-        <span class="ad-city-tag">📍 ಆನ್‌ಲೈನ್ ಸೇವೆ</span>
-        <div class="ad-title-text">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
-        <div class="ad-desc-text">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನದ ವಿವರ ಕಳುಹಿಸಿ, ಕೇವಲ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
-        <div class="ad-share-row">
-          <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:* %0A🎨 *₹59 ಕ್ಕೆ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!* %0A👉 https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-wa-green">💬 WhatsApp ಶೇರ್</a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-fb-blue">📘 Facebook ಶೇರ್</a>
+          <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:* %0A🚜 *ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ ಮಷಿನ್ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-wa-green">💬 ಶೇರ್</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-fb-blue">📘 ಶೇರ್</a>
         </div>
       </div>
     </div>
@@ -129,7 +103,6 @@
   </div>
 
   <div class="news-dual-wrapper">
-    <!-- Market News Card -->
     <a href="news_detail.html?type=market" class="news-interactive-card market-theme">
       <div>
         <div class="news-pill-tag tag-green">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</div>
@@ -140,7 +113,6 @@
       <div class="read-more-link">ಸಂಪೂರ್ಣ ಓದಿ ➔</div>
     </a>
 
-    <!-- Top News Card -->
     <a href="news_detail.html?type=top" class="news-interactive-card topnews-theme">
       <div>
         <div class="news-pill-tag tag-amber">⚡ TOP ನ್ಯೂಸ್</div>
@@ -200,12 +172,11 @@
   <!-- Realtime Ads Loader & Dynamic 30s Slider Script -->
   <script>
     var currentSlide = 1;
-    var totalSlides = 3;
+    var totalSlides = 1;
     var maxSeconds = 30;
     var remaining = maxSeconds;
     var timerInterval = null;
 
-    // 1. Firebase ನಿಂದ Approved ಜಾಹೀರಾತುಗಳನ್ನು ತಂದು ಸ್ಲೈಡರ್‌ನಲ್ಲಿ ಹಾಕುವುದು
     async function fetchLiveApprovedAds() {
       try {
         if (typeof db === 'undefined') return;
@@ -224,8 +195,7 @@
           var currentDomain = window.location.origin;
           var targetCityUrl = currentDomain + "/" + (ad.city || "index") + ".html";
 
-          // WhatsApp & Facebook ಶೇರ್ ಮೆಸೇಜ್ ತಯಾರಿ
-          var shareText = `🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:*%0A📌 *${ad.title}*%0A📍 ಸ್ಥಳ: ${cityName}%0A💰 ಬೆಲೆ: ${ad.price || 'ಮಾತುಕತೆ ಮೂಲಕ'}%0A📝 ವಿವರ: ${ad.desc || ad.description || ''}%0A%0A👉 ಪೂರ್ತಿ ವಿವರಗಳಿಗೆ ಇಲ್ಲಿ ನೋಡಿ: ${targetCityUrl}`;
+          var shareText = `🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:*%0A📌 *${ad.title}*%0A📍 ಸ್ಥಳ: ${cityName}%0A💰 ಬೆಲೆ: ${ad.price || 'ಮಾತುಕತೆ ಮೂಲಕ'}%0A📝 ವಿವರ: ${ad.desc || ad.description || ''}%0A👉 ನೋಡಿ: ${targetCityUrl}`;
           var waLink = "https://api.whatsapp.com/send?text=" + shareText;
           var fbLink = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(targetCityUrl);
 
@@ -238,12 +208,11 @@
               ${imgTag}
               <div class="ad-title-text">${ad.title}</div>
               <div class="ad-desc-text">${ad.desc || ad.description || ''}</div>
-              ${ad.price ? `<div style="font-size:11.5px; font-weight:800; color:#059669; margin:4px 0;">💰 ಬೆಲೆ: ${ad.price}</div>` : ''}
+              ${ad.price ? `<div style="font-size:11px; font-weight:800; color:#059669; margin:4px 0;">💰 ಬೆಲೆ: ${ad.price}</div>` : ''}
               
-              <!-- ಕೇವಲ ಶೇರಿಂಗ್ ಬಟನ್‌ಗಳು -->
               <div class="ad-share-row">
-                <a href="${waLink}" target="_blank" class="share-btn-action btn-wa-green">💬 WhatsApp ಶೇರ್</a>
-                <a href="${fbLink}" target="_blank" class="share-btn-action btn-fb-blue">📘 Facebook ಶೇರ್</a>
+                <a href="${waLink}" target="_blank" class="share-btn-action btn-wa-green">💬 ಶೇರ್</a>
+                <a href="${fbLink}" target="_blank" class="share-btn-action btn-fb-blue">📘 ಶೇರ್</a>
               </div>
             </div>
           `;
@@ -259,7 +228,6 @@
       }
     }
 
-    // 2. 30 ಸೆಕೆಂಡ್‌ಗಳ ಆಟೋ ಸ್ಲೈಡರ್ ಟೈಮರ್
     function startAdSlider() {
       if (timerInterval) clearInterval(timerInterval);
       remaining = maxSeconds;
@@ -283,13 +251,10 @@
       }, 1000);
     }
 
-    // 3. ನ್ಯೂಸ್ ಅಪ್‌ಡೇಟ್ ಲೋಡ್
     window.addEventListener('DOMContentLoaded', async function() {
-      // Firebase ನಿಂದ ಲೈವ್ ಜಾಹೀರಾತುಗಳನ್ನು ಲೋಡ್ ಮಾಡಿ ನಂತರ ಸ್ಲೈಡರ್ ಪ್ರಾರಂಭಿಸಿ
       await fetchLiveApprovedAds();
       startAdSlider();
 
-      // LocalStorage ಅಥವಾ Firebase ನಿಂದ ನ್ಯೂಸ್ ಸೆಟ್ ಮಾಡುವುದು
       var savedNews = localStorage.getItem('samruddhi_news_data');
       if (savedNews) {
         var d = JSON.parse(savedNews);
