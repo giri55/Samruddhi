@@ -3,252 +3,138 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ತುಮಕೂರು - ಸಮೃದ್ಧಿ ಸೂಪರ್ ಪೋರ್ಟಲ್</title>
+  <title>ತುಮಕೂರು - ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .ad-share-row-sm { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
+    .share-btn-compact { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; color: #ffffff; border: none; cursor: pointer; }
+    .btn-wa-green { background: #25d366; }
+    .btn-fb-blue { background: #1877f2; }
+    .offers-card-box { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 1.5px dashed #f43f5e; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08); }
+  </style>
 </head>
 <body>
-
-  <!-- Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">🥥</div>
-      <div class="brand-title-box">
-        <span class="brand-name">ತುಮಕೂರು</span>
-        <span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span>
-      </div>
+      <div class="brand-title-box"><span class="brand-name">ತುಮಕೂರು</span><span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span></div>
     </a>
     <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
   </header>
 
-  <!-- Rate Scroller -->
+  <!-- Live Rate Scroller -->
   <div class="rate-ticker-bar">
     <div class="rate-badge-pulse"><span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ</div>
     <div class="ticker-content-track">
-      <span>🪙 22K: ₹6,745 | 24K: ₹7,355 | 🥈 ಬೆಳ್ಳಿ: ₹88,500 | 🌾 ತುಮಕೂರು ಮಾರುಕಟ್ಟೆ ತಾಜಾ ಧಾರಣೆ ಲಭ್ಯ &nbsp;&nbsp;•&nbsp;&nbsp;</span>
-      <span>🪙 22K: ₹6,745 | 24K: ₹7,355 | 🥈 ಬೆಳ್ಳಿ: ₹88,500 | 🌾 ತುಮಕೂರು ಮಾರುಕಟ್ಟೆ ತಾಜಾ ಧಾರಣೆ ಲಭ್ಯ &nbsp;&nbsp;•&nbsp;&nbsp;</span>
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🥥 ಉಂಡೆ ಕೊಬ್ಬರಿ: ₹13,800/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🥥 ಉಂಡೆ ಕೊಬ್ಬರಿ: ₹13,800/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
     </div>
   </div>
 
-  <!-- 1. ನಿಮ್ಮೂರ ಸುದ್ದಿ Banner (Clickable to News Page) -->
-  <a href="news_detail.html?city=ತುಮಕೂರು" class="city-news-banner">
+  <!-- Banner -->
+  <div style="background: linear-gradient(135deg, #9a3412, #c2410c); color: #fff; border-radius: 14px; padding: 12px 14px; margin: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(154, 52, 18, 0.25);">
     <div>
-      <span class="cn-badge">📢 ನಿಮ್ಮೂರ ಸುದ್ದಿ</span>
-      <div class="cn-title">ತುಮಕೂರು ನಗರ ಮತ್ತು ಗ್ರಾಮಾಂತರ ಇಂದಿನ ತಾಜಾ ಸುದ್ದಿ ವರದಿ</div>
-      <div style="font-size: 10px; color: #bfdbfe; margin-top: 2px;">• ಪ್ರಮುಖ ಘಟನೆಗಳು & ಮಾರುಕಟ್ಟೆ ವಿವರ ತಿಳಿಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ ➔</div>
+      <span style="background: #f59e0b; color: #000; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">📢 ನಿಮ್ಮೂರ ಸುದ್ದಿ</span>
+      <div style="font-size: 13px; font-weight: 800; margin-top: 4px;">ಕಲ್ಪತರು ನಾಡು ತುಮಕೂರು ಜಿಲ್ಲಾ ತಾಜಾ ಸುದ್ದಿ ವರದಿ</div>
+      <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">• ಕೊಬ್ಬರಿ ಮಾರುಕಟ್ಟೆ ಹಾಗೂ ಕೃಷಿ ಮಾಹಿತಿ ➔</div>
     </div>
-    <div style="font-size: 22px;">📰</div>
-  </a>
+    <div style="font-size: 24px;">🥥</div>
+  </div>
 
-  <!-- 2. ₹199 Premium Rotating Top Ad Showcase (30s Rotation) -->
-  <div class="showcase-ad-card" style="border-color: #f59e0b;">
-    <div class="showcase-top-row">
-      <span class="sp-badge" style="background: linear-gradient(135deg, #f59e0b, #b45309); color: #fff;">👑 ₹199 ಪ್ರೀಮಿಯಂ ವಿಐಪಿ ಜಾಹೀರಾತು</span>
-      <span class="ad-timer-badge">⏱️ <span id="vipSec">30</span>s</span>
+  <!-- 1. ₹199 VIP Ad -->
+  <div style="background: #0f172a; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 14px; margin: 10px 14px; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <span style="background: #d97706; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">👑 ₹199 ಪ್ರೀಮಿಯಂ ವಿಐಪಿ ಜಾಹೀರಾತು</span>
+      <span style="font-size: 10px; color: #94a3b8;">⏱️ 14s</span>
     </div>
-    
-    <div class="ad-progress-track">
-      <div class="ad-progress-fill" id="vipProgress" style="background: #fbbf24;"></div>
-    </div>
-
-    <!-- VIP Slide 1 -->
-    <div class="ad-slide-box active" id="vip1">
-      <div class="ad-title-text">🚜 ತುಮಕೂರು: ನೂತನ ಕೃಷಿ ಯಂತ್ರೋಪಕರಣಗಳು & ಸರ್ವಿಸ್</div>
-      <div class="ad-desc-text">ಅತ್ಯುತ್ತಮ ಗುಣಮಟ್ಟದ ಕೃಷಿ ಮಷಿನರಿಗಳು ಮತ್ತು ಸ್ಪೇರ್‌ಪಾರ್ಟ್ಸ್‌ಗಳು ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟಕ್ಕೆ ಲಭ್ಯ.</div>
-      <div class="ad-btn-row-small">
-        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
-        <a href="https://wa.me/918431649984?text=ತುಮಕೂರು%20ವಿಐಪಿ%20ಕೃಷಿ%20ಯಂತ್ರದ%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp</a>
-      </div>
-    </div>
-
-    <!-- VIP Slide 2 -->
-    <div class="ad-slide-box" id="vip2">
-      <div class="ad-title-text">🏡 ತುಮಕೂರು: ಪ್ರೈಮ್ ಲೊಕೇಶನ್ ನಿವೇಶನ & ಕೃಷಿ ಜಮೀನು ಮಾರಾಟಕ್ಕೆ!</div>
-      <div class="ad-desc-text">ನಗರದ ಸಮೀಪದಲ್ಲೇ ಎಲ್ಲಾ ಮೂಲಸೌಕರ್ಯಗಳಿರುವ ಸೈಟ್‌ಗಳು ಮತ್ತು ತೋಟದ ಜಮೀನು ತುರ್ತು ಮಾರಾಟಕ್ಕೆ.</div>
-      <div class="ad-btn-row-small">
-        <a href="https://wa.me/918431649984?text=ತುಮಕೂರು%20ಸೈಟ್%20ಜಮೀನಿನ%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp: 8431649984</a>
-        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ</a>
-      </div>
+    <div style="font-size: 13.5px; font-weight: 800; color: #f8fafc; margin-top: 4px;">🚜 ತುಮಕೂರು: ಆಧುನಿಕ ಕೊಬ್ಬರಿ ಕಟಿಂಗ್ & ಡ್ರೈಯಿಂಗ್ ಯಂತ್ರಗಳು ಲಭ್ಯ</div>
+    <div style="font-size: 11.5px; color: #cbd5e1; margin: 4px 0 6px; line-height: 1.4;">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಇನ್‌ಸ್ಟಾಲೇಶನ್.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ತುಮಕೂರು ಪ್ರೀಮಿಯಂ ಆ್ಯಡ್:* %0A🚜 *ಕೊಬ್ಬರಿ ಮಷಿನ್ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
     </div>
   </div>
 
-  <!-- 3. 6 Tiered Classified Ad Slots (2 Min / 120s Auto Rotation) -->
-  <div class="section-title-strip">
-    <span class="sec-head">📦 ತುಮಕೂರು ಪ್ರಮುಖ ವರ್ಗೀಕೃತ ಜಾಹೀರಾತುಗಳು</span>
-    <span style="font-size: 10px; color: #64748b; font-weight: 700;">⏱️ ರೊಟೇಷನ್: <span id="slotSec">120</span>s</span>
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px;">
+    <span style="font-size: 12.5px; font-weight: 800; color: #0f172a;">📦 ತುಮಕೂರು ಪ್ರಮುಖ ವರ್ಗೀಕೃತ ಜಾಹೀರಾತುಗಳು</span>
+    <span style="font-size: 10px; color: #64748b;">⏱️ ರೊಟೇಷನ್</span>
   </div>
 
-  <div class="ads-tiered-container">
-
-    <!-- SLOT 1: ₹99 Super Ad (Large) - ಕೃಷಿ / ಉಪಕರಣ -->
-    <div class="ad-slot-box ad-slot-99">
-      <span class="ad-tag-tier">⭐ ₹99 ಸೂಪರ್ ಆ್ಯಡ್ • ಕೃಷಿ ವಿಭಾಗ</span>
-      <div class="rot-item active" id="s1_a">
-        <div class="ad-item-title">🚜 ಮಹೀಂದ್ರಾ 475 ಟ್ರ್ಯಾಕ್ಟರ್ ಮತ್ತು ಟ್ರೈಲರ್ ಮಾರಾಟಕ್ಕೆ</div>
-        <div class="ad-item-desc">2021 ಮಾಡೆಲ್, ಅತ್ಯುತ್ತಮ ರನ್ನಿಂಗ್ ಕಂಡೀಷನ್, ಹೊಸ ಟೈರ್, ಎಲ್ಲಾ ದಾಖಲೆಗಳು ರೆಡಿ ಇವೆ. ಸ್ಥಳ: ತುಮಕೂರು. ಬೆಲೆ: ₹4,20,000 (ನೆಗೋಶಿಯೇಬಲ್).</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
-          <a href="https://wa.me/918431649984?text=ತುಮಕೂರು%20ಟ್ರ್ಯಾಕ್ಟರ್%20ಮಾಹಿತಿ" class="ad-cta-wa-sm">💬 WhatsApp</a>
-        </div>
-      </div>
-      <div class="rot-item" id="s1_b">
-        <div class="ad-item-title">🌱 ಸಾವಯವ ಹೈಬ್ರಿಡ್ ಅಡಿಕೆ ಮತ್ತು ತೆಂಗಿನ ಸಸಿಗಳು</div>
-        <div class="ad-item-desc">ಹೆಚ್ಚು ಇಳುವರಿ ನೀಡುವ ರೋಗ ನಿರೋಧಕ ಉತ್ತಮ ಸಸಿಗಳು ನೇರ ನರ್ಸರಿಯಿಂದ ಹೋಲ್ಸೇಲ್ ದರದಲ್ಲಿ ಲಭ್ಯ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಸಂಪರ್ಕಿಸಿ: 8431649984</a>
-        </div>
-      </div>
+  <!-- 2. ₹99 Super Ad -->
+  <div style="background: #ffffff; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
+    <span style="background: #f59e0b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹99 ಸೂಪರ್ ಆ್ಯಡ್ • ಕೃಷಿ ಉತ್ಪನ್ನ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🥥 ತಿಪಟೂರು ಉಂಡೆ ಕೊಬ್ಬರಿ ಸಗಟು ದರದಲ್ಲಿ ಮಾರಾಟಕ್ಕಿದೆ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಅತ್ಯುತ್ತಮ ಗುಣಮಟ್ಟದ ಎ-ಗ್ರೇಡ್ ಕೊಬ್ಬರಿ. ಕರ್ನಾಟಕದ ಎಲ್ಲಾ ಜಿಲ್ಲೆಗಳಿಗೆ ಸಾಗಾಣಿಕೆ ಸೌಲಭ್ಯ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ತುಮಕೂರು ಆ್ಯಡ್:* %0A🥥 *ತಿಪಟೂರು ಕೊಬ್ಬರಿ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
     </div>
-
-    <!-- SLOT 2: ₹99 Super Ad (Large) - ರಿಯಲ್ ಎಸ್ಟೇಟ್ / ಕಟ್ಟಡ -->
-    <div class="ad-slot-box ad-slot-99">
-      <span class="ad-tag-tier">⭐ ₹99 ಸೂಪರ್ ಆ್ಯಡ್ • ರಿಯಲ್ ಎಸ್ಟೇಟ್</span>
-      <div class="rot-item active" id="s2_a">
-        <div class="ad-item-title">🏠 ತುಮಕೂರು: 30x40 ನೂತನ ಸುಸಜ್ಜಿತ 2BHK ಮನೆ ಮಾರಾಟಕ್ಕೆ</div>
-        <div class="ad-item-desc">ಮುಖ್ಯ ರಸ್ತೆಗೆ ಹತ್ತಿರ, ಬೋರ್‌ವೆಲ್, ಕಾವೇರಿ ನೀರು, ಕಾರ್ ಪಾರ್ಕಿಂಗ್ ಸೌಲಭ್ಯವಿದೆ. ಬ್ಯಾಂಕ್ ಲೋನ್ ಸೌಲಭ್ಯ ಲಭ್ಯ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
-          <a href="https://wa.me/918431649984?text=ತುಮಕೂರು%20ಮನೆ%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp</a>
-        </div>
-      </div>
-      <div class="rot-item" id="s2_b">
-        <div class="ad-item-title">🌾 2 ಎಕರೆ ನೀರಾವರಿ ಅಡಿಕೆ/ತೆಂಗಿನ ತೋಟ ಮಾರಾಟಕ್ಕೆ</div>
-        <div class="ad-item-desc">ಫಲವತ್ತಾದ ಕೆಂಪು ಮಣ್ಣು, ಸಮೃದ್ಧ ನೀರು, ಸೋಲಾರ್ ಫೆನ್ಸಿಂಗ್, ಟ್ರ್ಯಾಕ್ಟರ್ ರಸ್ತೆ ಸಂಪರ್ಕವಿದೆ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಸಂಪರ್ಕಿಸಿ: 8431649984</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLOT 3: ₹49 Standard Ad (Medium) - ಡೈರಿ & ಆಹಾರ -->
-    <div class="ad-slot-box ad-slot-49">
-      <span class="ad-tag-tier">🔹 ₹49 ಆ್ಯಡ್ • ಡೈರಿ & ಸ್ಥಳೀಯ ಆಹಾರ</span>
-      <div class="rot-item active" id="s3_a">
-        <div class="ad-item-title">🥛 100% ಶುದ್ಧ ಹಳ್ಳಿಯ ಬೆಣ್ಣೆ & ಗಾಣದ ಎಣ್ಣೆ ಲಭ್ಯ</div>
-        <div class="ad-item-desc">ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದಲ್ಲಿ ತಯಾರಿಸಿದ ನೈಜ ತುಪ್ಪ ಮತ್ತು ಕೊಬ್ಬರಿ ಎಣ್ಣೆ ಮನೆ ಬಾಗಿಲಿಗೆ. ತುಮಕೂರು ನಗರದಲ್ಲಿ ಉಚಿತ ಡೆಲಿವರಿ.</div>
-        <div class="ad-btn-row-small">
-          <a href="https://wa.me/918431649984?text=ತುಮಕೂರು%20ತುಪ್ಪ%20ಎಣ್ಣೆ%20ಆರ್ಡರ್" class="ad-cta-wa-sm">💬 WhatsApp: 8431649984</a>
-        </div>
-      </div>
-      <div class="rot-item" id="s3_b">
-        <div class="ad-item-title">🍯 ಅಪ್ಪಟ ಕಾಡಿನ ಜೇನುತುಪ್ಪ ಮತ್ತು ಸಾವಯವ ಬೆಲ್ಲ</div>
-        <div class="ad-item-desc">ರಾಸಾಯನಿಕ ರಹಿತ ತಾಜಾ ಬೆಲ್ಲದ ಪುಡಿ ಮತ್ತು ಶುದ್ಧ ಜೇನುತುಪ್ಪ ಸಗಟು ದರದಲ್ಲಿ ಲಭ್ಯ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಆರ್ಡರ್: 8431649984</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLOT 4: ₹49 Standard Ad (Medium) - ವಾಹನ / ಗ್ಯಾರೇಜ್ -->
-    <div class="ad-slot-box ad-slot-49">
-      <span class="ad-tag-tier">🔹 ₹49 ಆ್ಯಡ್ • ವಾಹನ ಮಾರಾಟ</span>
-      <div class="rot-item active" id="s4_a">
-        <div class="ad-item-title">🚗 ಮಾರುತಿ ಸ್ವಿಫ್ಟ್ ಡಿಸೈರ್ (2018 ಡೀಸೆಲ್) ಮಾರಾಟಕ್ಕಿದೆ</div>
-        <div class="ad-item-desc">ಸಿಂಗಲ್ ಓನರ್, 62,000 ಕಿಮೀ ರನ್ನಿಂಗ್, ಶೋರೂಂ ಕಂಡೀಷನ್, ಇನ್ಶೂರೆನ್ಸ್ ಚಾಲ್ತಿಯಲ್ಲಿದೆ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
-          <a href="https://wa.me/918431649984?text=ತುಮಕೂರು%20ಕಾರು%20ವಿವರ" class="ad-cta-wa-sm">💬 WhatsApp</a>
-        </div>
-      </div>
-      <div class="rot-item" id="s4_b">
-        <div class="ad-item-title">🛵 ಹೊಂಡಾ ಆಕ್ಟಿವಾ 6G (2022) ಅತ್ಯುತ್ತಮ ಕಂಡೀಷನ್</div>
-        <div class="ad-item-desc">ತುಂಬಾ ಕಡಿಮೆ ಓಡಿದೆ, ಹೊಸ ಬ್ಯಾಟರಿ, ಉತ್ತಮ ಮೈಲೇಜ್ ನೀಡುತ್ತದೆ. ತುರ್ತು ಮಾರಾಟಕ್ಕೆ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಸಂಪರ್ಕಿಸಿ: 8431649984</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLOT 5: ₹0 Free Ad (Compact / Small) - ಉದ್ಯೋಗ / ಸೇವೆಗಳು -->
-    <div class="ad-slot-box ad-slot-free">
-      <span class="ad-tag-tier">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಉದ್ಯೋಗ</span>
-      <div class="rot-item active" id="s5_a">
-        <div class="ad-item-title">📢 ತುಮಕೂರು: ಸೇಲ್ಸ್ ಎಕ್ಸಿಕ್ಯುಟಿವ್ & ಡೆಲಿವರಿ ಬಾಯ್ಸ್ ಬೇಕಾಗಿದ್ದಾರೆ</div>
-        <div class="ad-item-desc">ಸ್ಥಳೀಯ ಹುಡುಗರಿಗೆ ಆದ್ಯತೆ. ತಿಂಗಳ ವೇತನ ₹15,000 + ಇನ್ಸೆಂಟಿವ್.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಸಂಪರ್ಕಿಸಿ: 8431649984</a>
-        </div>
-      </div>
-      <div class="rot-item" id="s5_b">
-        <div class="ad-item-title">💼 ಕಂಪ್ಯೂಟರ್ ಆಪರೇಟರ್ & ಬಿಲ್ಲಿಂಗ್ ಹುದ್ದೆ ಖಾಲಿ ಇದೆ</div>
-        <div class="ad-item-desc">Tally ಮತ್ತು Excel ಜ್ಞಾನವಿರುವ ಮಹಿಳಾ/ಪುರುಷ ಅಭ್ಯರ್ಥಿಗಳು ಸಂಪರ್ಕಿಸಿ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLOT 6: ₹0 Free Ad (Compact / Small) - ದಿನಸಿ / ಗೃಹೋಪಯೋಗಿ -->
-    <div class="ad-slot-box ad-slot-free">
-      <span class="ad-tag-tier">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಗೃಹೋಪಯೋಗಿ ವಸ್ತುಗಳು</span>
-      <div class="rot-item active" id="s6_a">
-        <div class="ad-item-title">🛏️ ತೇಗದ ಮರದ ಡಬಲ್ ಕಾಟ್ & ಸೋಫಾ ಸೆಟ್ ಮಾರಾಟಕ್ಕೆ</div>
-        <div class="ad-item-desc">ಬಲವಾದ ಉತ್ತಮ ಮರದ ಫರ್ನಿಚರ್ ಅತ್ಯಂತ ಕಡಿಮೆ ಬೆಲೆಗೆ ಮಾರಾಟ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಸಂಪರ್ಕಿಸಿ: 8431649984</a>
-        </div>
-      </div>
-      <div class="rot-item" id="s6_b">
-        <div class="ad-item-title">📺 43 ಇಂಚಿನ ಸ್ಮಾರ್ಟ್ ಟಿವಿ ಮತ್ತು ವಾಷಿಂಗ್ ಮಷಿನ್</div>
-        <div class="ad-item-desc">ಮನೆ ಶಿಫ್ಟಿಂಗ್ ಕಾರಣಕ್ಕಾಗಿ ಉತ್ತಮ ಸ್ಥಿತಿಯಲ್ಲಿರುವ ಗೃಹೋಪಯೋಗಿ ವಸ್ತುಗಳು ಮಾರಾಟಕ್ಕೆ.</div>
-        <div class="ad-btn-row-small">
-          <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <!-- Bottom Nav -->
+  <!-- 3. Special Offers Box (₹99 ಕೆಳಗೆ) -->
+  <div class="offers-card-box">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="background: #e11d48; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">🎁 ವಿಶೇಷ ಆಫರ್ಸ್ & ಡೀಲ್ಸ್</span>
+      <span style="font-size: 10px; color: #e11d48; font-weight: 800;">🔥 ಲಿಮಿಟೆಡ್ ಆಫರ್</span>
+    </div>
+    <div style="font-size: 13px; font-weight: 800; color: #881337; margin-top: 4px;">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
+    <div style="font-size: 11.5px; color: #4c0519; margin: 4px 0 6px; line-height: 1.4;">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನಕ್ಕೆ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ತುಮಕೂರು ಸ್ಪೆಷಲ್ ಆಫರ್:* %0A🎨 *₹59 ಕ್ಕೆ ಪೋಸ್ಟರ್ ಡಿಸೈನ್!* %0A👉 https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 4. ₹49 Standard Ad 1 -->
+  <div style="background: #ffffff; border: 1.5px solid #fed7aa; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #ea580c; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ರಿಯಲ್ ಎಸ್ಟೇಟ್</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🏡 ತುಮಕೂರು ಕ್ಯಾತ್ಸಂದ್ರ ಹತ್ತಿರ ಸೈಟ್‌ಗಳು ಮಾರಾಟಕ್ಕಿದೆ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ತುಡಾ ಅಪ್ರೂವ್ಡ್ ಲೇಔಟ್, ರಸ್ತೆ, ನೀರು, ವಿದ್ಯುತ್ ಸೌಲಭ್ಯವಿದೆ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ತುಮಕೂರು ಆ್ಯಡ್:* %0A🏡 *ಕ್ಯಾತ್ಸಂದ್ರದಲ್ಲಿ ಸೈಟ್‌ಗಳು ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 5. ₹49 Standard Ad 2 -->
+  <div style="background: #ffffff; border: 1.5px solid #fed7aa; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #ea580c; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ವಾಹನ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🚜 ಪವರ್ ಟಿಲ್ಲರ್ (Vasant 8HP) ಕಡಿಮೆ ಬೆಲೆಗೆ ಮಾರಾಟ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">1 ವರ್ಷ ಬಳಸಲಾಗಿದೆ, ಎಲ್ಲಾ ಅಟ್ಯಾಚ್‌ಮೆಂಟ್‌ಗಳೊಂದಿಗೆ ಲಭ್ಯ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ತುಮಕೂರು ಆ್ಯಡ್:* %0A🚜 *ಪವರ್ ಟಿಲ್ಲರ್ ಮಾರಾಟಕ್ಕಿದೆ!* %0A👉 https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 6. Free Ad 1 -->
+  <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಉದ್ಯೋಗ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">📢 ತುಮಕೂರು ವಸಂತನರಸಾಪುರ ಇಂಡಸ್ಟ್ರಿಯಲ್ ಏರಿಯಾಗೆ ಕೆಲಸಗಾರರು ಬೇಕು</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಐಟಿಐ / ಡಿಪ್ಲೊಮಾ ಅಭ್ಯರ್ಥಿಗಳಿಗೆ ಆದ್ಯತೆ. ಆಕರ್ಷಕ ವೇತನ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ತುಮಕೂರು ಆ್ಯಡ್:* %0A📢 *ಉದ್ಯೋಗಾವಕಾಶ!* %0A👉 https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 7. Free Ad 2 -->
+  <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px 80px;">
+    <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಹಳ್ಳಿ ಉತ್ಪನ್ನ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🍯 ಶುದ್ಧ ಕಾಡಿನ ಜೇನುತುಪ್ಪ & ಸಿರಿಧಾನ್ಯಗಳು ಲಭ್ಯ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಯಾವುದೇ ರಾಸಾಯನಿಕವಿಲ್ಲದ ನೈಸರ್ಗಿಕ ಜೇನುತುಪ್ಪ ಮನೆ ಬಾಗಿಲಿಗೆ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ತುಮಕೂರು ಆ್ಯಡ್:* %0A🍯 *ಕಾಡಿನ ಜೇನುತುಪ್ಪ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/tumakuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
   <nav class="modern-bottom-nav">
-    <a href="index.html" class="nav-tab-link active"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
+    <a href="index.html" class="nav-tab-link"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
     <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
     <a href="post_ad.html" class="nav-center-plus">➕</a>
     <a href="admin.html" class="nav-tab-link"><span class="nav-tab-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
-    <a href="https://wa.me/918431649984?text=ತುಮಕೂರು%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
+    <a href="https://wa.me/918431649984?text=ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
-
-  <script>
-    // 1. VIP 30s Rotating Showcase
-    var vipSlide = 1;
-    var vipTotal = 2;
-    var vipSecRem = 30;
-    setInterval(function() {
-      vipSecRem--;
-      if (vipSecRem <= 0) {
-        document.getElementById('vip' + vipSlide).classList.remove('active');
-        vipSlide = (vipSlide % vipTotal) + 1;
-        document.getElementById('vip' + vipSlide).classList.add('active');
-        vipSecRem = 30;
-      }
-      document.getElementById('vipSec').innerText = vipSecRem;
-      document.getElementById('vipProgress').style.width = ((vipSecRem / 30) * 100) + '%';
-    }, 1000);
-
-    // 2. 6 Classified Ad Slots 2-Minute (120s) Auto-Rotation
-    var slotTimeRem = 120;
-    var currentSubState = 'a';
-    setInterval(function() {
-      slotTimeRem--;
-      if (slotTimeRem <= 0) {
-        currentSubState = (currentSubState === 'a') ? 'b' : 'a';
-        for(var i = 1; i <= 6; i++) {
-          var elA = document.getElementById('s' + i + '_a');
-          var elB = document.getElementById('s' + i + '_b');
-          if (elA && elB) {
-            if (currentSubState === 'b') {
-              elA.classList.remove('active');
-              elB.classList.add('active');
-            } else {
-              elB.classList.remove('active');
-              elA.classList.add('active');
-            }
-          }
-        }
-        slotTimeRem = 120;
-      }
-      document.getElementById('slotSec').innerText = slotTimeRem;
-    }, 1000);
-  </script>
-
 </body>
 </html>

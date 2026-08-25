@@ -6,54 +6,42 @@
   <title>ಮೈಸೂರು - ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .ad-share-row-sm {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-      justify-content: flex-end;
-    }
-    .share-btn-compact {
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      color: #ffffff;
-      border: none;
-      cursor: pointer;
-    }
+    .ad-share-row-sm { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
+    .share-btn-compact { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; color: #ffffff; border: none; cursor: pointer; }
     .btn-wa-green { background: #25d366; }
     .btn-fb-blue { background: #1877f2; }
+    .offers-card-box { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 1.5px dashed #f43f5e; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08); }
   </style>
 </head>
 <body>
-
-  <!-- App Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">🏰</div>
-      <div class="brand-title-box">
-        <span class="brand-name">ಮೈಸೂರು</span>
-        <span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span>
-      </div>
+      <div class="brand-title-box"><span class="brand-name">ಮೈಸೂರು</span><span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span></div>
     </a>
     <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
   </header>
 
-  <!-- News Banner -->
-  <div style="background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #fff; border-radius: 14px; padding: 12px 14px; margin: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(37, 99, 235, 0.2);">
-    <div>
-      <span style="background: #f59e0b; color: #000; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">📢 ನಿಮ್ಮೂರ ಸುದ್ದಿ</span>
-      <div style="font-size: 13px; font-weight: 800; margin-top: 4px;">ಮೈಸೂರು ನಗರ ಮತ್ತು ಗ್ರಾಮಾಂತರ ಇಂದಿನ ತಾಜಾ ಸುದ್ದಿ ವರದಿ</div>
-      <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">• ಪ್ರಮುಖ ಘಟನೆಗಳು & ಮಾರುಕಟ್ಟೆ ವಿವರ ತಿಳಿಯಲು ಕ್ಲಿಕ್ ಮಾಡಿ ➔</div>
+  <!-- Live Rate Scroller -->
+  <div class="rate-ticker-bar">
+    <div class="rate-badge-pulse"><span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ</div>
+    <div class="ticker-content-track">
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ರೇಷ್ಮೆ ಗೂಡು: ₹620/kg &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ರೇಷ್ಮೆ ಗೂಡು: ₹620/kg &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
     </div>
-    <div style="font-size: 24px;">📰</div>
   </div>
 
-  <!-- 1. ₹199 Premium VIP Ad (Dark Box) -->
+  <!-- Banner -->
+  <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); color: #fff; border-radius: 14px; padding: 12px 14px; margin: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(30, 58, 138, 0.25);">
+    <div>
+      <span style="background: #f59e0b; color: #000; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">📢 ನಿಮ್ಮೂರ ಸುದ್ದಿ</span>
+      <div style="font-size: 13px; font-weight: 800; margin-top: 4px;">ಸಾಂಸ್ಕೃತಿಕ ನಗರಿ ಮೈಸೂರು ಜಿಲ್ಲಾ ತಾಜಾ ಸುದ್ದಿ ವರದಿ</div>
+      <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">• ಪ್ರಮುಖ ಘಟನೆಗಳು & ಮಾರುಕಟ್ಟೆ ವಿವರ ➔</div>
+    </div>
+    <div style="font-size: 24px;">🏰</div>
+  </div>
+
+  <!-- 1. ₹199 VIP Ad -->
   <div style="background: #0f172a; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 14px; margin: 10px 14px; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
       <span style="background: #d97706; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">👑 ₹199 ಪ್ರೀಮಿಯಂ ವಿಐಪಿ ಜಾಹೀರಾತು</span>
@@ -62,51 +50,64 @@
     <div style="font-size: 13.5px; font-weight: 800; color: #f8fafc; margin-top: 4px;">🚜 ಮೈಸೂರು: ನೂತನ ಕೃಷಿ ಯಂತ್ರೋಪಕರಣಗಳು & ಸರ್ವಿಸ್</div>
     <div style="font-size: 11.5px; color: #cbd5e1; margin: 4px 0 6px; line-height: 1.4;">ಅತ್ಯುತ್ತಮ ಗುಣಮಟ್ಟದ ಕೃಷಿ ಮಷಿನರಿಗಳು ಮತ್ತು ಸ್ಪೇರ್‌ಪಾರ್ಟ್ಸ್‌ಗಳು ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟಕ್ಕೆ ಲಭ್ಯ.</div>
     <div class="ad-share-row-sm">
-      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಮೈಸೂರು ಪ್ರೀಮಿಯಂ ಆ್ಯಡ್:* %0A🚜 *ನೂತನ ಕೃಷಿ ಯಂತ್ರೋಪಕರಣಗಳು ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಮೈಸೂರು ಪ್ರೀಮಿಯಂ ಆ್ಯಡ್:* %0A🚜 *ಕೃಷಿ ಉಪಕರಣಗಳು ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
     </div>
   </div>
 
-  <!-- Section Title -->
   <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px;">
     <span style="font-size: 12.5px; font-weight: 800; color: #0f172a;">📦 ಮೈಸೂರು ಪ್ರಮುಖ ವರ್ಗೀಕೃತ ಜಾಹೀರಾತುಗಳು</span>
-    <span style="font-size: 10px; color: #64748b;">⏱️ ರೊಟೇಷನ್: 104s</span>
+    <span style="font-size: 10px; color: #64748b;">⏱️ ರೊಟೇಷನ್</span>
   </div>
 
-  <!-- 2. ₹99 Super Ad (Golden Border Box) -->
+  <!-- 2. ₹99 Super Ad -->
   <div style="background: #ffffff; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
     <span style="background: #f59e0b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹99 ಸೂಪರ್ ಆ್ಯಡ್ • ಕೃಷಿ ವಿಭಾಗ</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🚜 ಮಹೀಂದ್ರಾ 475 ಟ್ರ್ಯಾಕ್ಟರ್ ಮತ್ತು ಟ್ರೈಲರ್ ಮಾರಾಟಕ್ಕೆ</div>
-    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">2021 ಮಾಡೆಲ್, ಅತ್ಯುತ್ತಮ ರನ್ನಿಂಗ್ ಕಂಡೀಷನ್, ಹೊಸ ಟೈರ್, ಎಲ್ಲಾ ದಾಖಲೆಗಳು ರೆಡಿ ಇವೆ. ಸ್ಥಳ: ಮೈಸೂರು. ಬೆಲೆ: ₹4,20,000 (ನೆಗೋಶಿಯೇಬಲ್).</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">2021 ಮಾಡೆಲ್, ಹೊಸ ಟೈರ್, ಎಲ್ಲಾ ದಾಖಲೆಗಳು ರೆಡಿ ಇವೆ. ಬೆಲೆ: ₹4,20,000.</div>
     <div class="ad-share-row-sm">
-      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಮೈಸೂರು ಆ್ಯಡ್:* %0A🚜 *ಮಹೀಂದ್ರಾ 475 ಟ್ರ್ಯಾಕ್ಟರ್ ಮಾರಾಟಕ್ಕೆ!* %0A👉 https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಮೈಸೂರು ಆ್ಯಡ್:* %0A🚜 *ಮಹೀಂದ್ರಾ ಟ್ರ್ಯಾಕ್ಟರ್ ಮಾರಾಟಕ್ಕಿದೆ!* %0A👉 https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
     </div>
   </div>
 
-  <!-- 3. ₹49 Standard Ad 1 (Blue Box) -->
-  <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+  <!-- 3. Special Offers Box (₹99 ಕೆಳಗೆ) -->
+  <div class="offers-card-box">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="background: #e11d48; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">🎁 ವಿಶೇಷ ಆಫರ್ಸ್ & ಡೀಲ್ಸ್</span>
+      <span style="font-size: 10px; color: #e11d48; font-weight: 800;">🔥 ಲಿಮಿಟೆಡ್ ಆಫರ್</span>
+    </div>
+    <div style="font-size: 13px; font-weight: 800; color: #881337; margin-top: 4px;">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
+    <div style="font-size: 11.5px; color: #4c0519; margin: 4px 0 6px; line-height: 1.4;">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನಕ್ಕೆ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಮೈಸೂರು ಸ್ಪೆಷಲ್ ಆಫರ್:* %0A🎨 *₹59 ಕ್ಕೆ ಪೋಸ್ಟರ್ ಡಿಸೈನ್!* %0A👉 https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 4. ₹49 Standard Ad 1 -->
+  <div style="background: #ffffff; border: 1.5px solid #bfdbfe; border-radius: 14px; padding: 12px; margin: 8px 14px;">
     <span style="background: #2563eb; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ಡೈರಿ & ಸ್ಥಳೀಯ ಆಹಾರ</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🥛 100% ಶುದ್ಧ ಹಳ್ಳಿಯ ಬೆಣ್ಣೆ & ಗಾಣದ ಎಣ್ಣೆ ಲಭ್ಯ</div>
-    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದಲ್ಲಿ ತಯಾರಿಸಿದ ನೈಜ ತುಪ್ಪ ಮತ್ತು ಕೊಬ್ಬರಿ ಎಣ್ಣೆ ಮನೆ ಬಾಗಿಲಿಗೆ. ಮೈಸೂರು ನಗರದಲ್ಲಿ ಉಚಿತ ಡೆಲಿವರಿ.</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಜ ತುಪ್ಪ ಮತ್ತು ಕೊಬ್ಬರಿ ಎಣ್ಣೆ ಮನೆ ಬಾಗಿಲಿಗೆ. ಮೈಸೂರು ನಗರದಲ್ಲಿ ಡೆಲಿವರಿ.</div>
     <div class="ad-share-row-sm">
       <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಮೈಸೂರು ಆ್ಯಡ್:* %0A🥛 *ಶುದ್ಧ ಬೆಣ್ಣೆ & ತುಪ್ಪ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
     </div>
   </div>
 
-  <!-- 4. ₹49 Standard Ad 2 (Blue Box) -->
-  <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+  <!-- 5. ₹49 Standard Ad 2 -->
+  <div style="background: #ffffff; border: 1.5px solid #bfdbfe; border-radius: 14px; padding: 12px; margin: 8px 14px;">
     <span style="background: #2563eb; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ವಾಹನ ಮಾರಾಟ</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🚗 ಮಾರುತಿ ಸ್ವಿಫ್ಟ್ ಡಿಸೈರ್ (2018 ಡೀಸೆಲ್) ಮಾರಾಟಕ್ಕಿದೆ</div>
-    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಸಿಂಗಲ್ ಓನರ್, 62,000 ಕಿಮೀ ರನ್ನಿಂಗ್, ಶೋರೂಂ ಕಂಡೀಷನ್, ಇನ್ಯೂರೆನ್ಸ್ ಚಾಲ್ತಿಯಲ್ಲಿದೆ.</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಸಿಂಗಲ್ ಓನರ್, 62,000 ಕಿಮೀ ರನ್ನಿಂಗ್, ಶೋರೂಂ ಕಂಡೀಷನ್.</div>
     <div class="ad-share-row-sm">
-      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಮೈಸೂರು ಆ್ಯಡ್:* %0A🚗 *ಮಾರುತಿ ಸ್ವಿಫ್ಟ್ ಡಿಸೈರ್ ಮಾರಾಟಕ್ಕಿದೆ!* %0A👉 https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಮೈಸೂರು ಆ್ಯಡ್:* %0A🚗 *ಮಾರುತಿ ಸ್ವಿಫ್ಟ್ ಮಾರಾಟಕ್ಕಿದೆ!* %0A👉 https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/mysuru.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
     </div>
   </div>
 
-  <!-- 5. Free Ad 1 (Grey Box) -->
+  <!-- 6. Free Ad 1 -->
   <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px;">
     <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಉದ್ಯೋಗ</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">📢 ಮೈಸೂರು: ಸೇಲ್ಸ್ ಎಕ್ಸಿಕ್ಯೂಟಿವ್ & ಡೆಲಿವರಿ ಬಾಯ್ಸ್ ಬೇಕಾಗಿದ್ದಾರೆ</div>
@@ -117,7 +118,7 @@
     </div>
   </div>
 
-  <!-- 6. Free Ad 2 (Grey Box) -->
+  <!-- 7. Free Ad 2 -->
   <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px 80px;">
     <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಗೃಹೋಪಯೋಗಿ ವಸ್ತುಗಳು</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🛏️ ತೇಗದ ಮರದ ಡಬಲ್ ಕಾಟ್ & ಸೋಫಾ ಸೆಟ್ ಮಾರಾಟಕ್ಕೆ</div>
@@ -128,7 +129,6 @@
     </div>
   </div>
 
-  <!-- Bottom Nav -->
   <nav class="modern-bottom-nav">
     <a href="index.html" class="nav-tab-link"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
     <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
@@ -136,6 +136,5 @@
     <a href="admin.html" class="nav-tab-link"><span class="nav-tab-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
     <a href="https://wa.me/918431649984?text=ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
-
 </body>
 </html>

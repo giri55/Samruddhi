@@ -3,86 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ದಾವಣಗೆರೆ ಜಾಹೀರಾತುಗಳು - ಸಮೃದ್ಧಿ</title>
+  <title>ದಾವಣಗೆರೆ - ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script src="firebase-config.js"></script>
-
   <style>
-    .city-header-box {
-      background: linear-gradient(135deg, #059669, #047857);
-      color: #fff;
-      padding: 14px 16px;
-      margin: 10px 14px;
-      border-radius: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .ad-card-item {
-      background: #ffffff;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 12px;
-      margin: 10px 14px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-    }
-    .ad-card-item.premium-slot {
-      border: 2px solid #f59e0b;
-      background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
-    }
-    .ad-card-item.super-slot {
-      border: 1.5px solid #3b82f6;
-      background: #f0f9ff;
-    }
-    .ad-share-row {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-      justify-content: flex-end;
-    }
-    .share-btn-action {
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      color: #ffffff;
-    }
+    .ad-share-row-sm { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
+    .share-btn-compact { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; color: #ffffff; border: none; cursor: pointer; }
     .btn-wa-green { background: #25d366; }
     .btn-fb-blue { background: #1877f2; }
+    .offers-card-box { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 1.5px dashed #f43f5e; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08); }
   </style>
 </head>
 <body>
-
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">🌾</div>
-      <div class="brand-title-box">
-        <span class="brand-name">ಸಮೃದ್ಧಿ</span>
-        <span class="brand-tag">ದಾವಣಗೆರೆ ಪೋರ್ಟಲ್</span>
-      </div>
+      <div class="brand-title-box"><span class="brand-name">ದಾವಣಗೆರೆ</span><span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span></div>
     </a>
     <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
   </header>
 
-  <div class="city-header-box">
-    <div>
-      <h2 style="font-size: 16px; margin: 0; font-weight: 800;">🌾 ದಾವಣಗೆರೆ ಜಾಹೀರಾತುಗಳು</h2>
-      <span style="font-size: 11px; opacity: 0.9;">ಸ್ಥಳೀಯ ರೈತರು & ವ್ಯಾಪಾರಿಗಳ ಉತ್ಪನ್ನಗಳು</span>
+  <!-- Live Rate Scroller -->
+  <div class="rate-ticker-bar">
+    <div class="rate-badge-pulse"><span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ</div>
+    <div class="ticker-content-track">
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🌾 ಮೆಕ್ಕೆಜೋಳ: ₹2,150/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🌾 ಮೆಕ್ಕೆಜೋಳ: ₹2,150/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
     </div>
-    <a href="post_ad.html" style="background:#fff; color:#065f46; font-size:11px; font-weight:800; padding:6px 10px; border-radius:20px; text-decoration:none;">+ ಪೋಸ್ಟ್ ಮಾಡಿ</a>
   </div>
 
-  <div id="cityAdsList">
-    <p style="text-align:center; font-size:12px; color:#64748b; padding:20px 0;">ಜಾಹೀರಾತುಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</p>
+  <!-- Banner -->
+  <div style="background: linear-gradient(135deg, #0f766e, #047857); color: #fff; border-radius: 14px; padding: 12px 14px; margin: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(15, 118, 110, 0.2);">
+    <div>
+      <span style="background: #f59e0b; color: #000; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">📢 ನಿಮ್ಮೂರ ಸುದ್ದಿ</span>
+      <div style="font-size: 13px; font-weight: 800; margin-top: 4px;">ಬೆಣ್ಣೆ ನಗರಿ ದಾವಣಗೆರೆ ಜಿಲ್ಲಾ ತಾಜಾ ಸುದ್ದಿ ವರದಿ</div>
+      <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">• APMC ಮಾರುಕಟ್ಟೆ ಹಾಗೂ ಸ್ಥಳೀಯ ವ್ಯಾಪಾರ ➔</div>
+    </div>
+    <div style="font-size: 24px;">🌾</div>
+  </div>
+
+  <!-- 1. ₹199 VIP Ad -->
+  <div style="background: #0f172a; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 14px; margin: 10px 14px; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <span style="background: #d97706; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">👑 ₹199 ಪ್ರೀಮಿಯಂ ವಿಐಪಿ ಜಾಹೀರಾತು</span>
+      <span style="font-size: 10px; color: #94a3b8;">⏱️ 14s</span>
+    </div>
+    <div style="font-size: 13.5px; font-weight: 800; color: #f8fafc; margin-top: 4px;">🚜 ದಾವಣಗೆರೆ: ಆಧುನಿಕ ಮೆಕ್ಕೆಜೋಳ ಬಿಡಿಸುವ ಯಂತ್ರ ಬಾಡಿಗೆ & ಮಾರಾಟಕ್ಕೆ</div>
+    <div style="font-size: 11.5px; color: #cbd5e1; margin: 4px 0 6px; line-height: 1.4;">ರೈತ ಬಾಂಧವರಿಗೆ ಕಡಿಮೆ ವೆಚ್ಚದಲ್ಲಿ ಅತಿ ವೇಗವಾಗಿ ಮೆಕ್ಕೆಜೋಳ ಬಿಡಿಸಿಕೊಡಲಾಗುವುದು.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ದಾವಣಗೆರೆ ಪ್ರೀಮಿಯಂ ಆ್ಯಡ್:* %0A🚜 *ಮೆಕ್ಕೆಜೋಳ ಬಿಡಿಸುವ ಯಂತ್ರ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px;">
+    <span style="font-size: 12.5px; font-weight: 800; color: #0f172a;">📦 ದಾವಣಗೆರೆ ಪ್ರಮುಖ ವರ್ಗೀಕೃತ ಜಾಹೀರಾತುಗಳು</span>
+    <span style="font-size: 10px; color: #64748b;">⏱️ ರೊಟೇಷನ್</span>
+  </div>
+
+  <!-- 2. ₹99 Super Ad -->
+  <div style="background: #ffffff; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
+    <span style="background: #f59e0b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹99 ಸೂಪರ್ ಆ್ಯಡ್ • ಕೃಷಿ & ಡೈರಿ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🥛 ಅಸಲಿ ದಾವಣಗೆರೆ ಹಳ್ಳಿ ಬೆಣ್ಣೆ & ತುಪ್ಪ ಲಭ್ಯವಿದೆ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ನಗರದ ಎಲ್ಲಾ ಕಡೆ ಹೋಮ್ ಡೆಲಿವರಿ ಲಭ್ಯ. ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ಶುದ್ಧ ಉತ್ಪನ್ನಗಳು.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ದಾವಣಗೆರೆ ಆ್ಯಡ್:* %0A🥛 *ಅಸಲಿ ಹಳ್ಳಿ ಬೆಣ್ಣೆ & ತುಪ್ಪ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 3. Special Offers Box (₹99 ಕೆಳಗೆ) -->
+  <div class="offers-card-box">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="background: #e11d48; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">🎁 ವಿಶೇಷ ಆಫರ್ಸ್ & ಡೀಲ್ಸ್</span>
+      <span style="font-size: 10px; color: #e11d48; font-weight: 800;">🔥 ಲಿಮಿಟೆಡ್ ಆಫರ್</span>
+    </div>
+    <div style="font-size: 13px; font-weight: 800; color: #881337; margin-top: 4px;">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
+    <div style="font-size: 11.5px; color: #4c0519; margin: 4px 0 6px; line-height: 1.4;">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನಕ್ಕೆ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ದಾವಣಗೆರೆ ಸ್ಪೆಷಲ್ ಆಫರ್:* %0A🎨 *₹59 ಕ್ಕೆ ಪೋಸ್ಟರ್ ಡಿಸೈನ್!* %0A👉 https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 4. ₹49 Standard Ad 1 -->
+  <div style="background: #ffffff; border: 1.5px solid #99f6e4; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #0d9488; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ರಿಯಲ್ ಎಸ್ಟೇಟ್</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🏡 ದಾವಣಗೆರೆ ವಿದ್ಯಾನಗರದಲ್ಲಿ 30x40 ಸೈಟ್ ಮಾರಾಟಕ್ಕಿದೆ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಮೇನ್ ರೋಡ್ ಹತ್ತಿರ, ಕ್ಲಿಯರ್ ಟೈಟಲ್, ಬ್ಯಾಂಕ್ ಲೋನ್ ಸೌಲಭ್ಯವಿದೆ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ದಾವಣಗೆರೆ ಆ್ಯಡ್:* %0A🏡 *ವಿದ್ಯಾನಗರದಲ್ಲಿ ಸೈಟ್ ಮಾರಾಟಕ್ಕಿದೆ!* %0A👉 https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 5. ₹49 Standard Ad 2 -->
+  <div style="background: #ffffff; border: 1.5px solid #99f6e4; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #0d9488; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ವಾಹನ ಮಾರಾಟ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🚗 ಬೊಲೆರೋ ಪಿಕಪ್ ವಾಹನ (2019) ಉತ್ತಮ ಕಂಡೀಷನ್</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಸಿಂಗಲ್ ಹ್ಯಾಂಡ್ ಯೂಸ್, ಟ್ಯಾಕ್ಸ್ & ಇನ್ಶೂರೆನ್ಸ್ ಚಾಲ್ತಿಯಲ್ಲಿದೆ. ಬೆಲೆ ₹5,10,000.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ದಾವಣಗೆರೆ ಆ್ಯಡ್:* %0A🚗 *ಬೊಲೆರೋ ಪಿಕಪ್ ಮಾರಾಟಕ್ಕಿದೆ!* %0A👉 https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 6. Free Ad 1 -->
+  <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಉದ್ಯೋಗ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">📢 ದಾವಣಗೆರೆ ನಗರದಲ್ಲಿ ಅಕೌಂಟೆಂಟ್ ಬೇಕಾಗಿದ್ದಾರೆ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಟ್ಯಾಲಿ ಅನುಭವವಿರುವ ಸ್ಥಳೀಯರಿಗೆ ಆದ್ಯತೆ. ಆಕರ್ಷಕ ವೇತನ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ದಾವಣಗೆರೆ ಆ್ಯಡ್:* %0A📢 *ಅಕೌಂಟೆಂಟ್ ಹುದ್ದೆ ಖಾಲಿ ಇದೆ!* %0A👉 https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 7. Free Ad 2 -->
+  <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px 80px;">
+    <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಗೃಹೋಪಯೋಗಿ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🚲 ಗೇರ್ ಸೈಕಲ್ ಮಾರಾಟಕ್ಕಿದೆ (ಹೊಸತರಹ ಇದೆ)</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಕೇವಲ 6 ತಿಂಗಳು ಬಳಸಲಾಗಿದೆ. ಬೆಲೆ ₹4,000 ಮಾತ್ರ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ದಾವಣಗೆರೆ ಆ್ಯಡ್:* %0A🚲 *ಗೇರ್ ಸೈಕಲ್ ಮಾರಾಟಕ್ಕಿದೆ!* %0A👉 https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/davanagere.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
   </div>
 
   <nav class="modern-bottom-nav">
@@ -92,85 +136,5 @@
     <a href="admin.html" class="nav-tab-link"><span class="nav-tab-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
     <a href="https://wa.me/918431649984?text=ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
-
-  <script>
-    const currentCityCode = "davanagere"; // ದಾವಣಗೆರೆ ಕೋಡ್
-
-    async function loadCityAds() {
-      const container = document.getElementById('cityAdsList');
-      try {
-        if (typeof db === 'undefined') return;
-
-        const snapshot = await db.collection("ads")
-          .where("city", "==", currentCityCode)
-          .where("status", "==", "approved")
-          .get();
-
-        container.innerHTML = "";
-
-        if (snapshot.empty) {
-          container.innerHTML = `
-            <div style="text-align:center; padding:30px 14px; color:#64748b; font-size:12.5px;">
-              ಇಲ್ಲಿ ಇನ್ನೂ ಯಾವುದೇ ಜಾಹೀರಾತುಗಳಿಲ್ಲ.<br>
-              <a href="post_ad.html" style="color:#059669; font-weight:800; text-decoration:none; display:inline-block; margin-top:8px;">👉 ಮೊದಲಿಗರಾಗಿ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ!</a>
-            </div>
-          `;
-          return;
-        }
-
-        let adsArray = [];
-        snapshot.forEach(doc => {
-          adsArray.push({ id: doc.id, ...doc.data() });
-        });
-
-        adsArray.sort((a, b) => (b.priority || b.amount || 0) - (a.priority || a.amount || 0));
-
-        adsArray.forEach(ad => {
-          const currentUrl = window.location.href;
-          const shareText = `🌾 *ಸಮೃದ್ಧಿ ಜಾಹೀರಾತು:*%0A📌 *${ad.title}*%0A💰 ಬೆಲೆ: ${ad.price || 'ಮಾತುಕತೆ ಮೂಲಕ'}%0A📝 ವಿವರ: ${ad.desc || ad.description || ''}%0A👉 ನೋಡಿ: ${currentUrl}`;
-          const waLink = "https://api.whatsapp.com/send?text=" + shareText;
-          const fbLink = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentUrl);
-
-          const imgTag = ad.imageUrl ? `<img src="${ad.imageUrl}" style="width:100%; max-height:160px; object-fit:cover; border-radius:8px; margin:6px 0;">` : '';
-
-          let slotClass = "";
-          let badgeTag = "";
-
-          if (ad.amount === 199 || ad.planType === 'premium') {
-            slotClass = "premium-slot";
-            badgeTag = `<span style="background:#fef3c7; color:#b45309; font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px; border:1px solid #f59e0b;">💎 ಪ್ರೀಮಿಯಂ</span>`;
-          } else if (ad.amount === 99 || ad.planType === 'super') {
-            slotClass = "super-slot";
-            badgeTag = `<span style="background:#e0f2fe; color:#0369a1; font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px;">👑 ಸೂಪರ್</span>`;
-          } else if (ad.amount === 49) {
-            badgeTag = `<span style="background:#f1f5f9; color:#475569; font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px;">⭐ ಹೈಲೈಟ್</span>`;
-          } else {
-            badgeTag = `<span style="background:#ecfdf5; color:#065f46; font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px;">🆓 ಉಚಿತ</span>`;
-          }
-
-          container.innerHTML += `
-            <div class="ad-card-item ${slotClass}">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                ${badgeTag}
-                ${ad.price ? `<span style="font-size:11.5px; font-weight:800; color:#0f172a;">💰 ${ad.price}</span>` : ''}
-              </div>
-              ${imgTag}
-              <div style="font-size:13.5px; font-weight:800; color:#0f172a; margin-top:4px;">${ad.title}</div>
-              <div style="font-size:12px; color:#475569; margin:4px 0 6px; line-height:1.4;">${ad.desc || ad.description || ''}</div>
-              
-              <div class="ad-share-row">
-                <a href="${waLink}" target="_blank" class="share-btn-action btn-wa-green">💬 ಶೇರ್</a>
-                <a href="${fbLink}" target="_blank" class="share-btn-action btn-fb-blue">📘 ಶೇರ್</a>
-              </div>
-            </div>
-          `;
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', loadCityAds);
-  </script>
 </body>
 </html>

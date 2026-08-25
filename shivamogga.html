@@ -3,49 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ಶಿವಮೊಗ್ಗ ಜಾಹೀರಾತುಗಳು - ಸಮೃದ್ಧಿ</title>
+  <title>ಶಿವಮೊಗ್ಗ - ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Firebase SDKs -->
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script src="firebase-config.js"></script>
-
   <style>
-    .city-header-box {
-      background: linear-gradient(135deg, #059669, #047857);
-      color: #fff;
-      padding: 14px 16px;
-      margin: 10px 14px;
-      border-radius: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .ad-card-item {
-      background: #ffffff;
-      border: 1.5px solid #e2e8f0;
-      border-radius: 12px;
-      padding: 12px;
-      margin: 10px 14px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
-    }
-    .ad-card-item.premium-slot {
-      border: 2px solid #f59e0b;
-      background: linear-gradient(180deg, #fffbeb 0%, #ffffff 100%);
-      box-shadow: 0 4px 12px rgba(245, 158, 11, 0.15);
-    }
-    .ad-card-item.super-slot {
-      border: 1.5px solid #3b82f6;
-      background: #f0f9ff;
-    }
-    .ad-share-row {
+    .ad-share-row-sm {
       display: flex;
       gap: 6px;
       margin-top: 8px;
       justify-content: flex-end;
     }
-    .share-btn-action {
+    .share-btn-compact {
       padding: 4px 10px;
       border-radius: 6px;
       font-size: 11px;
@@ -55,36 +22,148 @@
       align-items: center;
       gap: 4px;
       color: #ffffff;
+      border: none;
+      cursor: pointer;
     }
     .btn-wa-green { background: #25d366; }
     .btn-fb-blue { background: #1877f2; }
+    
+    /* ಆಫರ್ಸ್ ಬಾಕ್ಸ್ ಸ್ಪೆಷಲ್ ಸ್ಟೈಲ್ */
+    .offers-card-box {
+      background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
+      border: 1.5px dashed #f43f5e;
+      border-radius: 14px;
+      padding: 12px;
+      margin: 8px 14px;
+      box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08);
+    }
   </style>
 </head>
 <body>
 
+  <!-- App Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
-      <div class="brand-icon">🌾</div>
+      <div class="brand-icon">🌳</div>
       <div class="brand-title-box">
-        <span class="brand-name">ಸಮೃದ್ಧಿ</span>
-        <span class="brand-tag">ಶಿವಮೊಗ್ಗ ಪೋರ್ಟಲ್</span>
+        <span class="brand-name">ಶಿವಮೊಗ್ಗ</span>
+        <span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span>
       </div>
     </a>
     <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
   </header>
 
-  <div class="city-header-box">
-    <div>
-      <h2 style="font-size: 16px; margin: 0; font-weight: 800;">🌳 ಶಿವಮೊಗ್ಗ ಜಾಹೀರಾತುಗಳು</h2>
-      <span style="font-size: 11px; opacity: 0.9;">ಸ್ಥಳೀಯ ರೈತರು & ವ್ಯಾಪಾರಿಗಳ ಉತ್ಪನ್ನಗಳು</span>
+  <!-- Live Rate Scroller (ಚಿನ್ನ, ಬೆಳ್ಳಿ, ಅಡಿಕೆ ದರಗಳು) -->
+  <div class="rate-ticker-bar">
+    <div class="rate-badge-pulse">
+      <span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ
     </div>
-    <a href="post_ad.html" style="background:#fff; color:#065f46; font-size:11px; font-weight:800; padding:6px 10px; border-radius:20px; text-decoration:none;">+ ಪೋಸ್ಟ್ ಮಾಡಿ</a>
+    <div class="ticker-content-track">
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+    </div>
   </div>
 
-  <div id="cityAdsList">
-    <p style="text-align:center; font-size:12px; color:#64748b; padding:20px 0;">ಜಾಹೀರಾತುಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</p>
+  <!-- News Banner -->
+  <div style="background: linear-gradient(135deg, #059669, #047857); color: #fff; border-radius: 14px; padding: 12px 14px; margin: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(5, 150, 105, 0.2);">
+    <div>
+      <span style="background: #f59e0b; color: #000; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">📢 ನಿಮ್ಮೂರ ಸುದ್ದಿ</span>
+      <div style="font-size: 13px; font-weight: 800; margin-top: 4px;">ಮಲೆನಾಡು & ಶಿವಮೊಗ್ಗ ಜಿಲ್ಲಾ ತಾಜಾ ಸುದ್ದಿ ವರದಿ</div>
+      <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">• ಅಡಿಕೆ ಮಾರುಕಟ್ಟೆ ಹಾಗೂ ಸ್ಥಳೀಯ ಮಾಹಿತಿ ➔</div>
+    </div>
+    <div style="font-size: 24px;">🌳</div>
   </div>
 
+  <!-- 1. ₹199 Premium VIP Ad (Dark Box) -->
+  <div style="background: #0f172a; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 14px; margin: 10px 14px; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+      <span style="background: #d97706; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">👑 ₹199 ಪ್ರೀಮಿಯಂ ವಿಐಪಿ ಜಾಹೀರಾತು</span>
+      <span style="font-size: 10px; color: #94a3b8;">⏱️ 14s</span>
+    </div>
+    <div style="font-size: 13.5px; font-weight: 800; color: #f8fafc; margin-top: 4px;">🚜 ಶಿವಮೊಗ್ಗ: ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
+    <div style="font-size: 11.5px; color: #cbd5e1; margin: 4px 0 6px; line-height: 1.4;">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಶಿವಮೊಗ್ಗ ಪ್ರೀಮಿಯಂ ಆ್ಯಡ್:* %0A🚜 *ಅಡಿಕೆ ಮಷಿನ್ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- Section Title -->
+  <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px;">
+    <span style="font-size: 12.5px; font-weight: 800; color: #0f172a;">📦 ಶಿವಮೊಗ್ಗ ಪ್ರಮುಖ ವರ್ಗೀಕೃತ ಜಾಹೀರಾತುಗಳು</span>
+    <span style="font-size: 10px; color: #64748b;">⏱️ ರೊಟೇಷನ್: 104s</span>
+  </div>
+
+  <!-- 2. ₹99 Super Ad (Golden Border Box - 1 Only) -->
+  <div style="background: #ffffff; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
+    <span style="background: #f59e0b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹99 ಸೂಪರ್ ಆ್ಯಡ್ • ಕೃಷಿ ವಿಭಾಗ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🌱 ಉತ್ತಮ ತಳಿಯ ಅಡಿಕೆ ಮತ್ತು ಕಾಳುಮೆಣಸು ಸಸಿಗಳು ಲಭ್ಯ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ತೀರ್ಥಹಳ್ಳಿ ತಳಿ ಅಡಿಕೆ ಸಸಿಗಳು ಮತ್ತು ಪನ್ನಿಯೂರ್ ಕಾಳುಮೆಣಸು ಲಭ್ಯವಿದೆ. ಸಗಟು ದರದಲ್ಲಿ ಮಾರಾಟ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಶಿವಮೊಗ್ಗ ಆ್ಯಡ್:* %0A🌱 *ಅಡಿಕೆ ಸಸಿಗಳು ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 3. Special Offers Box (₹99 ಬಾಕ್ಸ್‌ನ ಕೆಳಗೆ ಇರಿಸಲಾಗಿದೆ) -->
+  <div class="offers-card-box">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <span style="background: #e11d48; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">🎁 ವಿಶೇಷ ಆಫರ್ಸ್ & ಡೀಲ್ಸ್</span>
+      <span style="font-size: 10px; color: #e11d48; font-weight: 800;">🔥 ಲಿಮಿಟೆಡ್ ಆಫರ್</span>
+    </div>
+    <div style="font-size: 13px; font-weight: 800; color: #881337; margin-top: 4px;">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
+    <div style="font-size: 11.5px; color: #4c0519; margin: 4px 0 6px; line-height: 1.4;">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನಕ್ಕೆ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ. ಮೊದಲ 50 ಗ್ರಾಹಕರಿಗೆ ಮಾತ್ರ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಶಿವಮೊಗ್ಗ ಸ್ಪೆಷಲ್ ಆಫರ್:* %0A🎨 *₹59 ಕ್ಕೆ ಪೋಸ್ಟರ್ ಡಿಸೈನ್!* %0A👉 https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 4. ₹49 Standard Ad 1 (Blue Box) -->
+  <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #2563eb; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ರಿಯಲ್ ಎಸ್ಟೇಟ್</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🏡 ಶಿವಮೊಗ್ಗ ಗೋಪಾಳದಲ್ಲಿ 2 BHK ನೂತನ ಮನೆ ಬಾಡಿಗೆಗೆ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಕುಟುಂಬಕ್ಕೆ ಮಾತ್ರ. 24 ಗಂಟೆ ನೀರು, ಬೈಕ್ & ಕಾರ್ ಪಾರ್ಕಿಂಗ್ ಸೌಲಭ್ಯವಿದೆ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಶಿವಮೊಗ್ಗ ಆ್ಯಡ್:* %0A🏡 *ಮನೆ ಬಾಡಿಗೆಗೆ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 5. ₹49 Standard Ad 2 (Blue Box) -->
+  <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #2563eb; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ಡೈರಿ ಉತ್ಪನ್ನ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🥛 100% ಶುದ್ಧ ಮಲೆನಾಡು ಗಿಡ್ಡ ಹಸುವಿನ ತುಪ್ಪ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಸರ್ಗಿಕ ತುಪ್ಪ. ಶಿವಮೊಗ್ಗ ನಗರದಲ್ಲಿ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಶಿವಮೊಗ್ಗ ಆ್ಯಡ್:* %0A🥛 *ಗಿಡ್ಡ ಹಸುವಿನ ತುಪ್ಪ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 6. Free Ad 1 (Grey Box) -->
+  <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px;">
+    <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಉದ್ಯೋಗ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">📢 ಶಿವಮೊಗ್ಗ: ಸೂಪರ್ ಮಾರ್ಕೆಟ್‌ಗೆ ಬಿಲ್ಲಿಂಗ್ ಸ್ಟಾಫ್ ಬೇಕಾಗಿದ್ದಾರೆ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಕಂಪ್ಯೂಟರ್ ಜ್ಞಾನವಿರುವ ಮಹಿಳೆಯರು / ಪುರುಷರು ಸಂಪರ್ಕಿಸಿ.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಶಿವಮೊಗ್ಗ ಆ್ಯಡ್:* %0A📢 *ಉದ್ಯೋಗಾವಕಾಶ!* %0A👉 https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- 7. Free Ad 2 (Grey Box) -->
+  <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px 80px;">
+    <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ವಾಹನ</span>
+    <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🛵 ಹೋಂಡಾ ಆಕ್ಟಿವಾ 5G (2019) ಮಾರಾಟಕ್ಕಿದೆ</div>
+    <div style="font-size: 11.5px; color: #475569; margin: 4px 0 6px; line-height: 1.4;">ಗುಡ್ ಕಂಡೀಷನ್, ಹೊಸ ಬ್ಯಾಟರಿ. ಬೆಲೆ ₹42,000.</div>
+    <div class="ad-share-row-sm">
+      <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಶಿವಮೊಗ್ಗ ಆ್ಯಡ್:* %0A🛵 *ಹೋಂಡಾ ಆಕ್ಟಿವಾ ಮಾರಾಟಕ್ಕಿದೆ!* %0A👉 https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
+    </div>
+  </div>
+
+  <!-- Bottom Nav -->
   <nav class="modern-bottom-nav">
     <a href="index.html" class="nav-tab-link"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
     <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
@@ -93,85 +172,5 @@
     <a href="https://wa.me/918431649984?text=ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
 
-  <script>
-    const currentCityCode = "shivamogga"; // ನಗರದ ಕೋಡ್
-
-    async function loadCityAds() {
-      const container = document.getElementById('cityAdsList');
-      try {
-        if (typeof db === 'undefined') return;
-
-        const snapshot = await db.collection("ads")
-          .where("city", "==", currentCityCode)
-          .where("status", "==", "approved")
-          .get();
-
-        container.innerHTML = "";
-
-        if (snapshot.empty) {
-          container.innerHTML = `
-            <div style="text-align:center; padding:30px 14px; color:#64748b; font-size:12.5px;">
-              ಇಲ್ಲಿ ಇನ್ನೂ ಯಾವುದೇ ಜಾಹೀರಾತುಗಳಿಲ್ಲ.<br>
-              <a href="post_ad.html" style="color:#059669; font-weight:800; text-decoration:none; display:inline-block; margin-top:8px;">👉 ಮೊದಲಿಗರಾಗಿ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ!</a>
-            </div>
-          `;
-          return;
-        }
-
-        let adsArray = [];
-        snapshot.forEach(doc => {
-          adsArray.push({ id: doc.id, ...doc.data() });
-        });
-
-        // 199 -> 99 -> 49 -> Free ಶ್ರೇಣೀಕರಣ
-        adsArray.sort((a, b) => (b.priority || b.amount || 0) - (a.priority || a.amount || 0));
-
-        adsArray.forEach(ad => {
-          const currentUrl = window.location.href;
-          const shareText = `🌾 *ಸಮೃದ್ಧಿ ಜಾಹೀರಾತು:*%0A📌 *${ad.title}*%0A💰 ಬೆಲೆ: ${ad.price || 'ಮಾತುಕತೆ ಮೂಲಕ'}%0A📝 ವಿವರ: ${ad.desc || ad.description || ''}%0A👉 ನೋಡಿ: ${currentUrl}`;
-          const waLink = "https://api.whatsapp.com/send?text=" + shareText;
-          const fbLink = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(currentUrl);
-
-          const imgTag = ad.imageUrl ? `<img src="${ad.imageUrl}" style="width:100%; max-height:160px; object-fit:cover; border-radius:8px; margin:6px 0;">` : '';
-
-          let slotClass = "";
-          let badgeTag = "";
-
-          if (ad.amount === 199 || ad.planType === 'premium') {
-            slotClass = "premium-slot";
-            badgeTag = `<span style="background:#fef3c7; color:#b45309; font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px; border:1px solid #f59e0b;">💎 ಪ್ರೀಮಿಯಂ</span>`;
-          } else if (ad.amount === 99 || ad.planType === 'super') {
-            slotClass = "super-slot";
-            badgeTag = `<span style="background:#e0f2fe; color:#0369a1; font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px;">👑 ಸೂಪರ್</span>`;
-          } else if (ad.amount === 49) {
-            badgeTag = `<span style="background:#f1f5f9; color:#475569; font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px;">⭐ ಹೈಲೈಟ್</span>`;
-          } else {
-            badgeTag = `<span style="background:#ecfdf5; color:#065f46; font-size:10px; font-weight:800; padding:2px 6px; border-radius:6px;">🆓 ಉಚಿತ</span>`;
-          }
-
-          container.innerHTML += `
-            <div class="ad-card-item ${slotClass}">
-              <div style="display:flex; justify-content:space-between; align-items:center;">
-                ${badgeTag}
-                ${ad.price ? `<span style="font-size:11.5px; font-weight:800; color:#0f172a;">💰 ${ad.price}</span>` : ''}
-              </div>
-              ${imgTag}
-              <div style="font-size:13.5px; font-weight:800; color:#0f172a; margin-top:4px;">${ad.title}</div>
-              <div style="font-size:12px; color:#475569; margin:4px 0 6px; line-height:1.4;">${ad.desc || ad.description || ''}</div>
-              
-              <div class="ad-share-row">
-                <a href="${waLink}" target="_blank" class="share-btn-action btn-wa-green">💬 ಶೇರ್</a>
-                <a href="${fbLink}" target="_blank" class="share-btn-action btn-fb-blue">📘 ಶೇರ್</a>
-              </div>
-            </div>
-          `;
-        });
-      } catch (err) {
-        console.error(err);
-      }
-    }
-
-    window.addEventListener('DOMContentLoaded', loadCityAds);
-  </script>
 </body>
 </html>
