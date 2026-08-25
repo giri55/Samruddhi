@@ -1,58 +1,184 @@
 <!DOCTYPE html>
 <html lang="kn">
 <head>
-  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸ್ಥಳೀಯ ಜಾಹೀರಾತು ಪೋರ್ಟಲ್</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
-  <script src="firebase-config.js"></script>
 </head>
 <body>
-  <header class="app-header">
-    <a href="index.html" class="brand-wrap"><div class="brand-icon">🌾</div><div><span class="brand-title">ಸಮೃದ್ಧಿ</span><span class="brand-sub">ಸ್ಥಳೀಯ ಪೋರ್ಟಲ್</span></div></a>
-    <div style="display:flex; gap:6px;"><a href="https://wa.me/918431649984" class="header-btn" style="background:#0f172a;">📞 ಸಂಪರ್ಕಿಸಿ</a><a href="post_ad.html" class="header-btn" style="background:#047857;">➕ ಆ್ಯಡ್ ಹಾಕಿ</a></div>
+
+  <!-- App Header -->
+  <header class="app-header-modern">
+    <a href="index.html" class="brand-logo-wrap">
+      <div class="brand-icon">🌾</div>
+      <div class="brand-title-box">
+        <span class="brand-name">ಸಮೃದ್ಧಿ</span>
+        <span class="brand-tag">ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</span>
+      </div>
+    </a>
+    <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
   </header>
-  <div class="city-scroll-bar">
-    <button class="city-btn active" onclick="switchCity('all', this)">🌐 ಎಲ್ಲಾ ಊರು</button>
-    <a href="shivamogga.html" class="city-btn">📍 ಶಿವಮೊಗ್ಗ</a>
-    <a href="davanagere.html" class="city-btn">📍 ದಾವಣಗೆರೆ</a>
-    <a href="mysuru.html" class="city-btn">📍 ಮೈಸೂರು</a>
-    <a href="belagavi.html" class="city-btn">📍 ಬೆಳಗಾವಿ</a>
-    <a href="mangaluru.html" class="city-btn">📍 ಮಂಗಳೂರು</a>
-    <a href="hubballi-dharwad.html" class="city-btn">📍 ಹುಬ್ಬಳ್ಳಿ</a>
-    <a href="tumakuru.html" class="city-btn">📍 ತುಮಕೂರು</a>
+
+  <!-- Live Rate Scroller -->
+  <div class="rate-ticker-bar">
+    <div class="rate-badge-pulse">
+      <span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ
+    </div>
+    <div class="ticker-content-track">
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+    </div>
   </div>
-  <div class="ticker-box"><div class="ticker-label">⚡ ತಾಜಾ ಸುದ್ದಿ</div><div class="ticker-content">🏛️ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ • ಅಡಿಕೆ: ₹54,500 • ಕೊಬ್ಬರಿ: ₹13,200 • ಮೆಕ್ಕೆಜೋಳ: ₹2,150</div></div>
-  <div class="feed-header"><span class="feed-heading">📢 ಇತ್ತೀಚಿನ ಜಾಹೀರಾತುಗಳು</span></div>
-  <div id="adFeedContainer" class="ads-wrapper"></div>
-  <nav class="app-bottom-nav">
-    <a href="index.html" class="nav-link-item active"><span class="nav-link-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
-    <a href="order_poster.html" class="nav-link-item"><span class="nav-link-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
-    <a href="post_ad.html" class="nav-plus-circle">➕</a>
-    <a href="admin.html" class="nav-link-item"><span class="nav-link-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
-    <a href="https://wa.me/918431649984" class="nav-link-item"><span class="nav-link-icon">💬</span><span>ಸಹಾಯ</span></a>
+
+  <!-- 1. 30-Second Featured Ad Showcase (With Neat Small Font Buttons) -->
+  <div class="showcase-ad-card">
+    <div class="showcase-top-row">
+      <span class="sp-badge">⭐ ಪ್ರಾಯೋಜಿತ ಜಾಹೀರಾತು</span>
+      <span class="ad-timer-badge">⏱️ <span id="adSeconds">30</span>s</span>
+    </div>
+    
+    <div class="ad-progress-track">
+      <div class="ad-progress-fill" id="adProgress"></div>
+    </div>
+
+    <!-- Slide 1 -->
+    <div class="ad-slide-box active" id="ad1">
+      <div class="ad-title-text">🚜 ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
+      <div class="ad-desc-text">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
+      <div class="ad-btn-row-small">
+        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
+        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಅಡಿಕೆ%20ಮಷಿನ್%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="ad-slide-box" id="ad2">
+      <div class="ad-title-text">🥛 100% ಶುದ್ಧ ಗಿರ್ ಹಸುವಿನ ಹಾಲು, ಹಳ್ಳಿ ಬೆಣ್ಣೆ & ತುಪ್ಪ!</div>
+      <div class="ad-desc-text">ಯಾವುದೇ ರಾಸಾಯನಿಕವಿಲ್ಲದ ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಜ ಡೈರಿ ಉತ್ಪನ್ನಗಳು ಪ್ರತಿದಿನ ಲಭ್ಯ.</div>
+      <div class="ad-btn-row-small">
+        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಹಾಲು%20ತುಪ್ಪದ%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp: 8431649984</a>
+        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ</a>
+      </div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="ad-slide-box" id="ad3">
+      <div class="ad-title-text">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
+      <div class="ad-desc-text">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನದ ವಿವರ ಕಳುಹಿಸಿ, ಕೇವಲ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
+      <div class="ad-btn-row-small">
+        <a href="https://wa.me/918431649984?text=ನನಗೆ%2059%20ರೂಪಾಯಿ%20ಪೋಸ್ಟರ್%20ಡಿಸೈನ್%20ಮಾಡಬೇಕು" class="ad-cta-wa-sm" style="background: #ea580c;">🎨 ಪೋಸ್ಟರ್: 8431649984</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Dual Side-by-Side News Section -->
+  <div class="section-title-strip">
+    <span class="sec-head">⚡ ತಾಜಾ ಸಮಾಚಾರ & ಮಾರುಕಟ್ಟೆ</span>
+    <span style="font-size: 10.5px; color: #059669; font-weight: 700;">ಲೈವ್ ಅಪ್‌ಡೇಟ್</span>
+  </div>
+
+  <div class="news-dual-wrapper">
+    <!-- Market News Card -->
+    <a href="news_detail.html?type=market" class="news-interactive-card market-theme">
+      <div>
+        <div class="news-pill-tag tag-green">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</div>
+        <div class="news-snippet-item" id="news_adike"><strong>ಅಡಿಕೆ:</strong> ರಾಶಿ ₹54,500/ಕ್ವಿಂ</div>
+        <div class="news-snippet-item" id="news_kobbari"><strong>ಕೊಬ್ಬರಿ:</strong> ₹13,200/ಕ್ವಿಂ</div>
+        <div class="news-snippet-item" id="news_maize"><strong>ಮೆಕ್ಕೆಜೋಳ:</strong> ₹2,150/ಕ್ವಿಂ</div>
+      </div>
+      <div class="read-more-link">ಸಂಪೂರ್ಣ ಓದಿ ➔</div>
+    </a>
+
+    <!-- Top News Card -->
+    <a href="news_detail.html?type=top" class="news-interactive-card topnews-theme">
+      <div>
+        <div class="news-pill-tag tag-amber">⚡ TOP ನ್ಯೂಸ್</div>
+        <div class="news-snippet-item" id="news_top1">🏛️ ಸ್ಥಳೀಯ ನೈಜ ಉತ್ಪನ್ನಗಳಿಗೆ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಭಾರಿ ಬೇಡಿಕೆ!</div>
+        <div class="news-snippet-item" id="news_top2">⚡ ನಗರದ ಪ್ರಮುಖ ಬಡಾವಣೆಗಳಲ್ಲಿ ನಾಳೆ 10 ರಿಂದ ವಿದ್ಯುತ್ ನಿರ್ವಹಣೆ.</div>
+      </div>
+      <div class="read-more-link">ಸಂಪೂರ್ಣ ಓದಿ ➔</div>
+    </a>
+  </div>
+
+  <!-- 3. Cities Grid Section -->
+  <div class="section-title-strip">
+    <span class="sec-head">📍 ನಗರಗಳು (Select City)</span>
+    <span style="font-size: 10.5px; color: #64748b; font-weight: 700;">7 ಪ್ರಮುಖ ಊರುಗಳು</span>
+  </div>
+
+  <div class="city-tiles-grid">
+    <a href="shivamogga.html" class="city-tile c-shivamogga">
+      <span class="city-tile-icon">🌳</span>
+      <span class="city-tile-name">ಶಿವಮೊಗ್ಗ</span>
+    </a>
+    <a href="davanagere.html" class="city-tile c-davanagere">
+      <span class="city-tile-icon">🌾</span>
+      <span class="city-tile-name">ದಾವಣಗೆರೆ</span>
+    </a>
+    <a href="mysuru.html" class="city-tile c-mysuru">
+      <span class="city-tile-icon">🏰</span>
+      <span class="city-tile-name">ಮೈಸೂರು</span>
+    </a>
+    <a href="belagavi.html" class="city-tile c-belagavi">
+      <span class="city-tile-icon">🍃</span>
+      <span class="city-tile-name">ಬೆಳಗಾವಿ</span>
+    </a>
+    <a href="mangaluru.html" class="city-tile c-mangaluru">
+      <span class="city-tile-icon">🌊</span>
+      <span class="city-tile-name">ಮಂಗಳೂರು</span>
+    </a>
+    <a href="hubballi-dharwad.html" class="city-tile c-hubballi">
+      <span class="city-tile-icon">🏙️</span>
+      <span class="city-tile-name">ಹುಬ್ಬಳ್ಳಿ-ಧಾ.</span>
+    </a>
+    <a href="tumakuru.html" class="city-tile c-tumakuru" style="grid-column: span 3;">
+      <span class="city-tile-icon">🥥</span>
+      <span class="city-tile-name">ತುಮಕೂರು ನಗರ & ಗ್ರಾಮಾಂತರ</span>
+    </a>
+  </div>
+
+  <!-- Bottom Nav -->
+  <nav class="modern-bottom-nav">
+    <a href="index.html" class="nav-tab-link active"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
+    <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
+    <a href="post_ad.html" class="nav-center-plus">➕</a>
+    <a href="admin.html" class="nav-tab-link"><span class="nav-tab-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
+    <a href="https://wa.me/918431649984?text=ಸಮೃದ್ಧಿ%20ಪೋರ್ಟಲ್%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
+
+  <!-- Auto Load Saved News & 30s Ad Switch Script -->
   <script>
-    var currentCity = "all";
-    var ads = [
-      { city:"ಶಿವಮೊಗ್ಗ", title:"ಶುದ್ಧ ನಾಟಿ ಹಸುವಿನ ತುಪ್ಪ", desc:"ಮನೆಯಲ್ಲೇ ತಯಾರಿಸಿದ ಶುದ್ಧ ತುಪ್ಪ ಡೋರ್ ಡೆಲಿವರಿ ಲಭ್ಯ.", price:"₹650/kg" },
-      { city:"ದಾವಣಗೆರೆ", title:"30x40 ನಿವೇಶನ ಮಾರಾಟಕ್ಕಿದೆ", desc:"ವಿದ್ಯಾನಗರ ಹತ್ತಿರ, ಕ್ಲಿಯರ್ ಡಾಕ್ಯುಮೆಂಟ್.", price:"₹24,00,000" }
-    ];
-    function displayAds() {
-      var feed = document.getElementById("adFeedContainer");
-      var filtered = currentCity === "all" ? ads : ads.filter(a => a.city.includes(currentCity));
-      feed.innerHTML = "";
-      filtered.forEach(ad => {
-        feed.innerHTML += '<div class="ad-item-card"><span class="ad-city-badge">📍 '+ad.city+'</span><h3 style="font-size:13.5px; margin:4px 0;">'+ad.title+'</h3><p style="font-size:11.5px; color:#475569;">'+ad.desc+'</p><div style="color:#059669; font-weight:800; font-size:11px; margin:4px 0;">💰 '+ad.price+'</div><div class="ad-share-actions"><button onclick="window.open(\'https://api.whatsapp.com/send?text='+encodeURIComponent(ad.title)+'\', \'_blank\')" class="btn-share-whatsapp">💬 WhatsApp ಶೇರ್</button></div></div>';
-      });
-    }
-    if (typeof db !== 'undefined') {
-      db.collection("ads").where("status", "==", "approved").onSnapshot(s => {
-        if(!s.empty){ ads = []; s.forEach(d => ads.push(d.data())); displayAds(); }
-      });
-    }
-    displayAds();
+    window.addEventListener('DOMContentLoaded', function() {
+      var savedNews = localStorage.getItem('samruddhi_news_data');
+      if (savedNews) {
+        var d = JSON.parse(savedNews);
+        if(d.adike) document.getElementById('news_adike').innerHTML = "<strong>ಅಡಿಕೆ:</strong> " + d.adike;
+        if(d.kobbari) document.getElementById('news_kobbari').innerHTML = "<strong>ಕೊಬ್ಬರಿ:</strong> " + d.kobbari;
+        if(d.maize) document.getElementById('news_maize').innerHTML = "<strong>ಮೆಕ್ಕೆಜೋಳ:</strong> " + d.maize;
+        if(d.top1) document.getElementById('news_top1').innerText = d.top1;
+        if(d.top2) document.getElementById('news_top2').innerText = d.top2;
+      }
+    });
+
+    var currentSlide = 1;
+    var totalSlides = 3;
+    var maxSeconds = 30;
+    var remaining = maxSeconds;
+
+    setInterval(function() {
+      remaining--;
+      if (remaining <= 0) {
+        document.getElementById('ad' + currentSlide).classList.remove('active');
+        currentSlide = (currentSlide % totalSlides) + 1;
+        document.getElementById('ad' + currentSlide).classList.add('active');
+        remaining = maxSeconds;
+      }
+      document.getElementById('adSeconds').innerText = remaining;
+      var percent = (remaining / maxSeconds) * 100;
+      document.getElementById('adProgress').style.width = percent + '%';
+    }, 1000);
   </script>
+
 </body>
 </html>

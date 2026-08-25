@@ -1,32 +1,579 @@
-* { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-body { background-color: #f1f5f9; color: #0f172a; padding-bottom: 75px; }
-.app-header { background: linear-gradient(135deg, #059669 0%, #047857 100%); padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.12); }
-.brand-wrap { display: flex; align-items: center; gap: 8px; text-decoration: none; color: #ffffff; }
-.brand-icon { background: #ffffff; width: 34px; height: 34px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
-.brand-title { font-size: 16px; font-weight: 900; line-height: 1.1; display: block; }
-.brand-sub { font-size: 9.5px; opacity: 0.9; }
-.header-btn { padding: 6px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; text-decoration: none; color: #ffffff; display: inline-flex; align-items: center; gap: 3px; }
-.city-scroll-bar { display: flex; gap: 6px; padding: 8px 12px; background: #ffffff; overflow-x: auto; white-space: nowrap; border-bottom: 1px solid #cbd5e1; -webkit-overflow-scrolling: touch; }
-.city-scroll-bar::-webkit-scrollbar { display: none; }
-.city-btn { padding: 6px 14px; font-size: 11.5px; font-weight: 700; border-radius: 20px; border: 1px solid #cbd5e1; background: #f8fafc; color: #334155; cursor: pointer; text-decoration: none; display: inline-block; }
-.city-btn.active { background: #059669 !important; color: #ffffff !important; border-color: #059669 !important; }
-.ticker-box { background: #ffffff; margin: 8px 12px 4px; padding: 6px 10px; border-radius: 10px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 8px; overflow: hidden; }
-.ticker-label { background: #fef3c7; color: #b45309; font-size: 10px; font-weight: 900; padding: 3px 6px; border-radius: 6px; flex-shrink: 0; }
-.ticker-content { font-size: 11px; color: #334155; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.feed-header { display: flex; justify-content: space-between; align-items: center; padding: 8px 14px 4px; }
-.feed-heading { font-size: 13px; font-weight: 900; color: #0f172a; }
-.ads-wrapper { padding: 4px 12px; }
-.ad-item-card { background: #ffffff; border-radius: 16px; border: 1px solid #e2e8f0; padding: 12px; margin-bottom: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.02); }
-.ad-city-badge { background: #e0e7ff; color: #3730a3; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px; }
-.ad-share-actions { display: flex; align-items: center; gap: 8px; margin-top: 10px; padding-top: 10px; border-top: 1px dashed #cbd5e1; }
-.btn-share-whatsapp { flex: 1; background: #25d366; color: #ffffff; padding: 9px 12px; border-radius: 20px; font-size: 12px; font-weight: 800; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 6px; }
-.btn-share-copy { background: #f8fafc; color: #334155; padding: 9px 14px; border-radius: 20px; font-size: 12px; font-weight: 800; border: 1.5px solid #cbd5e1; cursor: pointer; }
-.form-card { background: #ffffff; margin: 12px 14px 80px; padding: 16px; border-radius: 16px; border: 1px solid #e2e8f0; }
-.form-group { margin-bottom: 12px; }
-.form-label { display: block; font-size: 11.5px; font-weight: 800; color: #334155; margin-bottom: 5px; }
-.form-input, .form-select, .form-textarea { width: 100%; padding: 9px 12px; border: 1.5px solid #cbd5e1; border-radius: 10px; font-size: 12.5px; outline: none; background: #f8fafc; }
-.app-bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #ffffff; display: flex; justify-content: space-around; align-items: center; padding: 6px 0; border-top: 1px solid #e2e8f0; z-index: 1000; }
-.nav-link-item { display: flex; flex-direction: column; align-items: center; text-decoration: none; color: #64748b; font-size: 9.5px; font-weight: 700; }
-.nav-link-item.active { color: #059669; }
-.nav-link-icon { font-size: 18px; margin-bottom: 2px; }
-.nav-plus-circle { background: #059669; color: #ffffff; width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; text-decoration: none; margin-top: -14px; }
+/* Samruddhi Super Portal - Full Responsive Modern Stylesheet */
+:root {
+  --primary: #059669;
+  --primary-dark: #047857;
+  --primary-light: #ecfdf5;
+  --accent-gold: #d97706;
+  --accent-gold-light: #fffbeb;
+  --bg-main: #f1f5f9;
+  --card-bg: #ffffff;
+  --border: #e2e8f0;
+  --text-main: #0f172a;
+  --text-sub: #475569;
+  --text-muted: #94a3b8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.4;
+  padding-bottom: 85px;
+  max-width: 540px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+/* Header */
+.app-header-modern {
+  background: linear-gradient(135deg, #064e3b 0%, #059669 100%);
+  color: #ffffff;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 15px rgba(5, 150, 105, 0.25);
+}
+.brand-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #ffffff;
+}
+.brand-icon {
+  width: 36px;
+  height: 36px;
+  background: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.brand-title-box {
+  display: flex;
+  flex-direction: column;
+}
+.brand-name {
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+.brand-tag {
+  font-size: 9.5px;
+  color: #a7f3d0;
+  font-weight: 700;
+}
+.header-post-btn {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  font-size: 11.5px;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: 20px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 3px 8px rgba(217, 119, 6, 0.3);
+}
+
+/* Gold Ticker */
+.rate-ticker-bar {
+  background: linear-gradient(90deg, #92400e 0%, #b45309 50%, #d97706 100%);
+  color: #ffffff;
+  padding: 7px 0;
+  display: flex;
+  align-items: center;
+  font-size: 11.5px;
+  font-weight: 800;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(180, 83, 9, 0.2);
+}
+.rate-badge-pulse {
+  background: #451a03;
+  color: #fde68a;
+  padding: 3px 8px;
+  margin: 0 8px;
+  border-radius: 6px;
+  font-size: 10.5px;
+  font-weight: 800;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid #f59e0b;
+}
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  background: #22c55e;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #22c55e;
+  animation: blink 1.2s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.ticker-content-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marqueeScroll 22s linear infinite;
+}
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Section Header */
+.section-title-strip {
+  padding: 12px 14px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sec-head {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Featured 30s Rotating Ad Showcase */
+.showcase-ad-card {
+  margin: 12px 14px;
+  background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+  border-radius: 18px;
+  padding: 14px;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(15, 23, 42, 0.25);
+  border: 1.5px solid #4338ca;
+  position: relative;
+  overflow: hidden;
+}
+.showcase-top-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.sp-badge {
+  background: #f59e0b;
+  color: #451a03;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.ad-timer-badge {
+  font-size: 10.5px;
+  color: #c7d2fe;
+  font-weight: 700;
+}
+.ad-progress-track {
+  width: 100%;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 2px;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+.ad-progress-fill {
+  height: 100%;
+  width: 100%;
+  background: #38bdf8;
+  transition: width 1s linear;
+}
+.ad-slide-box {
+  display: none;
+  animation: fadeInSlide 0.3s ease;
+}
+.ad-slide-box.active { display: block; }
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.ad-title-text {
+  font-size: 13.5px;
+  font-weight: 800;
+  color: #fef08a;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.ad-desc-text {
+  font-size: 11.5px;
+  color: #e2e8f0;
+  line-height: 1.35;
+  margin-bottom: 10px;
+}
+.ad-btn-row-small {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.ad-cta-btn-sm {
+  background: #22c55e;
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.ad-cta-wa-sm {
+  background: #25d366;
+  color: #ffffff;
+  padding: 5px 12px;
+  border-radius: 18px;
+  font-size: 11px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Dual News Box */
+.news-dual-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 0 14px 12px;
+}
+.news-interactive-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 12px;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  position: relative;
+  border: 1.5px solid transparent;
+}
+.market-theme {
+  background: linear-gradient(180deg, #ecfdf5 0%, #ffffff 60%);
+  border-color: #a7f3d0;
+}
+.topnews-theme {
+  background: linear-gradient(180deg, #fffbeb 0%, #ffffff 60%);
+  border-color: #fde68a;
+}
+.news-pill-tag {
+  font-size: 10.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 6px;
+}
+.tag-green { background: #d1fae5; color: #047857; }
+.tag-amber { background: #fef3c7; color: #b45309; }
+.news-snippet-item {
+  font-size: 11.5px;
+  color: #334155;
+  line-height: 1.35;
+  margin-bottom: 5px;
+  padding-bottom: 4px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+.news-snippet-item:last-child { border-bottom: none; }
+.read-more-link {
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 3px;
+  margin-top: 5px;
+}
+.market-theme .read-more-link { color: #059669; }
+.topnews-theme .read-more-link { color: #d97706; }
+
+/* City Grid */
+.city-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 9px;
+  padding: 0 14px 14px;
+}
+.city-tile {
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 10px 6px;
+  text-align: center;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s ease;
+}
+.city-tile:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+.city-tile::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3.5px;
+}
+.c-shivamogga::before { background: #059669; }
+.c-davanagere::before { background: #d97706; }
+.c-mysuru::before { background: #7c3aed; }
+.c-belagavi::before { background: #0891b2; }
+.c-mangaluru::before { background: #0284c7; }
+.c-hubballi::before { background: #c026d3; }
+.c-tumakuru::before { background: #16a34a; }
+.city-tile-icon { font-size: 22px; }
+.city-tile-name {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #1e293b;
+}
+
+/* City News Banner */
+.city-news-banner {
+  margin: 12px 14px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 12px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 3px 12px rgba(37, 99, 235, 0.25);
+  border: 1px solid #60a5fa;
+}
+.cn-badge {
+  background: #fbbf24;
+  color: #78350f;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+.cn-title {
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+/* Tiered Ad Boxes (Free, ₹49, ₹99) */
+.ads-tiered-container {
+  padding: 0 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.ad-slot-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+/* ₹99 Premium Ad Box (Large) */
+.ad-slot-99 {
+  border: 2px solid #f59e0b;
+  background: linear-gradient(180deg, #fffbeb 0%, #ffffff 40%);
+}
+.ad-slot-99 .ad-tag-tier {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.ad-slot-99 .ad-item-title {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 6px 0 3px;
+}
+.ad-slot-99 .ad-item-desc {
+  font-size: 12px;
+  color: #475569;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}
+
+/* ₹49 Standard Ad Box (Medium) */
+.ad-slot-49 {
+  border: 1.5px solid #93c5fd;
+  background: linear-gradient(180deg, #eff6ff 0%, #ffffff 40%);
+}
+.ad-slot-49 .ad-tag-tier {
+  background: #3b82f6;
+  color: #ffffff;
+  font-size: 9.5px;
+  font-weight: 800;
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+.ad-slot-49 .ad-item-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 5px 0 3px;
+}
+.ad-slot-49 .ad-item-desc {
+  font-size: 11.5px;
+  color: #475569;
+  line-height: 1.35;
+  margin-bottom: 6px;
+}
+
+/* Free Ad Box (Compact / Small) */
+.ad-slot-free {
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  padding: 10px 12px;
+}
+.ad-slot-free .ad-tag-tier {
+  background: #e2e8f0;
+  color: #475569;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+.ad-slot-free .ad-item-title {
+  font-size: 12px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 4px 0 2px;
+}
+.ad-slot-free .ad-item-desc {
+  font-size: 10.5px;
+  color: #64748b;
+  line-height: 1.3;
+  margin-bottom: 5px;
+}
+
+/* Rotating sub-item animation */
+.rot-item {
+  display: none;
+  animation: fadeInRot 0.4s ease;
+}
+.rot-item.active { display: block; }
+@keyframes fadeInRot {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bottom Nav */
+.modern-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 6px 0 8px;
+  z-index: 999;
+  max-width: 540px;
+  margin: 0 auto;
+}
+.nav-tab-link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #64748b;
+  font-size: 10px;
+  font-weight: 700;
+  gap: 2px;
+}
+.nav-tab-link.active { color: #059669; }
+.nav-tab-icon { font-size: 19px; }
+.nav-center-plus {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #059669, #047857);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);
+  margin-top: -16px;
+  border: 3px solid #ffffff;
+  text-decoration: none;
+}
+
+/* Responsive Desktop view */
+@media (min-width: 768px) {
+  body {
+    max-width: 1100px !important;
+    background-color: #f1f5f9;
+  }
+  .app-header-modern, .rate-ticker-bar {
+    max-width: 1100px;
+    margin: 0 auto;
+    border-radius: 0 0 16px 16px;
+  }
+  .modern-bottom-nav {
+    max-width: 1100px !important;
+    border-radius: 16px 16px 0 0;
+  }
+  .city-tiles-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+  }
+  .ads-tiered-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .news-dual-wrapper {
+    gap: 14px;
+  }
+  .showcase-ad-card, .city-news-banner, .form-card, .news-detail-box, .poster-offer-banner {
+    max-width: 100%;
+    margin-left: 14px;
+    margin-right: 14px;
+  }
+}
