@@ -5,6 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
+  <style>
+    /* Share Button Styling */
+    .ad-share-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .share-btn-action {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      color: #ffffff;
+      border: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .share-btn-action:hover { opacity: 0.9; }
+    .btn-wa-green { background: #25d366; }
+    .btn-fb-blue { background: #1877f2; }
+    .ad-city-tag {
+      background: #ecfdf5;
+      color: #065f46;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+      display: inline-block;
+      margin-bottom: 4px;
+    }
+  </style>
 </head>
 <body>
 
@@ -26,12 +69,12 @@
       <span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ
     </div>
     <div class="ticker-content-track">
-      <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+      <span id="tickerTrackText">🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
       <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
     </div>
   </div>
 
-  <!-- 1. 30-Second Featured Ad Showcase (With Neat Small Font Buttons) -->
+  <!-- 1. 30-Second Featured Ad Showcase (Connected to Firestore with Auto-Rotate) -->
   <div class="showcase-ad-card">
     <div class="showcase-top-row">
       <span class="sp-badge">⭐ ಪ್ರಾಯೋಜಿತ ಜಾಹೀರಾತು</span>
@@ -42,32 +85,39 @@
       <div class="ad-progress-fill" id="adProgress"></div>
     </div>
 
-    <!-- Slide 1 -->
-    <div class="ad-slide-box active" id="ad1">
-      <div class="ad-title-text">🚜 ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
-      <div class="ad-desc-text">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
-      <div class="ad-btn-row-small">
-        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ: 8431649984</a>
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಅಡಿಕೆ%20ಮಷಿನ್%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp</a>
+    <!-- Live Ads Container (Injected by JS) -->
+    <div id="liveAdsSliderWrapper">
+      <!-- Fallback Slide 1 -->
+      <div class="ad-slide-box active" id="ad1">
+        <span class="ad-city-tag">📍 ಶಿವಮೊಗ್ಗ & ದಾವಣಗೆರೆ</span>
+        <div class="ad-title-text">🚜 ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
+        <div class="ad-desc-text">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
+        <div class="ad-share-row">
+          <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:* %0A🚜 *ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ ಮಷಿನ್ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-wa-green">💬 WhatsApp ಶೇರ್</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-fb-blue">📘 Facebook ಶೇರ್</a>
+        </div>
       </div>
-    </div>
 
-    <!-- Slide 2 -->
-    <div class="ad-slide-box" id="ad2">
-      <div class="ad-title-text">🥛 100% ಶುದ್ಧ ಗಿರ್ ಹಸುವಿನ ಹಾಲು, ಹಳ್ಳಿ ಬೆಣ್ಣೆ & ತುಪ್ಪ!</div>
-      <div class="ad-desc-text">ಯಾವುದೇ ರಾಸಾಯನಿಕವಿಲ್ಲದ ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಜ ಡೈರಿ ಉತ್ಪನ್ನಗಳು ಪ್ರತಿದಿನ ಲಭ್ಯ.</div>
-      <div class="ad-btn-row-small">
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%20ಹಾಲು%20ತುಪ್ಪದ%20ವಿವರ%20ಬೇಕು" class="ad-cta-wa-sm">💬 WhatsApp: 8431649984</a>
-        <a href="tel:8431649984" class="ad-cta-btn-sm">📞 ಕರೆ</a>
+      <!-- Fallback Slide 2 -->
+      <div class="ad-slide-box" id="ad2">
+        <span class="ad-city-tag">📍 ಕರ್ನಾಟಕ</span>
+        <div class="ad-title-text">🥛 100% ಶುದ್ಧ ಗಿರ್ ಹಸುವಿನ ಹಾಲು, ಹಳ್ಳಿ ಬೆಣ್ಣೆ & ತುಪ್ಪ!</div>
+        <div class="ad-desc-text">ಯಾವುದೇ ರಾಸಾಯನಿಕವಿಲ್ಲದ ಸಾಂಪ್ರದಾಯಿಕ ವಿಧಾನದ ನೈಜ ಡೈರಿ ಉತ್ಪನ್ನಗಳು ಪ್ರತಿದಿನ ಲಭ್ಯ.</div>
+        <div class="ad-share-row">
+          <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:* %0A🥛 *ಶುದ್ಧ ಹಸುವಿನ ತುಪ್ಪ & ಹಾಲು ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-wa-green">💬 WhatsApp ಶೇರ್</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-fb-blue">📘 Facebook ಶೇರ್</a>
+        </div>
       </div>
-    </div>
 
-    <!-- Slide 3 -->
-    <div class="ad-slide-box" id="ad3">
-      <div class="ad-title-text">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
-      <div class="ad-desc-text">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನದ ವಿವರ ಕಳುಹಿಸಿ, ಕೇವಲ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
-      <div class="ad-btn-row-small">
-        <a href="https://wa.me/918431649984?text=ನನಗೆ%2059%20ರೂಪಾಯಿ%20ಪೋಸ್ಟರ್%20ಡಿಸೈನ್%20ಮಾಡಬೇಕು" class="ad-cta-wa-sm" style="background: #ea580c;">🎨 ಪೋಸ್ಟರ್: 8431649984</a>
+      <!-- Fallback Slide 3 -->
+      <div class="ad-slide-box" id="ad3">
+        <span class="ad-city-tag">📍 ಆನ್‌ಲೈನ್ ಸೇವೆ</span>
+        <div class="ad-title-text">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
+        <div class="ad-desc-text">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನದ ವಿವರ ಕಳುಹಿಸಿ, ಕೇವಲ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
+        <div class="ad-share-row">
+          <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:* %0A🎨 *₹59 ಕ್ಕೆ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!* %0A👉 https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-wa-green">💬 WhatsApp ಶೇರ್</a>
+          <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-fb-blue">📘 Facebook ಶೇರ್</a>
+        </div>
       </div>
     </div>
   </div>
@@ -147,9 +197,99 @@
     <a href="https://wa.me/918431649984?text=ಸಮೃದ್ಧಿ%20ಪೋರ್ಟಲ್%20ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
 
-  <!-- Auto Load Saved News & 30s Ad Switch Script -->
+  <!-- Realtime Ads Loader & Dynamic 30s Slider Script -->
   <script>
-    window.addEventListener('DOMContentLoaded', function() {
+    var currentSlide = 1;
+    var totalSlides = 3;
+    var maxSeconds = 30;
+    var remaining = maxSeconds;
+    var timerInterval = null;
+
+    // 1. Firebase ನಿಂದ Approved ಜಾಹೀರಾತುಗಳನ್ನು ತಂದು ಸ್ಲೈಡರ್‌ನಲ್ಲಿ ಹಾಕುವುದು
+    async function fetchLiveApprovedAds() {
+      try {
+        if (typeof db === 'undefined') return;
+
+        var snapshot = await db.collection("ads").where("status", "==", "approved").get();
+        if (snapshot.empty) return;
+
+        var sliderWrapper = document.getElementById('liveAdsSliderWrapper');
+        var slidesHtml = "";
+        var count = 0;
+
+        snapshot.forEach(doc => {
+          count++;
+          var ad = doc.data();
+          var cityName = ad.cityName || ad.city || "ಕರ್ನಾಟಕ";
+          var currentDomain = window.location.origin;
+          var targetCityUrl = currentDomain + "/" + (ad.city || "index") + ".html";
+
+          // WhatsApp & Facebook ಶೇರ್ ಮೆಸೇಜ್ ತಯಾರಿ
+          var shareText = `🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:*%0A📌 *${ad.title}*%0A📍 ಸ್ಥಳ: ${cityName}%0A💰 ಬೆಲೆ: ${ad.price || 'ಮಾತುಕತೆ ಮೂಲಕ'}%0A📝 ವಿವರ: ${ad.desc || ad.description || ''}%0A%0A👉 ಪೂರ್ತಿ ವಿವರಗಳಿಗೆ ಇಲ್ಲಿ ನೋಡಿ: ${targetCityUrl}`;
+          var waLink = "https://api.whatsapp.com/send?text=" + shareText;
+          var fbLink = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(targetCityUrl);
+
+          var activeClass = (count === 1) ? "active" : "";
+          var imgTag = ad.imageUrl ? `<img src="${ad.imageUrl}" style="width:100%; max-height:140px; object-fit:cover; border-radius:8px; margin:6px 0;">` : '';
+
+          slidesHtml += `
+            <div class="ad-slide-box ${activeClass}" id="ad${count}">
+              <span class="ad-city-tag">📍 ${cityName}</span>
+              ${imgTag}
+              <div class="ad-title-text">${ad.title}</div>
+              <div class="ad-desc-text">${ad.desc || ad.description || ''}</div>
+              ${ad.price ? `<div style="font-size:11.5px; font-weight:800; color:#059669; margin:4px 0;">💰 ಬೆಲೆ: ${ad.price}</div>` : ''}
+              
+              <!-- ಕೇವಲ ಶೇರಿಂಗ್ ಬಟನ್‌ಗಳು -->
+              <div class="ad-share-row">
+                <a href="${waLink}" target="_blank" class="share-btn-action btn-wa-green">💬 WhatsApp ಶೇರ್</a>
+                <a href="${fbLink}" target="_blank" class="share-btn-action btn-fb-blue">📘 Facebook ಶೇರ್</a>
+              </div>
+            </div>
+          `;
+        });
+
+        if (count > 0) {
+          sliderWrapper.innerHTML = slidesHtml;
+          totalSlides = count;
+          currentSlide = 1;
+        }
+      } catch (err) {
+        console.warn("Live Ads Load Warning:", err);
+      }
+    }
+
+    // 2. 30 ಸೆಕೆಂಡ್‌ಗಳ ಆಟೋ ಸ್ಲೈಡರ್ ಟೈಮರ್
+    function startAdSlider() {
+      if (timerInterval) clearInterval(timerInterval);
+      remaining = maxSeconds;
+
+      timerInterval = setInterval(function() {
+        remaining--;
+        if (remaining <= 0) {
+          var currentEl = document.getElementById('ad' + currentSlide);
+          if (currentEl) currentEl.classList.remove('active');
+          
+          currentSlide = (currentSlide % totalSlides) + 1;
+          
+          var nextEl = document.getElementById('ad' + currentSlide);
+          if (nextEl) nextEl.classList.add('active');
+          
+          remaining = maxSeconds;
+        }
+        document.getElementById('adSeconds').innerText = remaining;
+        var percent = (remaining / maxSeconds) * 100;
+        document.getElementById('adProgress').style.width = percent + '%';
+      }, 1000);
+    }
+
+    // 3. ನ್ಯೂಸ್ ಅಪ್‌ಡೇಟ್ ಲೋಡ್
+    window.addEventListener('DOMContentLoaded', async function() {
+      // Firebase ನಿಂದ ಲೈವ್ ಜಾಹೀರಾತುಗಳನ್ನು ಲೋಡ್ ಮಾಡಿ ನಂತರ ಸ್ಲೈಡರ್ ಪ್ರಾರಂಭಿಸಿ
+      await fetchLiveApprovedAds();
+      startAdSlider();
+
+      // LocalStorage ಅಥವಾ Firebase ನಿಂದ ನ್ಯೂಸ್ ಸೆಟ್ ಮಾಡುವುದು
       var savedNews = localStorage.getItem('samruddhi_news_data');
       if (savedNews) {
         var d = JSON.parse(savedNews);
@@ -160,24 +300,6 @@
         if(d.top2) document.getElementById('news_top2').innerText = d.top2;
       }
     });
-
-    var currentSlide = 1;
-    var totalSlides = 3;
-    var maxSeconds = 30;
-    var remaining = maxSeconds;
-
-    setInterval(function() {
-      remaining--;
-      if (remaining <= 0) {
-        document.getElementById('ad' + currentSlide).classList.remove('active');
-        currentSlide = (currentSlide % totalSlides) + 1;
-        document.getElementById('ad' + currentSlide).classList.add('active');
-        remaining = maxSeconds;
-      }
-      document.getElementById('adSeconds').innerText = remaining;
-      var percent = (remaining / maxSeconds) * 100;
-      document.getElementById('adProgress').style.width = percent + '%';
-    }, 1000);
   </script>
 
 </body>
