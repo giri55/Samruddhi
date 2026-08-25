@@ -6,75 +6,43 @@
   <title>ಶಿವಮೊಗ್ಗ - ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    .ad-share-row-sm {
-      display: flex;
-      gap: 6px;
-      margin-top: 8px;
-      justify-content: flex-end;
-    }
-    .share-btn-compact {
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-weight: 700;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      color: #ffffff;
-      border: none;
-      cursor: pointer;
-    }
+    .ad-share-row-sm { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
+    .share-btn-compact { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; color: #ffffff; border: none; cursor: pointer; }
     .btn-wa-green { background: #25d366; }
     .btn-fb-blue { background: #1877f2; }
-    
-    /* ಆಫರ್ಸ್ ಬಾಕ್ಸ್ ಸ್ಪೆಷಲ್ ಸ್ಟೈಲ್ */
-    .offers-card-box {
-      background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%);
-      border: 1.5px dashed #f43f5e;
-      border-radius: 14px;
-      padding: 12px;
-      margin: 8px 14px;
-      box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08);
-    }
+    .offers-card-box { background: linear-gradient(135deg, #fff1f2 0%, #ffe4e6 100%); border: 1.5px dashed #f43f5e; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08); }
   </style>
 </head>
 <body>
-
-  <!-- App Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">🌳</div>
-      <div class="brand-title-box">
-        <span class="brand-name">ಶಿವಮೊಗ್ಗ</span>
-        <span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span>
-      </div>
+      <div class="brand-title-box"><span class="brand-name">ಶಿವಮೊಗ್ಗ</span><span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span></div>
     </a>
     <a href="post_ad.html" class="header-post-btn">➕ ಆ್ಯಡ್ ಹಾಕಿ</a>
   </header>
 
-  <!-- Live Rate Scroller (ಚಿನ್ನ, ಬೆಳ್ಳಿ, ಅಡಿಕೆ ದರಗಳು) -->
   <div class="rate-ticker-bar">
-    <div class="rate-badge-pulse">
-      <span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ
-    </div>
+    <div class="rate-badge-pulse"><span class="pulse-dot"></span> 🪙 ಇಂದಿನ ದರ</div>
     <div class="ticker-content-track">
       <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
       <span>🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ &nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
     </div>
   </div>
 
-  <!-- News Banner -->
-  <div style="background: linear-gradient(135deg, #059669, #047857); color: #fff; border-radius: 14px; padding: 12px 14px; margin: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(5, 150, 105, 0.2);">
-    <div>
-      <span style="background: #f59e0b; color: #000; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">📢 ನಿಮ್ಮೂರ ಸುದ್ದಿ</span>
-      <div style="font-size: 13px; font-weight: 800; margin-top: 4px;">ಮಲೆನಾಡು & ಶಿವಮೊಗ್ಗ ಜಿಲ್ಲಾ ತಾಜಾ ಸುದ್ದಿ ವರದಿ</div>
-      <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">• ಅಡಿಕೆ ಮಾರುಕಟ್ಟೆ ಹಾಗೂ ಸ್ಥಳೀಯ ಮಾಹಿತಿ ➔</div>
+  <!-- News Banner with Direct Link -->
+  <a href="news_detail.html?city=shivamogga" style="text-decoration: none; display: block;">
+    <div style="background: linear-gradient(135deg, #059669, #047857); color: #fff; border-radius: 14px; padding: 12px 14px; margin: 10px 14px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 4px 10px rgba(5, 150, 105, 0.2);">
+      <div>
+        <span style="background: #f59e0b; color: #000; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">📢 ನಿಮ್ಮೂರ ಸುದ್ದಿ</span>
+        <div style="font-size: 13px; font-weight: 800; margin-top: 4px;">ಮಲೆನಾಡು & ಶಿವಮೊಗ್ಗ ಜಿಲ್ಲಾ ತಾಜಾ ಸುದ್ದಿ ವರದಿ</div>
+        <div style="font-size: 10px; opacity: 0.9; margin-top: 2px;">• ಅಡಿಕೆ ಮಾರುಕಟ್ಟೆ ಹಾಗೂ ಸ್ಥಳೀಯ ಮಾಹಿತಿ ಓದಲು ಕ್ಲಿಕ್ ಮಾಡಿ ➔</div>
+      </div>
+      <div style="font-size: 24px;">🌳</div>
     </div>
-    <div style="font-size: 24px;">🌳</div>
-  </div>
+  </a>
 
-  <!-- 1. ₹199 Premium VIP Ad (Dark Box) -->
+  <!-- 1. ₹199 VIP Ad -->
   <div style="background: #0f172a; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 14px; margin: 10px 14px; color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.15);">
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
       <span style="background: #d97706; color: #fff; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">👑 ₹199 ಪ್ರೀಮಿಯಂ ವಿಐಪಿ ಜಾಹೀರಾತು</span>
@@ -88,13 +56,12 @@
     </div>
   </div>
 
-  <!-- Section Title -->
   <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 16px 2px;">
     <span style="font-size: 12.5px; font-weight: 800; color: #0f172a;">📦 ಶಿವಮೊಗ್ಗ ಪ್ರಮುಖ ವರ್ಗೀಕೃತ ಜಾಹೀರಾತುಗಳು</span>
-    <span style="font-size: 10px; color: #64748b;">⏱️ ರೊಟೇಷನ್: 104s</span>
+    <span style="font-size: 10px; color: #64748b;">⏱️ ರೊಟೇಷನ್</span>
   </div>
 
-  <!-- 2. ₹99 Super Ad (Golden Border Box - 1 Only) -->
+  <!-- 2. ₹99 Super Ad -->
   <div style="background: #ffffff; border: 1.5px solid #f59e0b; border-radius: 14px; padding: 12px; margin: 8px 14px; box-shadow: 0 2px 6px rgba(245, 158, 11, 0.08);">
     <span style="background: #f59e0b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹99 ಸೂಪರ್ ಆ್ಯಡ್ • ಕೃಷಿ ವಿಭಾಗ</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🌱 ಉತ್ತಮ ತಳಿಯ ಅಡಿಕೆ ಮತ್ತು ಕಾಳುಮೆಣಸು ಸಸಿಗಳು ಲಭ್ಯ</div>
@@ -105,21 +72,21 @@
     </div>
   </div>
 
-  <!-- 3. Special Offers Box (₹99 ಬಾಕ್ಸ್‌ನ ಕೆಳಗೆ ಇರಿಸಲಾಗಿದೆ) -->
+  <!-- 3. Offers Box -->
   <div class="offers-card-box">
     <div style="display: flex; justify-content: space-between; align-items: center;">
       <span style="background: #e11d48; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 8px; border-radius: 4px;">🎁 ವಿಶೇಷ ಆಫರ್ಸ್ & ಡೀಲ್ಸ್</span>
       <span style="font-size: 10px; color: #e11d48; font-weight: 800;">🔥 ಲಿಮಿಟೆಡ್ ಆಫರ್</span>
     </div>
     <div style="font-size: 13px; font-weight: 800; color: #881337; margin-top: 4px;">🎨 ಕೇವಲ ₹59 ಕ್ಕೆ ಆಕರ್ಷಕ ಬಿಸಿನೆಸ್ ಪೋಸ್ಟರ್ ಡಿಸೈನಿಂಗ್!</div>
-    <div style="font-size: 11.5px; color: #4c0519; margin: 4px 0 6px; line-height: 1.4;">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನಕ್ಕೆ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ. ಮೊದಲ 50 ಗ್ರಾಹಕರಿಗೆ ಮಾತ್ರ.</div>
+    <div style="font-size: 11.5px; color: #4c0519; margin: 4px 0 6px; line-height: 1.4;">ನಿಮ್ಮ ಅಂಗಡಿ ಅಥವಾ ಉತ್ಪನ್ನಕ್ಕೆ 1 ಗಂಟೆಯಲ್ಲಿ ಹೆಚ್‌ಡಿ ಪೋಸ್ಟರ್ ಪಡೆಯಿರಿ.</div>
     <div class="ad-share-row-sm">
       <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಶಿವಮೊಗ್ಗ ಸ್ಪೆಷಲ್ ಆಫರ್:* %0A🎨 *₹59 ಕ್ಕೆ ಪೋಸ್ಟರ್ ಡಿಸೈನ್!* %0A👉 https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-wa-green">💬 ಶೇರ್</a>
       <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app/shivamogga.html" target="_blank" class="share-btn-compact btn-fb-blue">📘 ಶೇರ್</a>
     </div>
   </div>
 
-  <!-- 4. ₹49 Standard Ad 1 (Blue Box) -->
+  <!-- 4. ₹49 Ad 1 -->
   <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: 14px; padding: 12px; margin: 8px 14px;">
     <span style="background: #2563eb; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ರಿಯಲ್ ಎಸ್ಟೇಟ್</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🏡 ಶಿವಮೊಗ್ಗ ಗೋಪಾಳದಲ್ಲಿ 2 BHK ನೂತನ ಮನೆ ಬಾಡಿಗೆಗೆ</div>
@@ -130,7 +97,7 @@
     </div>
   </div>
 
-  <!-- 5. ₹49 Standard Ad 2 (Blue Box) -->
+  <!-- 5. ₹49 Ad 2 -->
   <div style="background: #ffffff; border: 1.5px solid #93c5fd; border-radius: 14px; padding: 12px; margin: 8px 14px;">
     <span style="background: #2563eb; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">⭐ ₹49 ಆ್ಯಡ್ • ಡೈರಿ ಉತ್ಪನ್ನ</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🥛 100% ಶುದ್ಧ ಮಲೆನಾಡು ಗಿಡ್ಡ ಹಸುವಿನ ತುಪ್ಪ</div>
@@ -141,7 +108,7 @@
     </div>
   </div>
 
-  <!-- 6. Free Ad 1 (Grey Box) -->
+  <!-- 6. Free Ad 1 -->
   <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px;">
     <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ಉದ್ಯೋಗ</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">📢 ಶಿವಮೊಗ್ಗ: ಸೂಪರ್ ಮಾರ್ಕೆಟ್‌ಗೆ ಬಿಲ್ಲಿಂಗ್ ಸ್ಟಾಫ್ ಬೇಕಾಗಿದ್ದಾರೆ</div>
@@ -152,7 +119,7 @@
     </div>
   </div>
 
-  <!-- 7. Free Ad 2 (Grey Box) -->
+  <!-- 7. Free Ad 2 -->
   <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 12px; margin: 8px 14px 80px;">
     <span style="background: #64748b; color: #fff; font-size: 9.5px; font-weight: 800; padding: 2px 6px; border-radius: 4px;">🆓 ಉಚಿತ ಆ್ಯಡ್ • ವಾಹನ</span>
     <div style="font-size: 13px; font-weight: 800; color: #0f172a; margin-top: 4px;">🛵 ಹೋಂಡಾ ಆಕ್ಟಿವಾ 5G (2019) ಮಾರಾಟಕ್ಕಿದೆ</div>
@@ -163,14 +130,12 @@
     </div>
   </div>
 
-  <!-- Bottom Nav -->
   <nav class="modern-bottom-nav">
     <a href="index.html" class="nav-tab-link"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
     <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
     <a href="post_ad.html" class="nav-center-plus">➕</a>
     <a href="admin.html" class="nav-tab-link"><span class="nav-tab-icon">⚙️</span><span>ಅಡ್ಮಿನ್</span></a>
-    <a href="https://wa.me/918431649984?text=ಸಹಾಯ%20ಬೇಕು" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
+    <a href="https://wa.me/918431649984" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
-
 </body>
 </html>
