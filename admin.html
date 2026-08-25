@@ -12,7 +12,6 @@
   <script src="firebase-config.js"></script>
 
   <style>
-    /* ಲಾಗಿನ್ ಲಾಕ್ ಸ್ಕ್ರೀನ್ ಸ್ಟೈಲ್ */
     #adminLockScreen {
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
@@ -75,16 +74,25 @@
     }
     .btn-approve { background: #059669; color: #fff; border:none; padding: 6px 14px; border-radius: 6px; font-weight:800; font-size:12px; cursor: pointer; }
     .btn-delete { background: #dc2626; color: #fff; border:none; padding: 6px 14px; border-radius: 6px; font-weight:800; font-size:12px; cursor: pointer; margin-left: 6px; }
+    .form-input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      font-size: 12px;
+      box-sizing: border-box;
+      margin-top: 4px;
+    }
   </style>
 </head>
 <body style="background: #f8fafc; display: none;" id="adminBody">
 
-  <!-- 🔒 ಪಾಸ್‌ವರ್ಡ್ ಲಾಕ್ ಸ್ಕ್ರೀನ್ (Password Gate) -->
+  <!-- 🔒 ಪಾಸ್‌ವರ್ಡ್ ಗೇಟ್ -->
   <div id="adminLockScreen">
     <div class="lock-card">
       <div style="font-size: 40px; margin-bottom: 8px;">🔐</div>
       <h3 style="margin: 0; color: #0f172a; font-size: 17px; font-weight: 800;">ಅಡ್ಮಿನ್ ಪರಿಶೀಲನೆ</h3>
-      <p style="font-size: 11.5px; color: #64748b; margin: 4px 0 10px;">ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮ ರಹಸ್ಯ PIN / Password ಹಾಕಿ</p>
+      <p style="font-size: 11.5px; color: #64748b; margin: 4px 0 10px;">ಪ್ರವೇಶಿಸಲು ನಿಮ್ಮ ರಹಸ್ಯ PIN ಹಾಕಿ</p>
       
       <input type="password" id="adminPassInput" class="lock-input" placeholder="••••" maxlength="10">
       <button onclick="checkAdminPassword()" class="lock-btn">ಅನ್ಲಾಕ್ ಮಾಡಿ ➔</button>
@@ -98,42 +106,80 @@
       <div class="brand-icon">⚙️</div>
       <div class="brand-title-box">
         <span class="brand-name">ಅಡ್ಮಿನ್ ಪ್ಯಾನೆಲ್</span>
-        <span class="brand-tag">ಜಾಹೀರಾತುಗಳ ನಿರ್ವಹಣೆ</span>
+        <span class="brand-tag">ಸುದ್ದಿ & ಕಂಟ್ರೋಲ್</span>
       </div>
     </a>
     <button onclick="logoutAdmin()" class="logout-btn">🔒 ಲಾಕ್‌ಔಟ್</button>
   </header>
 
-  <!-- News & Market Rates Live Control -->
-  <div style="background: #ffffff; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 14px; margin: 10px 14px;">
-    <h3 style="font-size: 13.5px; font-weight: 800; color: #0f172a; margin: 0 0 10px;">📈 ಮಾರುಕಟ್ಟೆ ದರಗಳ ಬದಲಾವಣೆ</h3>
+  <!-- 1. ಸುದ್ದಿ ಪ್ರಕಟಣೆ (News Publisher) -->
+  <div class="admin-card" style="border: 1.5px solid #059669;">
+    <h3 style="font-size: 13.5px; font-weight: 800; color: #065f46; margin: 0 0 10px;">📰 ಹೊಸ ಸುದ್ದಿ ಪ್ರಕಟಿಸಿ (Post News)</h3>
+    <div style="font-size: 11.5px; display: flex; flex-direction: column; gap: 8px;">
+      <div>
+        <label><strong>ಸುದ್ದಿಯ ಜಾಗ (Category/City):</strong></label>
+        <select id="news_target" class="form-input" style="background:#fff;">
+          <option value="top_news">⚡ ಹೋಮ್ ಪೇಜ್ - TOP ನ್ಯೂಸ್</option>
+          <option value="market_news">📈 ಹೋಮ್ ಪೇಜ್ - ಮಾರುಕಟ್ಟೆ ಸುದ್ದಿ</option>
+          <option value="shivamogga">🌳 ಶಿವಮೊಗ್ಗ ಸುದ್ದಿ</option>
+          <option value="davanagere">🌾 ದಾವಣಗೆರೆ ಸುದ್ದಿ</option>
+          <option value="mysuru">🏰 ಮೈಸೂರು ಸುದ್ದಿ</option>
+          <option value="belagavi">🍃 ಬೆಳಗಾವಿ ಸುದ್ದಿ</option>
+          <option value="mangaluru">🌊 ಮಂಗಳೂರು ಸುದ್ದಿ</option>
+          <option value="hubballi-dharwad">🏙️ ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ ಸುದ್ದಿ</option>
+          <option value="tumakuru">🥥 ತುಮಕೂರು ಸುದ್ದಿ</option>
+        </select>
+      </div>
+      <div>
+        <label><strong>ಸುದ್ದಿ ಶೀರ್ಷಿಕೆ (Title):</strong></label>
+        <input type="text" id="news_title" class="form-input" placeholder="ಉದಾ: ಮೈಸೂರಿನಲ್ಲಿ ಭಾರಿ ಮಳೆ...">
+      </div>
+      <div>
+        <label><strong>ಸಂಪೂರ್ಣ ಸುದ್ದಿ ವಿವರ (Full Content):</strong></label>
+        <textarea id="news_content" class="form-input" rows="4" placeholder="ಸುದ್ದಿಯ ಸಂಪೂರ್ಣ ವಿವರಗಳನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."></textarea>
+      </div>
+      <button onclick="publishNews()" style="background:#059669; color:#fff; border:none; padding:10px; border-radius:8px; font-weight:800; font-size:12px; cursor:pointer; margin-top:4px;">🚀 ಸುದ್ದಿಯನ್ನು ಪ್ರಕಟಿಸಿ</button>
+    </div>
+  </div>
+
+  <!-- 2. ಲೈವ್ ದರಗಳ ನಿರ್ವಹಣೆ -->
+  <div class="admin-card">
+    <h3 style="font-size: 13.5px; font-weight: 800; color: #0f172a; margin: 0 0 10px;">📈 ಮಾರುಕಟ್ಟೆ & ಸ್ಕ್ರೋಲರ್ ದರಗಳು</h3>
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 11px;">
       <div>
+        <label>22K ಚಿನ್ನ (Gold):</label>
+        <input type="text" id="adm_gold22" placeholder="₹6,745/g" class="form-input">
+      </div>
+      <div>
+        <label>ಬೆಳ್ಳಿ (Silver):</label>
+        <input type="text" id="adm_silver" placeholder="₹88,500/kg" class="form-input">
+      </div>
+      <div>
         <label>ಅಡಿಕೆ ದರ:</label>
-        <input type="text" id="adm_adike" placeholder="ರಾಶಿ ₹54,500/ಕ್ವಿಂ" style="width:100%; padding:6px; border:1px solid #cbd5e1; border-radius:6px; margin-top:2px;">
+        <input type="text" id="adm_adike" placeholder="ರಾಶಿ ₹54,500/ಕ್ವಿಂ" class="form-input">
       </div>
       <div>
         <label>ಕೊಬ್ಬರಿ ದರ:</label>
-        <input type="text" id="adm_kobbari" placeholder="₹13,200/ಕ್ವಿಂ" style="width:100%; padding:6px; border:1px solid #cbd5e1; border-radius:6px; margin-top:2px;">
+        <input type="text" id="adm_kobbari" placeholder="₹13,200/ಕ್ವಿಂ" class="form-input">
       </div>
       <div>
         <label>ಮೆಕ್ಕೆಜೋಳ ದರ:</label>
-        <input type="text" id="adm_maize" placeholder="₹2,150/ಕ್ವಿಂ" style="width:100%; padding:6px; border:1px solid #cbd5e1; border-radius:6px; margin-top:2px;">
+        <input type="text" id="adm_maize" placeholder="₹2,150/ಕ್ವಿಂ" class="form-input">
       </div>
       <div>
         <label>ಪೆಟ್ರೋಲ್ ದರ:</label>
-        <input type="text" id="adm_petrol" placeholder="₹102.80" style="width:100%; padding:6px; border:1px solid #cbd5e1; border-radius:6px; margin-top:2px;">
+        <input type="text" id="adm_petrol" placeholder="₹102.80" class="form-input">
       </div>
     </div>
     <button onclick="saveLiveRates()" style="background:#0284c7; color:#fff; border:none; padding:8px 14px; border-radius:6px; font-weight:800; font-size:11.5px; margin-top:10px; width:100%; cursor:pointer;">💾 ದರಗಳನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</button>
   </div>
 
-  <!-- Pending Approvals Section -->
+  <!-- 3. ಬಾಕಿ ಇರುವ ಜಾಹೀರಾತುಗಳು -->
   <div style="padding: 4px 16px;">
     <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin: 0;">⏳ ಹೊಸ ಜಾಹೀರಾತುಗಳು (Pending Approvals)</h3>
   </div>
 
-  <div id="pendingAdsList">
+  <div id="pendingAdsList" style="margin-bottom: 80px;">
     <p style="text-align:center; font-size:12px; color:#64748b; padding:20px 0;">ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...</p>
   </div>
 
@@ -146,10 +192,9 @@
     <a href="https://wa.me/918431649984" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
 
-  <!-- Script for Lock & Database Admin Logic -->
   <script>
-    // 🔑 ನಿಮ್ಮ ರಹಸ್ಯ ಅಡ್ಮಿನ್ ಪಾಸ್‌ವರ್ಡ್ (ಇಲ್ಲಿ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು)
-    const ADMIN_PASSWORD = "5462";
+    // 🔑 ನಿಮ್ಮ ಅಡ್ಮಿನ್ ಪಾಸ್‌ವರ್ಡ್
+    const ADMIN_PASSWORD = "7799";
 
     function checkAuth() {
       const isAuth = sessionStorage.getItem("samruddhi_admin_auth");
@@ -160,6 +205,7 @@
       if (isAuth === "true") {
         lockScreen.style.display = "none";
         loadPendingAds();
+        loadExistingRates();
       } else {
         lockScreen.style.display = "flex";
       }
@@ -174,6 +220,7 @@
         document.getElementById("adminLockScreen").style.display = "none";
         err.style.display = "none";
         loadPendingAds();
+        loadExistingRates();
       } else {
         err.style.display = "block";
         document.getElementById("adminPassInput").value = "";
@@ -183,6 +230,78 @@
     function logoutAdmin() {
       sessionStorage.removeItem("samruddhi_admin_auth");
       location.reload();
+    }
+
+    // ಸುದ್ದಿ ಪ್ರಕಟಣೆ ಫಂಕ್ಷನ್
+    async function publishNews() {
+      const target = document.getElementById('news_target').value;
+      const title = document.getElementById('news_title').value.trim();
+      const content = document.getElementById('news_content').value.trim();
+
+      if (!title || !content) {
+        alert("ದಯವಿಟ್ಟು ಶೀರ್ಷಿಕೆ ಮತ್ತು ವಿವರಗಳನ್ನು ಬರೆಯಿರಿ!");
+        return;
+      }
+
+      try {
+        if (typeof db !== 'undefined') {
+          await db.collection("news").add({
+            category: target,
+            title: title,
+            content: content,
+            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+          });
+        }
+
+        // Local Storage ನಲ್ಲೂ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ
+        let localNews = JSON.parse(localStorage.getItem('samruddhi_news_data') || '{}');
+        if (target === "market_news") localNews.market_content = content;
+        else if (target === "top_news") localNews.top1 = title;
+        else localNews[target] = { title, content };
+        localStorage.setItem('samruddhi_news_data', JSON.stringify(localNews));
+
+        alert("🎉 ಸುದ್ದಿ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟಗೊಂಡಿದೆ!");
+        document.getElementById('news_title').value = "";
+        document.getElementById('news_content').value = "";
+      } catch (err) {
+        alert("ದೋಷ: " + err.message);
+      }
+    }
+
+    // ದರಗಳ ಸೇವ್
+    async function saveLiveRates() {
+      const data = {
+        gold22: document.getElementById('adm_gold22').value || "₹6,745/g",
+        silver: document.getElementById('adm_silver').value || "₹88,500/kg",
+        adike: document.getElementById('adm_adike').value || "ರಾಶಿ ₹54,500/ಕ್ವಿಂ",
+        kobbari: document.getElementById('adm_kobbari').value || "₹13,200/ಕ್ವಿಂ",
+        maize: document.getElementById('adm_maize').value || "₹2,150/ಕ್ವಿಂ",
+        petrol: document.getElementById('adm_petrol').value || "₹102.80"
+      };
+
+      try {
+        if (typeof db !== 'undefined') {
+          await db.collection("settings").doc("rates").set(data, { merge: true });
+        }
+        localStorage.setItem('samruddhi_rates_data', JSON.stringify(data));
+        alert("✅ ದರಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ!");
+      } catch (e) {
+        localStorage.setItem('samruddhi_rates_data', JSON.stringify(data));
+        alert("✅ ದರಗಳು ಲೋಕಲ್ ಆಗಿ ಸೇವ್ ಆಗಿವೆ!");
+      }
+    }
+
+    function loadExistingRates() {
+      const saved = localStorage.getItem('samruddhi_rates_data');
+      if (saved) {
+        const d = JSON.parse(saved);
+        if(d.gold22) document.getElementById('adm_gold22').value = d.gold22;
+        if(d.silver) document.getElementById('adm_silver').value = d.silver;
+        if(d.adike) document.getElementById('adm_adike').value = d.adike;
+        if(d.kobbari) document.getElementById('adm_kobbari').value = d.kobbari;
+        if(d.maize) document.getElementById('adm_maize').value = d.maize;
+        if(d.petrol) document.getElementById('adm_petrol').value = d.petrol;
+      }
     }
 
     async function loadPendingAds() {
@@ -246,17 +365,6 @@
       } catch (err) {
         alert("ದೋಷ: " + err.message);
       }
-    }
-
-    function saveLiveRates() {
-      const data = {
-        adike: document.getElementById('adm_adike').value,
-        kobbari: document.getElementById('adm_kobbari').value,
-        maize: document.getElementById('adm_maize').value,
-        petrol: document.getElementById('adm_petrol').value
-      };
-      localStorage.setItem('samruddhi_rates_data', JSON.stringify(data));
-      alert("✅ ಮಾರುಕಟ್ಟೆ ದರಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಸೇವ್ ಮಾಡಲಾಗಿದೆ!");
     }
 
     window.addEventListener('DOMContentLoaded', checkAuth);
