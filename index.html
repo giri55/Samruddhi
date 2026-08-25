@@ -8,7 +8,7 @@
 
   <!-- PWA, Icons & Apple iOS Meta Tags -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#059669">
+  <meta name="theme-color" content="#065f46">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="ಸಮೃದ್ಧಿ">
@@ -21,131 +21,168 @@
   <script src="firebase-config.js"></script>
 
   <style>
+    body {
+      background: #f8fafc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      margin: 0;
+      padding-bottom: 75px;
+    }
+
+    /* 🌾 1. ರಾಯಲ್ ಗ್ರೀನ್ ಆ್ಯಡ್ ಶೋಕೇಸ್ ಬಾಕ್ಸ್ */
+    .showcase-ad-card-modern {
+      background: linear-gradient(145deg, #064e3b 0%, #065f46 60%, #047857 100%);
+      border: 1.5px solid #f59e0b;
+      border-radius: 16px;
+      padding: 14px;
+      margin: 10px 12px 6px;
+      color: #ffffff;
+      box-shadow: 0 4px 14px rgba(6, 78, 59, 0.2);
+    }
+    .showcase-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+    .sp-badge {
+      background: #f59e0b;
+      color: #0f172a;
+      font-size: 10px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+    .ad-timer-badge {
+      font-size: 11px;
+      color: #a7f3d0;
+      font-weight: 700;
+    }
+    .ad-progress-track {
+      height: 4px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+    .ad-progress-fill {
+      height: 100%;
+      background: #f59e0b;
+      width: 100%;
+      transition: width 1s linear;
+    }
+
+    /* 📲 2. ಹೊಂದಾಣಿಕೆಯಾಗುವ ಸ್ಮಾರ್ಟ್ ಸಾಫ್ಟ್-ಮಿಂಟ್ ಆ್ಯಪ್ ಬಾರ್ */
+    .app-install-strip {
+      background: #ecfdf5;
+      border: 1.5px solid #a7f3d0;
+      color: #065f46;
+      padding: 8px 12px;
+      margin: 6px 12px 10px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+    .install-strip-btn {
+      background: #059669;
+      color: #ffffff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 800;
+      cursor: pointer;
+      white-space: nowrap;
+      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.2);
+    }
+    .install-strip-btn:active {
+      background: #047857;
+      transform: scale(0.97);
+    }
+
+    /* ⚡ 3. ಪ್ರೀಮಿಯಂ ನ್ಯೂಸ್ ಕಾರ್ಡ್ಸ್ */
+    .news-section-wrap {
+      padding: 0 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .modern-news-card {
+      background: #ffffff;
+      border-radius: 14px;
+      padding: 12px 14px;
+      text-decoration: none;
+      display: block;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+    .modern-news-card.card-topnews { border-left: 4px solid #f59e0b; }
+    .modern-news-card.card-market { border-left: 4px solid #059669; }
+    .news-badge-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 6px;
+    }
+    .news-tag-pill {
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+    .pill-amber { background: #fef3c7; color: #b45309; }
+    .pill-green { background: #dcfce7; color: #15803d; }
+    
+    .news-main-title {
+      font-size: 14.5px;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1.45;
+      margin: 0 0 6px;
+    }
+    .news-card-arrow {
+      font-size: 11px;
+      font-weight: 800;
+      color: #059669;
+      text-align: right;
+    }
+
+    /* 📍 4. ಸಿಟಿ ಗ್ರಿಡ್ */
+    .city-smart-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+      padding: 0 12px 10px;
+      margin-top: 4px;
+    }
+    .city-card-box {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 10px 4px;
+      text-align: center;
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .city-card-box:active {
+      background: #f8fafc;
+      transform: scale(0.97);
+    }
+    .city-emoji { font-size: 20px; margin-bottom: 2px; }
+    .city-label { font-size: 11px; font-weight: 800; color: #334155; }
+
     .ad-share-row { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
     .share-btn-action { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; color: #ffffff; border: none; cursor: pointer; }
     .btn-wa-green { background: #25d366; }
     .btn-fb-blue { background: #1877f2; }
-    .ad-city-tag { background: #ecfdf5; color: #065f46; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 6px; display: inline-block; margin-bottom: 4px; }
-
-    /* 🔥 1. ವಿಶೇಷ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಬ್ಯಾನರ್ ಕಾರ್ಡ್ */
-    .pwa-download-banner {
-      background: linear-gradient(135deg, #065f46 0%, #047857 50%, #0f766e 100%);
-      border: 2px solid #34d399;
-      border-radius: 16px;
-      padding: 16px 14px;
-      margin: 12px 14px;
-      color: #ffffff;
-      box-shadow: 0 6px 18px rgba(5, 150, 105, 0.25);
-      position: relative;
-      overflow: hidden;
-    }
-    .pwa-top-title {
-      font-size: 14px;
-      font-weight: 800;
-      line-height: 1.4;
-      color: #ffffff;
-    }
-    .pwa-sub-text {
-      font-size: 11.5px;
-      color: #a7f3d0;
-      font-style: italic;
-      margin: 6px 0 12px;
-      line-height: 1.4;
-    }
-    .pwa-install-btn {
-      background: #f59e0b;
-      color: #000000;
-      width: 100%;
-      border: none;
-      border-radius: 10px;
-      padding: 12px;
-      font-size: 13.5px;
-      font-weight: 900;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.35);
-    }
-    .pwa-install-btn:active {
-      transform: scale(0.98);
-      background: #d97706;
-    }
-
-    /* 🔥 2. ದೊಡ್ಡ ಸುದ್ದಿ ಬಾಕ್ಸ್‌ಗಳು */
-    .news-dual-wrapper {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      padding: 0 14px;
-      margin-top: 6px;
-    }
-    .big-news-card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 16px;
-      text-decoration: none;
-      display: block;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-    }
-    .big-news-card.market-theme {
-      border: 2px solid #10b981;
-      background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 40%);
-    }
-    .big-news-card.topnews-theme {
-      border: 2px solid #f59e0b;
-      background: linear-gradient(180deg, #fffbeb 0%, #ffffff 40%);
-    }
-    .news-pill-tag {
-      font-size: 11px;
-      font-weight: 800;
-      padding: 3px 8px;
-      border-radius: 6px;
-      display: inline-block;
-    }
-    .tag-green { background: #059669; color: #fff; }
-    .tag-amber { background: #d97706; color: #fff; }
-
-    .news-box-title {
-      font-size: 16px !important;
-      font-weight: 800 !important;
-      color: #0f172a !important;
-      line-height: 1.5 !important;
-      margin: 10px 0 6px !important;
-    }
-    .news-read-cta {
-      font-size: 12px;
-      font-weight: 800;
-      color: #059669;
-      display: flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 4px;
-      margin-top: 6px;
-    }
-
-    /* 🔥 3. ಕಾಂಪ್ಯಾಕ್ಟ್ ನಗರಗಳ ಚಿಪ್ಸ್ */
-    .compact-city-scroll {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      padding: 0 14px 20px;
-      margin-top: 6px;
-    }
-    .city-chip {
-      background: #ffffff;
-      border: 1px solid #cbd5e1;
-      border-radius: 20px;
-      padding: 6px 12px;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      text-decoration: none;
-      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
-    }
-    .city-chip-icon { font-size: 14px; }
-    .city-chip-name { font-size: 12px; font-weight: 800; color: #1e293b; }
+    .ad-city-tag { background: rgba(255,255,255,0.15); color: #a7f3d0; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 6px; display: inline-block; margin-bottom: 4px; }
+    .ad-slide-box { display: none; }
+    .ad-slide-box.active { display: block; }
   </style>
 </head>
 <body>
@@ -173,8 +210,8 @@
     </div>
   </div>
 
-  <!-- Featured Ad Showcase -->
-  <div class="showcase-ad-card">
+  <!-- 1. ರಾಯಲ್ ಗ್ರೀನ್ ಆ್ಯಡ್ ಶೋಕೇಸ್ ಬಾಕ್ಸ್ -->
+  <div class="showcase-ad-card-modern">
     <div class="showcase-top-row">
       <span class="sp-badge">⭐ ಪ್ರಾಯೋಜಿತ ಜಾಹೀರಾತು</span>
       <span class="ad-timer-badge">⏱️ <span id="adSeconds">30</span>s</span>
@@ -184,8 +221,8 @@
     <div id="liveAdsSliderWrapper">
       <div class="ad-slide-box active" id="ad1">
         <span class="ad-city-tag">📍 ಶಿವಮೊಗ್ಗ & ದಾವಣಗೆರೆ</span>
-        <div class="ad-title-text">🚜 ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
-        <div class="ad-desc-text">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
+        <div style="font-size:13.5px; font-weight:800; color:#ffffff; margin:2px 0;">🚜 ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ & ಕ್ಲೀನಿಂಗ್ ಮಷಿನ್ ಲಭ್ಯ!</div>
+        <div style="font-size:11.5px; color:#e2e8f0; line-height:1.4;">ರೈತರಿಗೆ ವಿಶೇಷ ರಿಯಾಯಿತಿ ದರದಲ್ಲಿ ಮಾರಾಟ. 1 ವರ್ಷ ವಾರಂಟಿ & ಉಚಿತ ಹೋಮ್ ಡೆಲಿವರಿ.</div>
         <div class="ad-share-row">
           <a href="https://api.whatsapp.com/send?text=🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಜಾಹೀರಾತು:* %0A🚜 *ನೂತನ ಅಡಿಕೆ ಸುಲಿಯುವ ಮಷಿನ್ ಲಭ್ಯ!* %0A👉 https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-wa-green">💬 ಶೇರ್</a>
           <a href="https://www.facebook.com/sharer/sharer.php?u=https://samruddhi-ads.vercel.app" target="_blank" class="share-btn-action btn-fb-blue">📘 ಶೇರ್</a>
@@ -194,54 +231,60 @@
     </div>
   </div>
 
-  <!-- 📲 ವಿಶೇಷ ಆ್ಯಪ್ ಡೌನ್‌ಲೋಡ್ ಬ್ಯಾನರ್ (PWA Install Card) -->
-  <div class="pwa-download-banner">
-    <div style="display: flex; align-items: flex-start; gap: 10px;">
-      <div style="font-size: 32px; line-height: 1;">📱</div>
+  <!-- 2. ಕಣ್ಣಿಗೆ ತಂಪಾದ ಹೊಂದಿಕೆಯಾಗುವ ಆ್ಯಪ್ ಡೌನ್‌ಲೋಡ್ ಸ್ಟ್ರಿಪ್ -->
+  <div class="app-install-strip">
+    <div style="display: flex; align-items: center; gap: 8px;">
+      <span style="font-size: 20px;">📲</span>
       <div>
-        <div class="pwa-top-title">ಉಚಿತ ಹಾಗೂ ಅತಿ ಕಡಿಮೆ ದರದಲ್ಲಿ ಜಾಹೀರಾತು ಹಾಕಲು ಸಮೃದ್ಧಿ ತಾಣದ ಆ್ಯಪ್ ಅನ್ನು ಈಗಲೇ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿಕೊಳ್ಳಿ!</div>
-        <div class="pwa-sub-text">✨ ಸ್ವತಃ ನೀವೇ ನಿಮ್ಮ ಜಾಹೀರಾತನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು.</div>
+        <div style="font-size: 11.5px; font-weight: 800; color:#065f46;">ಸಮೃದ್ಧಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿಕೊಳ್ಳಿ</div>
+        <div style="font-size: 9.5px; color:#047857; font-weight: 600;">ಉಚಿತವಾಗಿ ಸ್ವತಃ ನೀವೇ ಜಾಹೀರಾತು ಹಾಕಬಹುದು</div>
       </div>
     </div>
-    <button onclick="triggerPwaInstall()" class="pwa-install-btn" id="pwaInstallBtn">
-      <span>📲</span> <span>Samruddhi App ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ</span>
-    </button>
+    <button onclick="triggerPwaInstall()" class="install-strip-btn">📲 Install App</button>
   </div>
 
-  <!-- ⚡ 1. ದೊಡ್ಡ ಸುದ್ದಿ ವಿಭಾಗ -->
-  <div class="section-title-strip" style="margin-top: 10px;">
+  <!-- 3. ತಾಜಾ ಸುದ್ದಿ ವಿಭಾಗ -->
+  <div class="section-title-strip" style="margin-top: 4px;">
     <span class="sec-head">⚡ ತಾಜಾ ಸಮಾಚಾರ & ಮಾರುಕಟ್ಟೆ</span>
-    <span style="font-size: 11px; color: #059669; font-weight: 800;">🔴 ಲೈವ್ ಅಪ್‌ಡೇಟ್</span>
+    <span style="font-size: 10.5px; color: #059669; font-weight: 800;">🔴 ಲೈವ್</span>
   </div>
 
-  <div class="news-dual-wrapper">
-    <a href="news_detail.html?type=top" class="big-news-card topnews-theme">
-      <div class="news-pill-tag tag-amber">⚡ TOP ನ್ಯೂಸ್</div>
-      <div class="news-box-title" id="front_top_news">🏛️ ಸ್ಥಳೀಯ ವಾಣಿಜ್ಯ ಹಾಗೂ ಪ್ರಮುಖ ತಾಜಾ ಸುದ್ದಿ ಓದಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ...</div>
-      <div class="news-read-cta" style="color: #d97706;">ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ ➔</div>
+  <div class="news-section-wrap">
+    <!-- Top News -->
+    <a href="news_detail.html?type=top" class="modern-news-card card-topnews">
+      <div class="news-badge-row">
+        <span class="news-tag-pill pill-amber">⚡ TOP ನ್ಯೂಸ್</span>
+        <span style="font-size: 10px; color: #94a3b8;">ಇಂದಿನ ಮುಖ್ಯಾಂಶ</span>
+      </div>
+      <div class="news-main-title" id="front_top_news">🏛️ ರಾಜ್ಯದ ಪ್ರಮುಖ ಸ್ಥಳೀಯ ವಾಣಿಜ್ಯ & ತಾಜಾ ಸುದ್ದಿ ಓದಲು ಕ್ಲಿಕ್ ಮಾಡಿ...</div>
+      <div class="news-card-arrow" style="color:#d97706;">ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ ➔</div>
     </a>
 
-    <a href="news_detail.html?type=market" class="big-news-card market-theme">
-      <div class="news-pill-tag tag-green">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</div>
-      <div class="news-box-title" id="front_market_news">📊 ಇಂದಿನ ಕೃಷಿ ಉತ್ಪನ್ನಗಳು & ಮಾರುಕಟ್ಟೆ ದರಗಳ ಸಂಪೂರ್ಣ ವರದಿ...</div>
-      <div class="news-read-cta">ಸಂಪೂರ್ಣ ವರದಿ ಓದಿ ➔</div>
+    <!-- Market News -->
+    <a href="news_detail.html?type=market" class="modern-news-card card-market">
+      <div class="news-badge-row">
+        <span class="news-tag-pill pill-green">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</span>
+        <span style="font-size: 10px; color: #94a3b8;">ಕೃಷಿ ದರಗಳು</span>
+      </div>
+      <div class="news-main-title" id="front_market_news">📊 ಇಂದಿನ ಕೃಷಿ ಉತ್ಪನ್ನಗಳು & ಮಾರುಕಟ್ಟೆ ದರಗಳ ಸಂಪೂರ್ಣ ವರದಿ...</div>
+      <div class="news-card-arrow">ಸಂಪೂರ್ಣ ವರದಿ ಓದಿ ➔</div>
     </a>
   </div>
 
-  <!-- 📍 2. ಕಾಂಪ್ಯಾಕ್ಟ್ ನಗರಗಳು -->
-  <div class="section-title-strip" style="margin-top: 16px;">
-    <span class="sec-head">📍 ನಗರಗಳು (Select City)</span>
-    <span style="font-size: 10.5px; color: #64748b; font-weight: 700;">7 ಊರುಗಳು</span>
+  <!-- 4. ನಿಮ್ಮೂರ ಪೋರ್ಟಲ್ ಗ್ರಿಡ್ -->
+  <div class="section-title-strip" style="margin-top: 12px;">
+    <span class="sec-head">📍 ನಿಮ್ಮೂರ ಪೋರ್ಟಲ್</span>
+    <span style="font-size: 10px; color: #64748b; font-weight: 700;">ನಗರ ಆಯ್ಕೆ ಮಾಡಿ</span>
   </div>
 
-  <div class="compact-city-scroll">
-    <a href="shivamogga.html" class="city-chip"><span class="city-chip-icon">🌳</span><span class="city-chip-name">ಶಿವಮೊಗ್ಗ</span></a>
-    <a href="davanagere.html" class="city-chip"><span class="city-chip-icon">🌾</span><span class="city-chip-name">ದಾವಣಗೆರೆ</span></a>
-    <a href="mysuru.html" class="city-chip"><span class="city-chip-icon">🏰</span><span class="city-chip-name">ಮೈಸೂರು</span></a>
-    <a href="belagavi.html" class="city-chip"><span class="city-chip-icon">🍃</span><span class="city-chip-name">ಬೆಳಗಾವಿ</span></a>
-    <a href="mangaluru.html" class="city-chip"><span class="city-chip-icon">🌊</span><span class="city-chip-name">ಮಂಗಳೂರು</span></a>
-    <a href="hubballi-dharwad.html" class="city-chip"><span class="city-chip-icon">🏙️</span><span class="city-chip-name">ಹುಬ್ಬಳ್ಳಿ-ಧಾ.</span></a>
-    <a href="tumakuru.html" class="city-chip"><span class="city-chip-icon">🥥</span><span class="city-chip-name">ತುಮಕೂರು</span></a>
+  <div class="city-smart-grid">
+    <a href="shivamogga.html" class="city-card-box"><span class="city-emoji">🌳</span><span class="city-label">ಶಿವಮೊಗ್ಗ</span></a>
+    <a href="davanagere.html" class="city-card-box"><span class="city-emoji">🌾</span><span class="city-label">ದಾವಣಗೆರೆ</span></a>
+    <a href="mysuru.html" class="city-card-box"><span class="city-emoji">🏰</span><span class="city-label">ಮೈಸೂರು</span></a>
+    <a href="belagavi.html" class="city-card-box"><span class="city-emoji">🍃</span><span class="city-label">ಬೆಳಗಾವಿ</span></a>
+    <a href="mangaluru.html" class="city-card-box"><span class="city-emoji">🌊</span><span class="city-label">ಮಂಗಳೂರು</span></a>
+    <a href="hubballi-dharwad.html" class="city-card-box"><span class="city-emoji">🏙️</span><span class="city-label">ಹುಬ್ಬಳ್ಳಿ-ಧಾ.</span></a>
+    <a href="tumakuru.html" class="city-card-box" style="grid-column: span 2;"><span class="city-emoji">🥥</span><span class="city-label">ತುಮಕೂರು ಜಿಲ್ಲೆ</span></a>
   </div>
 
   <!-- Bottom Nav -->
@@ -253,7 +296,7 @@
     <a href="https://wa.me/918431649984" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
 
-  <!-- PWA Install Trigger Logic -->
+  <!-- PWA Install Trigger -->
   <script>
     let deferredPrompt;
     window.addEventListener('beforeinstallprompt', (e) => {
@@ -265,15 +308,12 @@
       if (deferredPrompt) {
         deferredPrompt.prompt();
         const { outcome } = await deferredPrompt.userChoice;
-        if (outcome === 'accepted') {
-          console.log('App Installed');
-        }
+        if (outcome === 'accepted') console.log('App Installed');
         deferredPrompt = null;
       } else {
-        // ಐಫೋನ್ ಅಥವಾ ಮ್ಯಾನುಯಲ್ ಬ್ರೌಸರ್‌ಗಳಿಗೆ ಗೈಡ್
         const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
         if (isIos) {
-          alert("📱 iPhone ನಲ್ಲಿ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\n1. ಕೆಳಗಿನ Share 📤 ಬಟನ್ ಒತ್ತಿ\n2. 'Add to Home Screen' (➕) ಆಯ್ಕೆ ಮಾಡಿ!");
+          alert("📱 iPhone ನಲ್ಲಿ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\n1. ಕೆಳಗಿನ Share 📤 ಬಟನ್ ಒತ್ತಿ\n2. 'Add to Home Screen' ಆಯ್ಕೆ ಮಾಡಿ!");
         } else {
           alert("📱 ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\nGoogle Chrome ನ ಮೇಲ್ಭಾಗದ 3 ಚುಕ್ಕೆಗಳನ್ನು ಒತ್ತಿ 'Install app' ಅಥವಾ 'Add to Home screen' ಆಯ್ಕೆ ಮಾಡಿ!");
         }
@@ -287,7 +327,7 @@
     }
   </script>
 
-  <!-- News & Live Ads Loader -->
+  <!-- Live Data Loader -->
   <script>
     var currentSlide = 1, totalSlides = 1, maxSeconds = 30, remaining = maxSeconds, timerInterval = null;
 
@@ -326,8 +366,8 @@
             <div class="ad-slide-box ${(count === 1) ? 'active' : ''}" id="ad${count}">
               <span class="ad-city-tag">📍 ${cityName}</span>
               ${imgTag}
-              <div class="ad-title-text">${ad.title}</div>
-              <div class="ad-desc-text">${ad.desc || ad.description || ''}</div>
+              <div style="font-size:13.5px; font-weight:800; color:#ffffff; margin:2px 0;">${ad.title}</div>
+              <div style="font-size:11.5px; color:#e2e8f0; line-height:1.4;">${ad.desc || ad.description || ''}</div>
               <div class="ad-share-row">
                 <a href="https://api.whatsapp.com/send?text=${shareText}" target="_blank" class="share-btn-action btn-wa-green">💬 ಶೇರ್</a>
                 <a href="https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(targetCityUrl)}" target="_blank" class="share-btn-action btn-fb-blue">📘 ಶೇರ್</a>
