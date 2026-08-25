@@ -6,6 +6,7 @@
   <title>ಸಮೃದ್ಧಿ - ನಮ್ಮೂರ ಸೂಪರ್ ಪೋರ್ಟಲ್</title>
   <link rel="stylesheet" href="style.css">
 
+  <!-- PWA, Icons & Apple iOS Meta Tags -->
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#059669">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -20,23 +21,95 @@
   <script src="firebase-config.js"></script>
 
   <style>
+    /* ಶೇರ್ ಬಟನ್ ಸ್ಟೈಲ್ */
     .ad-share-row { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
     .share-btn-action { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; color: #ffffff; border: none; cursor: pointer; }
     .btn-wa-green { background: #25d366; }
     .btn-fb-blue { background: #1877f2; }
     .ad-city-tag { background: #ecfdf5; color: #065f46; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 6px; display: inline-block; margin-bottom: 4px; }
-    
-    /* ದೊಡ್ಡ ಮತ್ತು ಆಕರ್ಷಕ ನ್ಯೂಸ್ ಬಾಕ್ಸ್ ಶೀರ್ಷಿಕೆ */
+
+    /* 🔥 1. ದೊಡ್ಡ ಮತ್ತು ವಿಶಾಲವಾದ ಸುದ್ದಿ ಬಾಕ್ಸ್‌ಗಳು */
+    .news-dual-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding: 0 14px;
+      margin-top: 6px;
+    }
+    .big-news-card {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 16px;
+      text-decoration: none;
+      display: block;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+      transition: transform 0.2s ease;
+    }
+    .big-news-card.market-theme {
+      border: 2px solid #10b981;
+      background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 40%);
+    }
+    .big-news-card.topnews-theme {
+      border: 2px solid #f59e0b;
+      background: linear-gradient(180deg, #fffbeb 0%, #ffffff 40%);
+    }
+    .news-pill-tag {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 8px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+    .tag-green { background: #059669; color: #fff; }
+    .tag-amber { background: #d97706; color: #fff; }
+
     .news-box-title {
-      font-size: 14.5px !important;
+      font-size: 16px !important;
       font-weight: 800 !important;
       color: #0f172a !important;
-      line-height: 1.4 !important;
-      margin: 8px 0 !important;
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      line-height: 1.5 !important;
+      margin: 10px 0 6px !important;
+    }
+    .news-read-cta {
+      font-size: 12px;
+      font-weight: 800;
+      color: #059669;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    /* 🏷️ 2. ಕಾಂಪ್ಯಾಕ್ಟ್ (ಸಣ್ಣ ಸೈಜ್) ನಗರಗಳ ಚಿಪ್ಸ್ */
+    .compact-city-scroll {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 0 14px 20px;
+      margin-top: 6px;
+    }
+    .city-chip {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 20px;
+      padding: 6px 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+    }
+    .city-chip:active {
+      background: #f1f5f9;
+    }
+    .city-chip-icon {
+      font-size: 14px;
+    }
+    .city-chip-name {
+      font-size: 12px;
+      font-weight: 800;
+      color: #1e293b;
     }
   </style>
 </head>
@@ -86,46 +159,42 @@
     </div>
   </div>
 
-  <!-- 2. Dual Side-by-Side News Section (ಹಳೆಯ ಲೈನ್‌ಗಳು ಇಲ್ಲ, ಕೇವಲ ಬೋಲ್ಡ್ ಶೀರ್ಷಿಕೆ) -->
-  <div class="section-title-strip">
+  <!-- ⚡ 1. ವಿಶಾಲವಾದ ದೊಡ್ಡ ಸುದ್ದಿ ವಿಭಾಗ -->
+  <div class="section-title-strip" style="margin-top: 14px;">
     <span class="sec-head">⚡ ತಾಜಾ ಸಮಾಚಾರ & ಮಾರುಕಟ್ಟೆ</span>
-    <span style="font-size: 10.5px; color: #059669; font-weight: 700;">ಲೈವ್ ಅಪ್‌ಡೇಟ್</span>
+    <span style="font-size: 11px; color: #059669; font-weight: 800;">🔴 ಲೈವ್ ಅಪ್‌ಡೇಟ್</span>
   </div>
 
   <div class="news-dual-wrapper">
-    <!-- Market News Card -->
-    <a href="news_detail.html?type=market" class="news-interactive-card market-theme" style="text-decoration:none;">
-      <div>
-        <div class="news-pill-tag tag-green">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</div>
-        <div class="news-box-title" id="front_market_news">📊 ಇಂದಿನ ಕೃಷಿ ಉತ್ಪನ್ನಗಳು & ಮಾರುಕಟ್ಟೆ ದರಗಳ ವಿವರ ಓದಲು ಕ್ಲಿಕ್ ಮಾಡಿ...</div>
-      </div>
-      <div class="read-more-link" style="margin-top:auto;">ಸಂಪೂರ್ಣ ಓದಿ ➔</div>
+    <!-- Top News (ದೊಡ್ಡ ಬಾಕ್ಸ್) -->
+    <a href="news_detail.html?type=top" class="big-news-card topnews-theme">
+      <div class="news-pill-tag tag-amber">⚡ TOP ನ್ಯೂಸ್</div>
+      <div class="news-box-title" id="front_top_news">🏛️ ಸ್ಥಳೀಯ ವಾಣಿಜ್ಯ ಹಾಗೂ ಪ್ರಮುಖ ತಾಜಾ ಸುದ್ದಿ ಓದಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ...</div>
+      <div class="news-read-cta" style="color: #d97706;">ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ ➔</div>
     </a>
 
-    <!-- Top News Card -->
-    <a href="news_detail.html?type=top" class="news-interactive-card topnews-theme" style="text-decoration:none;">
-      <div>
-        <div class="news-pill-tag tag-amber">⚡ TOP ನ್ಯೂಸ್</div>
-        <div class="news-box-title" id="front_top_news">🏛️ ರಾಜ್ಯದ ಪ್ರಮುಖ ಸ್ಥಳೀಯ ವಾಣಿಜ್ಯ & ತಾಜಾ ಸುದ್ದಿ ಓದಲು ಕ್ಲಿಕ್ ಮಾಡಿ...</div>
-      </div>
-      <div class="read-more-link" style="margin-top:auto;">ಸಂಪೂರ್ಣ ಓದಿ ➔</div>
+    <!-- Market News (ದೊಡ್ಡ ಬಾಕ್ಸ್) -->
+    <a href="news_detail.html?type=market" class="big-news-card market-theme">
+      <div class="news-pill-tag tag-green">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</div>
+      <div class="news-box-title" id="front_market_news">📊 ಇಂದಿನ ಕೃಷಿ ಉತ್ಪನ್ನಗಳು & ಮಾರುಕಟ್ಟೆ ದರಗಳ ಸಂಪೂರ್ಣ ವರದಿ...</div>
+      <div class="news-read-cta">ಸಂಪೂರ್ಣ ವರದಿ ಓದಿ ➔</div>
     </a>
   </div>
 
-  <!-- Cities Grid Section -->
-  <div class="section-title-strip">
+  <!-- 📍 2. ಕಾಂಪ್ಯಾಕ್ಟ್ ನಗರಗಳ ಸೆಲೆಕ್ಷನ್ (ಜಾಗ ಉಳಿಸುವ ಸ್ಮಾರ್ಟ್ ಚಿಪ್ಸ್) -->
+  <div class="section-title-strip" style="margin-top: 16px;">
     <span class="sec-head">📍 ನಗರಗಳು (Select City)</span>
-    <span style="font-size: 10.5px; color: #64748b; font-weight: 700;">7 ಪ್ರಮುಖ ಊರುಗಳು</span>
+    <span style="font-size: 10.5px; color: #64748b; font-weight: 700;">7 ಊರುಗಳು</span>
   </div>
 
-  <div class="city-tiles-grid">
-    <a href="shivamogga.html" class="city-tile c-shivamogga"><span class="city-tile-icon">🌳</span><span class="city-tile-name">ಶಿವಮೊಗ್ಗ</span></a>
-    <a href="davanagere.html" class="city-tile c-davanagere"><span class="city-tile-icon">🌾</span><span class="city-tile-name">ದಾವಣಗೆರೆ</span></a>
-    <a href="mysuru.html" class="city-tile c-mysuru"><span class="city-tile-icon">🏰</span><span class="city-tile-name">ಮೈಸೂರು</span></a>
-    <a href="belagavi.html" class="city-tile c-belagavi"><span class="city-tile-icon">🍃</span><span class="city-tile-name">ಬೆಳಗಾವಿ</span></a>
-    <a href="mangaluru.html" class="city-tile c-mangaluru"><span class="city-tile-icon">🌊</span><span class="city-tile-name">ಮಂಗಳೂರು</span></a>
-    <a href="hubballi-dharwad.html" class="city-tile c-hubballi"><span class="city-tile-icon">🏙️</span><span class="city-tile-name">ಹುಬ್ಬಳ್ಳಿ-ಧಾ.</span></a>
-    <a href="tumakuru.html" class="city-tile c-tumakuru" style="grid-column: span 3;"><span class="city-tile-icon">🥥</span><span class="city-tile-name">ತುಮಕೂರು ನಗರ & ಗ್ರಾಮಾಂತರ</span></a>
+  <div class="compact-city-scroll">
+    <a href="shivamogga.html" class="city-chip"><span class="city-chip-icon">🌳</span><span class="city-chip-name">ಶಿವಮೊಗ್ಗ</span></a>
+    <a href="davanagere.html" class="city-chip"><span class="city-chip-icon">🌾</span><span class="city-chip-name">ದಾವಣಗೆರೆ</span></a>
+    <a href="mysuru.html" class="city-chip"><span class="city-chip-icon">🏰</span><span class="city-chip-name">ಮೈಸೂರು</span></a>
+    <a href="belagavi.html" class="city-chip"><span class="city-chip-icon">🍃</span><span class="city-chip-name">ಬೆಳಗಾವಿ</span></a>
+    <a href="mangaluru.html" class="city-chip"><span class="city-chip-icon">🌊</span><span class="city-chip-name">ಮಂಗಳೂರು</span></a>
+    <a href="hubballi-dharwad.html" class="city-chip"><span class="city-chip-icon">🏙️</span><span class="city-chip-name">ಹುಬ್ಬಳ್ಳಿ-ಧಾ.</span></a>
+    <a href="tumakuru.html" class="city-chip"><span class="city-chip-icon">🥥</span><span class="city-chip-name">ತುಮಕೂರು</span></a>
   </div>
 
   <!-- Bottom Nav -->
@@ -141,12 +210,10 @@
     var currentSlide = 1, totalSlides = 1, maxSeconds = 30, remaining = maxSeconds, timerInterval = null;
 
     async function fetchFrontNews() {
-      // 1. LocalStorage ನಿಂದ ತಕ್ಷಣ ಲೋಡ್
       const local = JSON.parse(localStorage.getItem('samruddhi_news_data') || '{}');
       if (local.top_news_title) document.getElementById('front_top_news').innerText = local.top_news_title;
       if (local.market_news_title) document.getElementById('front_market_news').innerText = local.market_news_title;
 
-      // 2. Firebase ನಿಂದ ಲೈವ್ ಸುದ್ದಿ ಅಪ್‌ಡೇಟ್
       try {
         if (typeof db !== 'undefined') {
           const topSnap = await db.collection("news").where("category", "==", "top_news").orderBy("timestamp", "desc").limit(1).get();
