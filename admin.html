@@ -5,23 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ಅಡ್ಮಿನ್ ಕಂಟ್ರೋಲ್ ಪ್ಯಾನೆಲ್ - ಸಮೃದ್ಧಿ</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
   <style>
     .form-card {
       background: #ffffff;
-      margin: 12px 14px;
+      margin: 12px 14px 80px;
       padding: 16px;
       border-radius: 16px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border, #e2e8f0);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
     .admin-tab-btn {
-      padding: 6px 12px;
-      font-size: 11px;
-      font-weight: 700;
+      padding: 8px 14px;
+      font-size: 11.5px;
+      font-weight: 800;
       border-radius: 20px;
-      border: 1px solid #cbd5e1;
+      border: 1.5px solid #cbd5e1;
       background: #f8fafc;
       cursor: pointer;
       white-space: nowrap;
+      transition: 0.2s;
     }
     .admin-tab-btn.active {
       background: #2563eb;
@@ -30,16 +38,41 @@
     }
     .form-input {
       width: 100%;
-      padding: 8px 10px;
+      padding: 9px 12px;
       border: 1.5px solid #cbd5e1;
       border-radius: 8px;
-      font-size: 12px;
+      font-size: 12.5px;
       margin-bottom: 8px;
+      box-sizing: border-box;
+      outline: none;
+      background: #f8fafc;
     }
+    .form-input:focus {
+      border-color: #2563eb;
+      background: #fff;
+    }
+    .ad-review-card {
+      background: #f8fafc;
+      border: 1.5px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+    .ad-btn-action {
+      padding: 6px 14px;
+      border-radius: 15px;
+      font-size: 11px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-approve { background: #059669; color: #fff; }
+    .btn-delete { background: #dc2626; color: #fff; margin-left: 8px; }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">⚙️</div>
@@ -48,60 +81,60 @@
         <span class="brand-tag">ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್</span>
       </div>
     </a>
-    <span style="background: #dcfce7; color: #15803d; font-size: 9.5px; font-weight: 800; padding: 2px 8px; border-radius: 10px;">🟢 LIVE</span>
+    <span style="background: #dcfce7; color: #15803d; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 12px;">🟢 ಲೈವ್ ಕನೆಕ್ಟ್</span>
   </header>
 
-  <div style="display: flex; gap: 6px; padding: 10px 14px; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--border);">
-    <button class="admin-tab-btn active" onclick="switchAdminTab('newsTab', this)">📰 ನ್ಯೂಸ್ ಅಪ್‌ಡೇಟ್</button>
-    <button class="admin-tab-btn" onclick="switchAdminTab('adsTab', this)">📥 ಆ್ಯಡ್ಸ್ ಅಪ್ರೂವಲ್ (3)</button>
-    <button class="admin-tab-btn" onclick="switchAdminTab('tickerTab', this)">🪙 ದರ ಅಪ್‌ಡೇಟ್</button>
+  <!-- Navigation Tabs -->
+  <div style="display: flex; gap: 8px; padding: 10px 14px; overflow-x: auto; background: #fff; border-bottom: 1px solid var(--border, #e2e8f0);">
+    <button class="admin-tab-btn active" onclick="switchAdminTab('adsTab', this)">📥 ಆ್ಯಡ್ಸ್ ಅಪ್ರೂವಲ್ <span id="adCountBadge"></span></button>
+    <button class="admin-tab-btn" onclick="switchAdminTab('newsTab', this)">📰 ನ್ಯೂಸ್ ಅಪ್‌ಡೇಟ್</button>
+    <button class="admin-tab-btn" onclick="switchAdminTab('tickerTab', this)">🪙 ದಿನದ ದರಗಳು</button>
   </div>
 
-  <!-- TAB 1: News Management -->
-  <div id="newsTab" class="form-card">
-    <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 10px;">📰 ಹೋಮ್ ಪೇಜ್ & ಸಿಟಿ ನ್ಯೂಸ್ ಮ್ಯಾನೇಜರ್</h3>
+  <!-- TAB 1: Realtime Pending Ads (Main Focus) -->
+  <div id="adsTab" class="form-card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+      <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin: 0;">📥 ಪರಿಶೀಲನೆಗೆ ಬಂದಿರುವ ಹೊಸ ಜಾಹೀರಾತುಗಳು</h3>
+      <button onclick="loadPendingAds()" style="background: #e2e8f0; border: none; padding: 4px 10px; border-radius: 10px; font-size: 11px; cursor: pointer;">🔄 ರಿಫ್ರೆಶ್</button>
+    </div>
+    
+    <div id="pendingAdsList">
+      <p style="font-size: 12px; color: #64748b; text-align: center; padding: 20px 0;">ಜಾಹೀರಾತುಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</p>
+    </div>
+  </div>
+
+  <!-- TAB 2: News Management -->
+  <div id="newsTab" class="form-card" style="display: none;">
+    <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin-bottom: 10px;">📰 ಮಾರ್ಕೆಟ್ & ಟಾಪ್ ನ್ಯೂಸ್ ಅಪ್‌ಡೇಟರ್</h3>
     
     <form onsubmit="saveNewsUpdates(event)">
       <!-- Market News -->
-      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
-        <label style="font-size: 11.5px; font-weight: 800; color: #15803d; display: block; margin-bottom: 4px;">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</label>
+      <div style="background: #f0fdf4; border: 1px solid #bbf7d0; padding: 12px; border-radius: 10px; margin-bottom: 12px;">
+        <label style="font-size: 11.5px; font-weight: 800; color: #15803d; display: block; margin-bottom: 6px;">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</label>
         <input type="text" id="adm_adike" class="form-input" placeholder="ಅಡಿಕೆ ಬೆಲೆ" value="ರಾಶಿ ₹54,500/ಕ್ವಿಂ">
         <input type="text" id="adm_kobbari" class="form-input" placeholder="ಕೊಬ್ಬರಿ ಬೆಲೆ" value="₹13,200/ಕ್ವಿಂ">
         <input type="text" id="adm_maize" class="form-input" placeholder="ಮೆಕ್ಕೆಜೋಳ ಬೆಲೆ" value="₹2,150/ಕ್ವಿಂ">
-        <textarea id="adm_market_full" class="form-input" rows="2" placeholder="ಮಾರ್ಕೆಟ್ ಪೂರ್ಣ ವಿವರಣೆ..."></textarea>
       </div>
 
       <!-- Top News -->
-      <div style="background: #fffbeb; border: 1px solid #fed7aa; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
-        <label style="font-size: 11.5px; font-weight: 800; color: #c2410c; display: block; margin-bottom: 4px;">⚡ TOP ನ್ಯೂಸ್</label>
+      <div style="background: #fffbeb; border: 1px solid #fed7aa; padding: 12px; border-radius: 10px; margin-bottom: 12px;">
+        <label style="font-size: 11.5px; font-weight: 800; color: #c2410c; display: block; margin-bottom: 6px;">⚡ TOP ನ್ಯೂಸ್</label>
         <input type="text" id="adm_top1" class="form-input" value="🏛️ ಸ್ಥಳೀಯ ನೈಜ ಉತ್ಪನ್ನಗಳಿಗೆ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ಭಾರಿ ಬೇಡಿಕೆ!">
         <input type="text" id="adm_top2" class="form-input" value="⚡ ನಗರದ ಪ್ರಮುಖ ಬಡಾವಣೆಗಳಲ್ಲಿ ನಾಳೆ 10 ರಿಂದ ವಿದ್ಯುತ್ ನಿರ್ವಹಣೆ.">
-        <textarea id="adm_top_full" class="form-input" rows="2" placeholder="TOP ನ್ಯೂಸ್ ಪೂರ್ಣ ವಿವರಣೆ..."></textarea>
       </div>
 
-      <button type="submit" style="width: 100%; background: #2563eb; color: #fff; border: none; padding: 10px; border-radius: 20px; font-weight: 800; font-size: 13px; cursor: pointer;">
-        🚀 ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ
+      <button type="submit" id="newsSaveBtn" style="width: 100%; background: #2563eb; color: #fff; border: none; padding: 10px; border-radius: 20px; font-weight: 800; font-size: 13px; cursor: pointer;">
+        🚀 ನ್ಯೂಸ್ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ
       </button>
     </form>
   </div>
 
-  <!-- TAB 2: Pending Ads -->
-  <div id="adsTab" class="form-card" style="display: none;">
-    <h3 style="font-size: 13.5px; font-weight: 800; margin-bottom: 8px;">📥 ಪರಿಶೀಲನೆಗೆ ಬಂದಿರುವ ಜಾಹೀರಾತುಗಳು</h3>
-    <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; margin-bottom: 8px;" id="ad1">
-      <div style="font-size: 11px; font-weight: 700; color: #2563eb;">📍 ಶಿವಮೊಗ್ಗ • ₹49 ಪ್ಲಾನ್</div>
-      <div style="font-size: 12.5px; font-weight: 800;">ಶುದ್ಧ ಗಿರ್ ಹಸುವಿನ ಹಾಲು & ತುಪ್ಪ</div>
-      <p style="font-size: 11px; color: #64748b; margin: 4px 0 6px;">ಸಂಪರ್ಕ: 8431649984</p>
-      <button style="background: #059669; color: #fff; border: none; padding: 4px 10px; border-radius: 15px; font-size: 10.5px; font-weight: 700; cursor: pointer;" onclick="this.parentElement.innerHTML='<div style=\'color:#059669;font-weight:800;font-size:11px;\'>✓ ಅಪ್ರೂವ್ ಆಗಿದೆ!</div>'">✓ ಅಪ್ರೂವ್</button>
-    </div>
-  </div>
-
   <!-- TAB 3: Ticker Rates -->
   <div id="tickerTab" class="form-card" style="display: none;">
-    <h3 style="font-size: 13.5px; font-weight: 800; margin-bottom: 8px;">🪙 ದಿನನಿತ್ಯದ ದರ ಅಪ್‌ಡೇಟ್</h3>
-    <input type="text" class="form-input" value="22K ಚಿನ್ನ: ₹6,745/g">
-    <input type="text" class="form-input" value="ಬೆಳ್ಳಿ: ₹88,500/kg">
-    <button style="width: 100%; background: #2563eb; color: #fff; border: none; padding: 9px; border-radius: 20px; font-weight: 700; font-size: 12px;" onclick="alert('ದರ ಸೇವ್ ಆಗಿದೆ!')">💾 ಸೇವ್ ಮಾಡಿ</button>
+    <h3 style="font-size: 13.5px; font-weight: 800; margin-bottom: 10px;">🪙 ಹೆಡರ್ ಟಿಕ್ಕರ್ ದರಗಳು</h3>
+    <label style="font-size: 11px; font-weight: 700; color: #475569;">ಚಿನ್ನ/ಬೆಳ್ಳಿ/ಪೆಟ್ರೋಲ್ ಲೈವ್ ಲೈನ್:</label>
+    <input type="text" id="ticker_line" class="form-input" value="🪙 22K ಚಿನ್ನ: ₹6,745/g | 24K ಚಿನ್ನ: ₹7,355/g | 🥈 ಬೆಳ್ಳಿ: ₹88,500/kg | ⛽ ಪೆಟ್ರೋಲ್: ₹102.80 | 🚜 ಅಡಿಕೆ ರಾಶಿ: ₹54,500/ಕ್ವಿಂ">
+    <button style="width: 100%; background: #2563eb; color: #fff; border: none; padding: 10px; border-radius: 20px; font-weight: 800; font-size: 12.5px; cursor: pointer;" onclick="saveTicker()">💾 ದರ ಲೈವ್ ಸೇವ್ ಮಾಡಿ</button>
   </div>
 
   <!-- Bottom Nav -->
@@ -114,41 +147,164 @@
   </nav>
 
   <script>
+    // ಟ್ಯಾಬ್ ಬದಲಾಯಿಸುವ ಫಂಕ್ಷನ್
     function switchAdminTab(tabId, btn) {
-      document.getElementById('newsTab').style.display = 'none';
       document.getElementById('adsTab').style.display = 'none';
+      document.getElementById('newsTab').style.display = 'none';
       document.getElementById('tickerTab').style.display = 'none';
       document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
       document.getElementById(tabId).style.display = 'block';
       btn.classList.add('active');
     }
 
-    function saveNewsUpdates(e) {
+    // 1. Firebase ನಿಂದ Pending ಜಾಹೀರಾತುಗಳನ್ನು ತರುವುದು
+    async function loadPendingAds() {
+      var container = document.getElementById('pendingAdsList');
+      var countBadge = document.getElementById('adCountBadge');
+      container.innerHTML = "<p style='font-size:12px; color:#64748b; text-align:center;'>ಜಾಹೀರಾತುಗಳನ್ನು ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...</p>";
+
+      try {
+        if (typeof db === 'undefined') {
+          throw new Error("ಡೇಟಾಬೇಸ್ ಕನೆಕ್ಟ್ ಆಗಿಲ್ಲ!");
+        }
+
+        var snapshot = await db.collection("ads").where("status", "==", "pending").get();
+        container.innerHTML = "";
+
+        if (snapshot.empty) {
+          container.innerHTML = "<div style='text-align:center; padding:20px; color:#059669; font-weight:700;'>🎉 ಹೊಸ ಜಾಹೀರಾತುಗಳಿಲ್ಲ! ಎಲ್ಲವೂ ಪರಿಶೀಲನೆಗೊಂಡಿವೆ.</div>";
+          countBadge.innerText = "(0)";
+          return;
+        }
+
+        countBadge.innerText = "(" + snapshot.size + ")";
+
+        snapshot.forEach(doc => {
+          var ad = doc.data();
+          var adId = doc.id;
+          var cityName = ad.cityName || ad.city || "ತಿಳಿದಿಲ್ಲ";
+
+          var card = document.createElement("div");
+          card.className = "ad-review-card";
+          card.id = "card-" + adId;
+
+          var imageHtml = ad.imageUrl ? `<img src="${ad.imageUrl}" style="width:100%; max-height:140px; object-fit:cover; border-radius:8px; margin:6px 0;">` : '';
+          var utrHtml = ad.utr ? `<div style="font-size:11px; color:#15803d; font-weight:700;">🧾 UTR: ${ad.utr} (${ad.plan})</div>` : '';
+
+          card.innerHTML = `
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+              <span style="font-size:11.5px; font-weight:800; color:#2563eb;">📍 ${cityName} • ${ad.category || ''}</span>
+              <span style="background:#e0f2fe; color:#0369a1; font-size:10px; font-weight:800; padding:2px 8px; border-radius:8px;">${ad.plan || 'Free'}</span>
+            </div>
+            ${imageHtml}
+            <div style="font-size:13.5px; font-weight:800; color:#0f172a; margin-top:6px;">${ad.title}</div>
+            <div style="font-size:12px; color:#334155; margin:4px 0;">${ad.desc || ad.description || ''}</div>
+            <div style="font-size:11.5px; font-weight:700; color:#059669;">💰 ಬೆಲೆ: ${ad.price || 'ಚರ್ಚಿಸಿ'}</div>
+            <div style="font-size:11px; color:#64748b; margin:4px 0 8px;">📱 ಮೊಬೈಲ್: ${ad.phone}</div>
+            ${utrHtml}
+            <div style="margin-top:10px; border-top:1px solid #e2e8f0; padding-top:8px;">
+              <button class="ad-btn-action btn-approve" onclick="approveAd('${adId}')">✅ Approve ಮಾಡಿ (Live)</button>
+              <button class="ad-btn-action btn-delete" onclick="deleteAd('${adId}')">🗑️ ಡಿಲೀಟ್</button>
+            </div>
+          `;
+          container.appendChild(card);
+        });
+
+      } catch(err) {
+        console.error(err);
+        container.innerHTML = `<div style="color:#dc2626; font-size:12px; text-align:center;">ದೋಷ: ಜಾಹೀರಾತು ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ.<br>${err.message}</div>`;
+      }
+    }
+
+    // 2. ಜಾಹೀರಾತು ಅಪ್ರೂವ್ ಮಾಡುವ ಫಂಕ್ಷನ್ (Status -> approved)
+    async function approveAd(adId) {
+      if (!confirm("ಈ ಜಾಹೀರಾತನ್ನು ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಪ್ರಕಟಿಸಲು ನೀವು ಖಚಿತವಾಗಿದ್ದೀರಾ?")) return;
+
+      var card = document.getElementById("card-" + adId);
+      try {
+        await db.collection("ads").doc(adId).update({
+          status: "approved",
+          approvedAt: firebase.firestore.FieldValue.serverTimestamp()
+        });
+        card.style.background = "#dcfce7";
+        card.innerHTML = "<div style='color:#15803d; font-weight:800; padding:10px; text-align:center;'>✓ ಈ ಜಾಹೀರಾತು ಲೈವ್ ಆಗಿ ಪ್ರಕಟಗೊಂಡಿದೆ!</div>";
+        setTimeout(() => loadPendingAds(), 1500);
+      } catch(err) {
+        alert("ಅಪ್ರೂವ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: " + err.message);
+      }
+    }
+
+    // 3. ಜಾಹೀರಾತು ರಿಜೆಕ್ಟ್ / ಡಿಲೀಟ್ ಮಾಡುವ ಫಂಕ್ಷನ್
+    async function deleteAd(adId) {
+      if (!confirm("ಈ ಜಾಹೀರಾತನ್ನು ಖಂಡಿತವಾಗಿ ಡಿಲೀಟ್ ಮಾಡಬೇಕೆ?")) return;
+
+      var card = document.getElementById("card-" + adId);
+      try {
+        await db.collection("ads").doc(adId).delete();
+        card.remove();
+        alert("ಜಾಹೀರಾತು ಡಿಲೀಟ್ ಮಾಡಲಾಗಿದೆ.");
+        loadPendingAds();
+      } catch(err) {
+        alert("ಡಿಲೀಟ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ: " + err.message);
+      }
+    }
+
+    // 4. ನ್ಯೂಸ್ ಲೈವ್ ಸೇವ್ (Firebase & LocalStorage)
+    async function saveNewsUpdates(e) {
       e.preventDefault();
+      var btn = document.getElementById('newsSaveBtn');
+      btn.innerText = "⏳ ಅಪ್‌ಡೇಟ್ ಆಗುತ್ತಿದೆ...";
+
       var newsData = {
         adike: document.getElementById('adm_adike').value,
         kobbari: document.getElementById('adm_kobbari').value,
         maize: document.getElementById('adm_maize').value,
         top1: document.getElementById('adm_top1').value,
         top2: document.getElementById('adm_top2').value,
-        market_full: document.getElementById('adm_market_full').value,
-        top_full: document.getElementById('adm_top_full').value
+        updatedAt: new Date().toISOString()
       };
-      localStorage.setItem('samruddhi_news_data', JSON.stringify(newsData));
-      alert('✅ ನ್ಯೂಸ್ ವಿವರಗಳು ಯಶಸ್ವಿಯಾಗಿ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಆಗಿವೆ!');
+
+      try {
+        if (typeof db !== 'undefined') {
+          await db.collection("settings").doc("news").set(newsData);
+        }
+        localStorage.setItem('samruddhi_news_data', JSON.stringify(newsData));
+        alert('✅ ನ್ಯೂಸ್ ವಿವರಗಳು ಯಶಸ್ವಿಯಾಗಿ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಆಗಿವೆ!');
+      } catch(err) {
+        console.warn(err);
+        localStorage.setItem('samruddhi_news_data', JSON.stringify(newsData));
+        alert('✅ ನ್ಯೂಸ್ ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ!');
+      }
+      btn.innerText = "🚀 ನ್ಯೂಸ್ ಲೈವ್ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ";
     }
 
+    // 5. ಟಿಕ್ಕರ್ ದರ ಸೇವ್
+    async function saveTicker() {
+      var line = document.getElementById('ticker_line').value;
+      try {
+        if (typeof db !== 'undefined') {
+          await db.collection("settings").doc("ticker").set({ text: line });
+        }
+        localStorage.setItem('samruddhi_ticker', line);
+        alert('🪙 ದರ ಲೈವ್ ಸೇವ್ ಆಗಿದೆ!');
+      } catch(err) {
+        localStorage.setItem('samruddhi_ticker', line);
+        alert('🪙 ದರ ಸೇವ್ ಆಗಿದೆ!');
+      }
+    }
+
+    // ಪೇಜ್ ಲೋಡ್ ಆದಾಗ ರನ್ ಆಗುವುದು
     window.onload = function() {
-      var saved = localStorage.getItem('samruddhi_news_data');
-      if (saved) {
-        var d = JSON.parse(saved);
+      loadPendingAds();
+      
+      var savedNews = localStorage.getItem('samruddhi_news_data');
+      if (savedNews) {
+        var d = JSON.parse(savedNews);
         if(d.adike) document.getElementById('adm_adike').value = d.adike;
         if(d.kobbari) document.getElementById('adm_kobbari').value = d.kobbari;
         if(d.maize) document.getElementById('adm_maize').value = d.maize;
         if(d.top1) document.getElementById('adm_top1').value = d.top1;
         if(d.top2) document.getElementById('adm_top2').value = d.top2;
-        if(d.market_full) document.getElementById('adm_market_full').value = d.market_full;
-        if(d.top_full) document.getElementById('adm_top_full').value = d.top_full;
       }
     };
   </script>
