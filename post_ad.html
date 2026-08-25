@@ -5,13 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>ಹೊಸ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ - ಸಮೃದ್ಧಿ</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Firebase Compat SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+  <script src="firebase-config.js"></script>
+
   <style>
     .form-card {
       background: #ffffff;
-      margin: 12px 14px;
+      margin: 12px 14px 80px;
       padding: 16px;
       border-radius: 16px;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border, #e2e8f0);
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
     .form-group { margin-bottom: 12px; }
@@ -30,11 +36,36 @@
       font-size: 12.5px;
       outline: none;
       background: #f8fafc;
+      box-sizing: border-box;
     }
     .form-input:focus, .form-select:focus, .form-textarea:focus {
       border-color: #059669;
       background: #ffffff;
     }
+    
+    /* Photo Upload Box Styling */
+    .photo-upload-container {
+      border: 2px dashed #059669;
+      background: #ecfdf5;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      cursor: pointer;
+    }
+    .photo-preview-wrap {
+      display: none;
+      margin-top: 8px;
+      text-align: center;
+    }
+    .photo-preview-wrap img {
+      width: 100%;
+      max-height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 1.5px solid #059669;
+    }
+
+    /* Plan Selector */
     .plan-selector-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -48,7 +79,6 @@
       text-align: center;
       cursor: pointer;
       background: #fff;
-      transition: all 0.2s ease;
     }
     .plan-card-opt.selected {
       border-color: #059669;
@@ -57,7 +87,7 @@
       font-weight: 800;
     }
 
-    /* Clean UPI Payment Box without personal name */
+    /* UPI Pay Box */
     .upi-pay-box {
       display: none;
       background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
@@ -76,27 +106,47 @@
       display: block;
       background: #fff;
     }
-    .upi-app-links {
-      display: flex;
-      gap: 8px;
-      justify-content: center;
-      margin-top: 8px;
+
+    /* Share Panel */
+    .share-modal-card {
+      display: none;
+      background: #ffffff;
+      margin: 12px 14px;
+      padding: 18px;
+      border-radius: 16px;
+      border: 2px solid #22c55e;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(34, 197, 94, 0.15);
     }
-    .upi-btn {
-      padding: 6px 14px;
+    .share-btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin: 12px 0;
+    }
+    .share-action-btn {
+      padding: 9px 12px;
       border-radius: 20px;
-      font-size: 11px;
+      color: #ffffff;
+      font-size: 11.5px;
       font-weight: 800;
       text-decoration: none;
-      color: #fff;
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 4px;
+      justify-content: center;
+      gap: 5px;
+      border: none;
+      cursor: pointer;
     }
+    .btn-wa { background: #25d366; }
+    .btn-fb { background: #1877f2; }
+    .btn-tg { background: #0088cc; }
+    .btn-copy { background: #475569; }
   </style>
 </head>
 <body>
 
+  <!-- Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">➕</div>
@@ -108,11 +158,31 @@
     <a href="index.html" class="header-post-btn" style="background: #334155;">✕ ರದ್ದು</a>
   </header>
 
-  <div class="form-card">
+  <!-- Share Panel (After Posting) -->
+  <div id="shareSuccessCard" class="share-modal-card">
+    <div style="font-size: 32px; margin-bottom: 4px;">🎉</div>
+    <h3 style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಕೆಯಾಗಿದೆ!</h3>
+    <p style="font-size: 11.5px; color: #475569;">ನಿಮ್ಮ ಜಾಹೀರಾತನ್ನು ಸ್ನೇಹಿತರು ಮತ್ತು ಗ್ರೂಪ್‌ಗಳಿಗೆ ಶೇರ್ ಮಾಡಿ:</p>
+    
+    <div class="share-btn-grid">
+      <a id="shareWaBtn" href="#" class="share-action-btn btn-wa" target="_blank">💬 WhatsApp</a>
+      <a id="shareFbBtn" href="#" class="share-action-btn btn-fb" target="_blank">📘 Facebook</a>
+      <a id="shareTgBtn" href="#" class="share-action-btn btn-tg" target="_blank">✈️ Telegram</a>
+      <button onclick="copyShareLink()" class="share-action-btn btn-copy">📋 ಲಿಂಕ್ ಕಾಪಿ</button>
+    </div>
+
+    <button onclick="window.location.href='index.html'" style="background: #059669; color: #fff; border: none; padding: 8px 18px; border-radius: 20px; font-weight: 800; font-size: 11.5px; cursor: pointer; margin-top: 6px;">
+      🏠 ಮುಖಪುಟಕ್ಕೆ ಹೋಗಿ
+    </button>
+  </div>
+
+  <!-- Form Card -->
+  <div id="adFormCard" class="form-card">
     <h2 style="font-size: 14.5px; font-weight: 800; color: #0f172a; margin-bottom: 10px;">📝 ನಿಮ್ಮ ಜಾಹೀರಾತಿನ ವಿವರ ನಮೂದಿಸಿ</h2>
     
     <form id="postAdForm" onsubmit="handleAdSubmit(event)">
       
+      <!-- 1. Plan -->
       <div class="form-group">
         <label class="form-label">ಪ್ಲಾನ್ ಆಯ್ಕೆಮಾಡಿ</label>
         <div class="plan-selector-grid">
@@ -133,26 +203,19 @@
         <input type="hidden" id="selected_amount" value="0">
       </div>
 
-      <!-- Live Clean UPI QR & Payment Box -->
+      <!-- 2. UPI QR -->
       <div id="upiPaymentSection" class="upi-pay-box">
         <div style="font-size: 12px; font-weight: 800; color: #15803d;">💳 UPI ಮೂಲಕ ಪಾವತಿಸಿ (<span id="payAmtLabel">₹49</span>)</div>
         <div style="font-size: 10px; color: #475569;">GPay, PhonePe, Paytm ಮೂಲಕ ಸ್ಕ್ಯಾನ್ ಮಾಡಿ ಪಾವತಿಸಿ</div>
-        
         <img id="upiQrImage" class="upi-qr-img" src="" alt="UPI QR Code">
-        
         <div style="font-size: 11.5px; font-weight: 700; color: #0f172a;">UPI ID: <span style="color: #059669; font-weight: 800;">giricoolgili@okhdfcbank</span></div>
-
-        <!-- Direct UPI App Open Buttons for Mobile -->
-        <div class="upi-app-links">
-          <a id="upiPayDirect" href="#" class="upi-btn" style="background: #059669;">⚡ PhonePe / GPay ನಲ್ಲಿ ನೇರ ಪಾವತಿಸಿ</a>
-        </div>
-
         <div class="form-group" style="margin-top: 10px; text-align: left;">
-          <label class="form-label">📲 Payment UTR / ರೆಫರೆನ್ಸ್ ಸಂಖ್ಯೆ (ಪಾವತಿ ನಂತರ)</label>
-          <input type="text" class="form-input" id="ad_utr" placeholder="12 ಅಂಕಿಗಳ UTR ಸಂಖ್ಯೆ (ಉದಾ: 423871928374)">
+          <label class="form-label">📲 Payment UTR / ರೆಫರೆನ್ಸ್ ಸಂಖ್ಯೆ</label>
+          <input type="text" class="form-input" id="ad_utr" placeholder="12 ಅಂಕಿಗಳ UTR ಸಂಖ್ಯೆ">
         </div>
       </div>
 
+      <!-- 3. City -->
       <div class="form-group">
         <label class="form-label">📍 ನಗರ (City)</label>
         <select class="form-select" id="ad_city" required>
@@ -166,6 +229,7 @@
         </select>
       </div>
 
+      <!-- 4. Category -->
       <div class="form-group">
         <label class="form-label">📂 ವಿಭಾಗ (Category)</label>
         <select class="form-select" id="ad_cat" required>
@@ -178,28 +242,48 @@
         </select>
       </div>
 
+      <!-- 5. Title -->
       <div class="form-group">
         <label class="form-label">🏷️ ಜಾಹೀರಾತಿನ ಶೀರ್ಷಿಕೆ (Title)</label>
         <input type="text" class="form-input" id="ad_title" placeholder="ಉದಾ: ಶುದ್ಧ ಹಸುವಿನ ತುಪ್ಪ ಮಾರಾಟಕ್ಕಿದೆ" required>
       </div>
 
+      <!-- 6. Dedicated Photo Upload Box -->
+      <div class="form-group">
+        <label class="form-label">📷 ಉತ್ಪನ್ನ / ವಾಹನದ ಫೋಟೋ ಅಥವಾ ಪೋಸ್ಟರ್ ಅಪ್‌ಲೋಡ್ ಮಾಡಿ</label>
+        <div class="photo-upload-container" onclick="document.getElementById('ad_image_file').click()">
+          <div style="font-size: 26px;">🖼️</div>
+          <div style="font-size: 12px; font-weight: 800; color: #059669;">ಫೋಟೋ ಆಯ್ಕೆ ಮಾಡಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ</div>
+          <div style="font-size: 10px; color: #64748b;">(ಗ್ಯಾಲರಿಯಿಂದ ನೇರವಾಗಿ ಫೋಟೋ ಅಪ್‌ಲೋಡ್ ಆಗುತ್ತದೆ)</div>
+        </div>
+        <input type="file" id="ad_image_file" accept="image/*" style="display: none;" onchange="previewSelectedImage(this)">
+        
+        <div id="photoPreviewBox" class="photo-preview-wrap">
+          <img id="previewImg" src="" alt="Selected Photo">
+          <div style="font-size: 10.5px; color: #059669; font-weight: 800; margin-top: 4px;">✓ ಫೋಟೋ ಆಯ್ಕೆಯಾಗಿದೆ</div>
+        </div>
+      </div>
+
+      <!-- 7. Price -->
       <div class="form-group">
         <label class="form-label">💰 ನಿಗದಿಪಡಿಸಿದ ಬೆಲೆ / ಸಂಬಳ</label>
         <input type="text" class="form-input" id="ad_price" placeholder="ಉದಾ: ₹450 ಅಥವಾ ಮಾತುಕತೆ ಮೂಲಕ">
       </div>
 
+      <!-- 8. Description -->
       <div class="form-group">
         <label class="form-label">📄 ಸಂಪೂರ್ಣ ವಿವರಣೆ (Description)</label>
         <textarea class="form-textarea" id="ad_desc" rows="3" placeholder="ಉತ್ಪನ್ನ ಅಥವಾ ಸೇವೆಯ ಬಗ್ಗೆ ವಿವರವಾಗಿ ಬರೆಯಿರಿ..." required></textarea>
       </div>
 
+      <!-- 9. Phone -->
       <div class="form-group">
         <label class="form-label">📱 ನಿಮ್ಮ ಮೊಬೈಲ್ ಸಂಖ್ಯೆ (WhatsApp)</label>
         <input type="tel" class="form-input" id="ad_phone" placeholder="10 ಅಂಕಿಗಳ ಮೊಬೈಲ್ ನಂಬರ್" required>
       </div>
 
-      <button type="submit" style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: #fff; border: none; padding: 11px; border-radius: 25px; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);">
-        🚀 WhatsApp ಮೂಲಕ ಪ್ರಕಟಿಸಲು ಕಳುಹಿಸಿ
+      <button type="submit" id="submitBtn" style="width: 100%; background: linear-gradient(135deg, #059669, #047857); color: #fff; border: none; padding: 12px; border-radius: 25px; font-weight: 800; font-size: 13px; cursor: pointer; box-shadow: 0 4px 12px rgba(5, 150, 105, 0.35);">
+        🚀 ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ & WhatsApp ಗೆ ಕಳುಹಿಸಿ
       </button>
     </form>
   </div>
@@ -227,19 +311,30 @@
       if (amount > 0) {
         upiBox.style.display = 'block';
         document.getElementById('payAmtLabel').innerText = "₹" + amount;
-        
         var upiUri = "upi://pay?pa=" + upiId + "&pn=" + encodeURIComponent(payeeName) + "&am=" + amount + "&cu=INR&tn=" + encodeURIComponent("Samruddhi Ad " + planName);
-        var qrUrl = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(upiUri);
-        
-        document.getElementById('upiQrImage').src = qrUrl;
-        document.getElementById('upiPayDirect').href = upiUri;
+        document.getElementById('upiQrImage').src = "https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=" + encodeURIComponent(upiUri);
       } else {
         upiBox.style.display = 'none';
       }
     }
 
-    function handleAdSubmit(e) {
+    function previewSelectedImage(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('previewImg').src = e.target.result;
+          document.getElementById('photoPreviewBox').style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    async function handleAdSubmit(e) {
       e.preventDefault();
+      var btn = document.getElementById('submitBtn');
+      btn.innerText = "⏳ ಫೋಟೋ & ವಿವರ ಸೇವ್ ಆಗುತ್ತಿದೆ...";
+      btn.disabled = true;
+
       var plan = document.getElementById('selected_plan').value;
       var amt = document.getElementById('selected_amount').value;
       var utr = document.getElementById('ad_utr') ? document.getElementById('ad_utr').value : '';
@@ -249,13 +344,74 @@
       var price = document.getElementById('ad_price').value;
       var desc = document.getElementById('ad_desc').value;
       var phone = document.getElementById('ad_phone').value;
+      var fileInput = document.getElementById('ad_image_file');
 
+      var imageUrl = "";
+
+      // 1. Upload Photo with 5-sec Timeout Protection
+      if (fileInput.files && fileInput.files.length > 0) {
+        try {
+          var formData = new FormData();
+          formData.append("file", fileInput.files[0]);
+          formData.append("upload_preset", (typeof CLOUDINARY_UPLOAD_PRESET !== 'undefined') ? CLOUDINARY_UPLOAD_PRESET : "samruddhi");
+
+          var cloudName = (typeof CLOUDINARY_CLOUD_NAME !== 'undefined') ? CLOUDINARY_CLOUD_NAME : "mkuurlzy";
+          
+          var uploadPromise = fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`, {
+            method: "POST",
+            body: formData
+          }).then(res => res.json());
+
+          // 6 seconds timeout so form never hangs
+          var timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('Timeout')), 6000));
+          
+          var data = await Promise.race([uploadPromise, timeoutPromise]);
+          if (data && data.secure_url) {
+            imageUrl = data.secure_url;
+          }
+        } catch(err) {
+          console.warn("Cloudinary upload skipped or timed out:", err);
+        }
+      }
+
+      // 2. Save to Firebase with Timeout Protection
+      if (typeof db !== 'undefined') {
+        try {
+          var savePromise = db.collection("ads").add({
+            plan: plan,
+            amount: amt,
+            utr: utr,
+            city: city,
+            category: cat,
+            title: title,
+            price: price,
+            desc: desc,
+            phone: phone,
+            imageUrl: imageUrl,
+            status: "pending",
+            createdAt: new Date().toISOString()
+          });
+          
+          var dbTimeout = new Promise((_, reject) => setTimeout(() => reject(new Error('DB Timeout')), 4000));
+          await Promise.race([savePromise, dbTimeout]);
+        } catch(err) {
+          console.warn("Firebase save skipped or timed out:", err);
+        }
+      }
+
+      // 3. Social Share Links Setup
+      var shareText = `📢 *${title}*%0A📍 ಸ್ಥಳ: ${city}%0A💰 ಬೆಲೆ: ${price}%0A📄 ವಿವರ: ${desc}%0A📞 ಸಂಪರ್ಕಿಸಿ: ${phone}%0A%0Aನಮ್ಮೂರ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ನೋಡಿ: ${window.location.origin}`;
+      document.getElementById('shareWaBtn').href = "https://api.whatsapp.com/send?text=" + shareText;
+      document.getElementById('shareFbBtn').href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(window.location.origin);
+      document.getElementById('shareTgBtn').href = "https://t.me/share/url?url=" + encodeURIComponent(window.location.origin) + "&text=" + shareText;
+
+      // 4. Send Message to Admin WhatsApp
       var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು*%0A%0A" +
                   "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A";
-      
+
       if (amt > 0) {
         waMsg += "💰 *ಪಾವತಿ ಮೊತ್ತ:* ₹" + encodeURIComponent(amt) + "%0A" +
-                 "🧾 *Payment UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ/ಸ್ಕ್ಯಾನ್') + "%0A";
+                 "🧾 *Payment UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ') + "%0A";
       }
 
       waMsg += "📍 *ನಗರ:* " + encodeURIComponent(city) + "%0A" +
@@ -265,7 +421,21 @@
                "📄 *ವಿವರ:* " + encodeURIComponent(desc) + "%0A" +
                "📱 *ಸಂಪರ್ಕ:* " + encodeURIComponent(phone);
 
+      if (imageUrl) {
+        waMsg += "%0A🖼️ *ಫೋಟೋ ಲಿಂಕ್:* " + encodeURIComponent(imageUrl);
+      }
+
+      // Trigger WhatsApp
       window.open("https://wa.me/918431649984?text=" + waMsg, "_blank");
+
+      // 5. Show Share Box Instantly
+      document.getElementById('adFormCard').style.display = 'none';
+      document.getElementById('shareSuccessCard').style.display = 'block';
+    }
+
+    function copyShareLink() {
+      navigator.clipboard.writeText(window.location.origin);
+      alert("✅ ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ! ನಿಮ್ಮ ಸ್ನೇಹಿತರಿಗೆ ಕಳುಹಿಸಿ.");
     }
   </script>
 
