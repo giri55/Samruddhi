@@ -71,11 +71,12 @@
       transition: width 1s linear;
     }
 
-    /* 📲 2. ಹೊಂದಾಣಿಕೆಯಾಗುವ ಸ್ಮಾರ್ಟ್ ಸಾಫ್ಟ್-ಮಿಂಟ್ ಆ್ಯಪ್ ಬಾರ್ */
+    /* 🟠 2. ಕೇಸರಿ ಟಚ್ ಹೊಂದಿರುವ ಆ್ಯಪ್ ಡೌನ್‌ಲೋಡ್ ಸ್ಟ್ರಿಪ್ */
     .app-install-strip {
-      background: #ecfdf5;
-      border: 1.5px solid #a7f3d0;
-      color: #065f46;
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+      border: 1.5px solid #fb923c;
+      border-left: 4px solid #ea580c;
+      color: #9a3412;
       padding: 8px 12px;
       margin: 6px 12px 10px;
       border-radius: 12px;
@@ -83,21 +84,21 @@
       align-items: center;
       justify-content: space-between;
       gap: 8px;
+      box-shadow: 0 2px 8px rgba(234, 88, 12, 0.08);
     }
     .install-strip-btn {
-      background: #059669;
+      background: linear-gradient(135deg, #ea580c, #c2410c);
       color: #ffffff;
       border: none;
-      padding: 6px 12px;
+      padding: 7px 12px;
       border-radius: 8px;
       font-size: 11px;
       font-weight: 800;
       cursor: pointer;
       white-space: nowrap;
-      box-shadow: 0 2px 6px rgba(5, 150, 105, 0.2);
+      box-shadow: 0 2px 6px rgba(234, 88, 12, 0.25);
     }
     .install-strip-btn:active {
-      background: #047857;
       transform: scale(0.97);
     }
 
@@ -117,7 +118,7 @@
       border: 1px solid #e2e8f0;
       box-shadow: 0 2px 6px rgba(0,0,0,0.03);
     }
-    .modern-news-card.card-topnews { border-left: 4px solid #f59e0b; }
+    .modern-news-card.card-topnews { border-left: 4px solid #ea580c; }
     .modern-news-card.card-market { border-left: 4px solid #059669; }
     .news-badge-row {
       display: flex;
@@ -131,7 +132,7 @@
       padding: 2px 8px;
       border-radius: 6px;
     }
-    .pill-amber { background: #fef3c7; color: #b45309; }
+    .pill-amber { background: #ffedd5; color: #c2410c; }
     .pill-green { background: #dcfce7; color: #15803d; }
     
     .news-main-title {
@@ -231,13 +232,13 @@
     </div>
   </div>
 
-  <!-- 2. ಕಣ್ಣಿಗೆ ತಂಪಾದ ಹೊಂದಿಕೆಯಾಗುವ ಆ್ಯಪ್ ಡೌನ್‌ಲೋಡ್ ಸ್ಟ್ರಿಪ್ -->
+  <!-- 🟠 2. ಕೇಸರಿ ಟಚ್ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಬಾರ್ -->
   <div class="app-install-strip">
     <div style="display: flex; align-items: center; gap: 8px;">
-      <span style="font-size: 20px;">📲</span>
+      <span style="font-size: 20px;">📱</span>
       <div>
-        <div style="font-size: 11.5px; font-weight: 800; color:#065f46;">ಸಮೃದ್ಧಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿಕೊಳ್ಳಿ</div>
-        <div style="font-size: 9.5px; color:#047857; font-weight: 600;">ಉಚಿತವಾಗಿ ಸ್ವತಃ ನೀವೇ ಜಾಹೀರಾತು ಹಾಕಬಹುದು</div>
+        <div style="font-size: 11.5px; font-weight: 800; color:#9a3412;">ಸಮೃದ್ಧಿ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿಕೊಳ್ಳಿ</div>
+        <div style="font-size: 9.5px; color:#c2410c; font-weight: 700;">ಸ್ವತಃ ನೀವೇ ಸುಲಭವಾಗಿ ಜಾಹೀರಾತು ಹಾಕಬಹುದು</div>
       </div>
     </div>
     <button onclick="triggerPwaInstall()" class="install-strip-btn">📲 Install App</button>
@@ -257,7 +258,7 @@
         <span style="font-size: 10px; color: #94a3b8;">ಇಂದಿನ ಮುಖ್ಯಾಂಶ</span>
       </div>
       <div class="news-main-title" id="front_top_news">🏛️ ರಾಜ್ಯದ ಪ್ರಮುಖ ಸ್ಥಳೀಯ ವಾಣಿಜ್ಯ & ತಾಜಾ ಸುದ್ದಿ ಓದಲು ಕ್ಲಿಕ್ ಮಾಡಿ...</div>
-      <div class="news-card-arrow" style="color:#d97706;">ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ ➔</div>
+      <div class="news-card-arrow" style="color:#ea580c;">ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ ➔</div>
     </a>
 
     <!-- Market News -->
