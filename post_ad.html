@@ -6,7 +6,7 @@
   <title>ಹೊಸ ಜಾಹೀರಾತು ಪ್ರಕಟಿಸಿ - ಸಮೃದ್ಧಿ</title>
   <link rel="stylesheet" href="style.css">
 
-  <!-- Firebase Compat SDKs -->
+  <!-- Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
   <script src="firebase-config.js"></script>
@@ -43,7 +43,6 @@
       background: #ffffff;
     }
     
-    /* Photo Upload Box Styling */
     .photo-upload-container {
       border: 2px dashed #059669;
       background: #ecfdf5;
@@ -65,17 +64,17 @@
       border: 1.5px solid #059669;
     }
 
-    /* Plan Selector */
+    /* 4 Plans Selector Grid */
     .plan-selector-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 6px;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
       margin-bottom: 12px;
     }
     .plan-card-opt {
       border: 1.5px solid #cbd5e1;
       border-radius: 10px;
-      padding: 8px 4px;
+      padding: 8px 6px;
       text-align: center;
       cursor: pointer;
       background: #fff;
@@ -87,7 +86,6 @@
       font-weight: 800;
     }
 
-    /* UPI Pay Box */
     .upi-pay-box {
       display: none;
       background: linear-gradient(180deg, #f0fdf4 0%, #ffffff 100%);
@@ -107,7 +105,6 @@
       background: #fff;
     }
 
-    /* Share Panel */
     .share-modal-card {
       display: none;
       background: #ffffff;
@@ -162,7 +159,7 @@
   <div id="shareSuccessCard" class="share-modal-card">
     <div style="font-size: 32px; margin-bottom: 4px;">🎉</div>
     <h3 style="font-size: 16px; font-weight: 800; color: #0f172a; margin-bottom: 4px;">ಜಾಹೀರಾತು ಯಶಸ್ವಿಯಾಗಿ ಸಲ್ಲಿಕೆಯಾಗಿದೆ!</h3>
-    <p style="font-size: 12px; color: #475569;">ಅಡ್ಮಿನ್ ಅನುಮೋದಿಸಿದ ತಕ್ಷಣ ವೆಬ್‌ಸೈಟ್‌ನಲ್ಲಿ ಲೈವ್ ಆಗುತ್ತದೆ. ನಿಮ್ಮ ಸ್ನೇಹಿತರು & ಗ್ರೂಪ್‌ಗಳಿಗೆ ಶೇರ್ ಮಾಡಿ:</p>
+    <p style="font-size: 12px; color: #475569;">ಅಡ್ಮಿನ್ ಪರಿಶೀಲಿಸಿ ಅಪ್ರೂವ್ ಮಾಡಿದ ತಕ್ಷಣ ಲೈವ್ ಪ್ರಕಟವಾಗುತ್ತದೆ:</p>
     
     <div class="share-btn-grid">
       <a id="shareWaBtn" href="#" class="share-action-btn btn-wa" target="_blank">💬 WhatsApp ಶೇರ್</a>
@@ -182,23 +179,28 @@
     
     <form id="postAdForm" onsubmit="handleAdSubmit(event)">
       
-      <!-- 1. Plan -->
+      <!-- 1. 4 Plan Types -->
       <div class="form-group">
         <label class="form-label">ಪ್ಲಾನ್ ಆಯ್ಕೆಮಾಡಿ</label>
         <div class="plan-selector-grid">
-          <div class="plan-card-opt selected" onclick="setPlan(this, 'ಉಚಿತ (Free)', 0)">
+          <div class="plan-card-opt selected" onclick="setPlan(this, 'free', 'ಉಚಿತ (Free)', 0)">
             <div style="font-size: 11px;">🆓 ಉಚಿತ</div>
-            <div style="font-size: 9px; color: #64748b;">ಸಾಮಾನ್ಯ ಆ್ಯಡ್</div>
+            <div style="font-size: 9px; color: #64748b;">ಸಾಮಾನ್ಯ ಆ್ಯಡ್ (Free Box)</div>
           </div>
-          <div class="plan-card-opt" onclick="setPlan(this, '₹49 ಸ್ಟ್ಯಾಂಡರ್ಡ್', 49)">
+          <div class="plan-card-opt" onclick="setPlan(this, 'standard', '₹49 ಸ್ಟ್ಯಾಂಡರ್ಡ್', 49)">
             <div style="font-size: 11px;">⭐ ₹49</div>
-            <div style="font-size: 9px; color: #64748b;">ಹೈಲೈಟ್ ಆ್ಯಡ್</div>
+            <div style="font-size: 9px; color: #64748b;">ಹೈಲೈಟ್ ಬಾಕ್ಸ್</div>
           </div>
-          <div class="plan-card-opt" onclick="setPlan(this, '₹99 ಸೂಪರ್', 99)">
+          <div class="plan-card-opt" onclick="setPlan(this, 'super', '₹99 ಸೂಪರ್', 99)">
             <div style="font-size: 11px;">👑 ₹99</div>
-            <div style="font-size: 9px; color: #64748b;">ದೊಡ್ಡ ಬಾಕ್ಸ್ ಆ್ಯಡ್</div>
+            <div style="font-size: 9px; color: #64748b;">ದೊಡ್ಡ ಸೂಪರ್ ಬಾಕ್ಸ್</div>
+          </div>
+          <div class="plan-card-opt" onclick="setPlan(this, 'premium', '₹199 ಪ್ರೀಮಿಯಂ', 199)" style="border-color: #f59e0b;">
+            <div style="font-size: 11px; color:#b45309;">💎 ₹199 ಪ್ರೀಮಿಯಂ</div>
+            <div style="font-size: 9px; color: #b45309;">ಟಾಪ್ ನಂ.1 ಸ್ಲಾಟ್</div>
           </div>
         </div>
+        <input type="hidden" id="selected_plan_type" value="free">
         <input type="hidden" id="selected_plan" value="ಉಚಿತ (Free)">
         <input type="hidden" id="selected_amount" value="0">
       </div>
@@ -215,17 +217,18 @@
         </div>
       </div>
 
-      <!-- 3. City (Key bug fixed: Uses city_code for reliable filtering) -->
+      <!-- 3. City / Home Page Option -->
       <div class="form-group">
-        <label class="form-label">📍 ನಗರ (City)</label>
+        <label class="form-label">📍 ಜಾಹೀರಾತು ಪ್ರದರ್ಶಿಸಬೇಕಾದ ಸ್ಥಳ (Location)</label>
         <select class="form-select" id="ad_city" required>
-          <option value="shivamogga">ಶಿವಮೊಗ್ಗ</option>
-          <option value="davanagere">ದಾವಣಗೆರೆ</option>
-          <option value="mysuru">ಮೈಸೂರು</option>
-          <option value="belagavi">ಬೆಳಗಾವಿ</option>
-          <option value="mangaluru">ಮಂಗಳೂರು</option>
-          <option value="hubballi-dharwad">ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ</option>
-          <option value="tumakuru">ತುಮಕೂರು</option>
+          <option value="index" selected>🌐 ಮುಖಪುಟ (ಕರ್ನಾಟಕ ರಾಜ್ಯಾದ್ಯಂತ - Main Page)</option>
+          <option value="shivamogga">🌳 ಶಿವಮೊಗ್ಗ</option>
+          <option value="davanagere">🌾 ದಾವಣಗೆರೆ</option>
+          <option value="mysuru">🏰 ಮೈಸೂರು</option>
+          <option value="belagavi">🍃 ಬೆಳಗಾವಿ</option>
+          <option value="mangaluru">🌊 ಮಂಗಳೂರು</option>
+          <option value="hubballi-dharwad">🏙️ ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ</option>
+          <option value="tumakuru">🥥 ತುಮಕೂರು</option>
         </select>
       </div>
 
@@ -301,9 +304,10 @@
     var upiId = "giricoolgili@okhdfcbank";
     var payeeName = "Samruddhi Portal";
 
-    function setPlan(el, planName, amount) {
+    function setPlan(el, planType, planName, amount) {
       document.querySelectorAll('.plan-card-opt').forEach(p => p.classList.remove('selected'));
       el.classList.add('selected');
+      document.getElementById('selected_plan_type').value = planType;
       document.getElementById('selected_plan').value = planName;
       document.getElementById('selected_amount').value = amount;
 
@@ -335,13 +339,14 @@
       btn.innerText = "⏳ ಜಾಹೀರಾತು ಸೇವ್ ಆಗುತ್ತಿದೆ...";
       btn.disabled = true;
 
+      var planType = document.getElementById('selected_plan_type').value;
       var plan = document.getElementById('selected_plan').value;
-      var amt = document.getElementById('selected_amount').value;
+      var amt = parseInt(document.getElementById('selected_amount').value) || 0;
       var utr = document.getElementById('ad_utr') ? document.getElementById('ad_utr').value : '';
       
       var citySelect = document.getElementById('ad_city');
-      var cityCode = citySelect.value; // ಉದಾ: shivamogga
-      var cityName = citySelect.options[citySelect.selectedIndex].text; // ಉದಾ: ಶಿವಮೊಗ್ಗ
+      var cityCode = citySelect.value;
+      var cityName = citySelect.options[citySelect.selectedIndex].text.replace(/^[^\s]+\s/, '');
 
       var cat = document.getElementById('ad_cat').value;
       var title = document.getElementById('ad_title').value;
@@ -352,7 +357,7 @@
 
       var imageUrl = "";
 
-      // 1. Upload Photo to Cloudinary (If uploaded)
+      // Upload Photo
       if (fileInput.files && fileInput.files.length > 0) {
         try {
           var formData = new FormData();
@@ -369,44 +374,45 @@
             imageUrl = data.secure_url;
           }
         } catch(err) {
-          console.warn("Cloudinary upload failed:", err);
+          console.warn("Photo upload failed:", err);
         }
       }
 
-      // 2. Save into Firebase Firestore
+      // Save into Firebase Firestore
       try {
         if (typeof firebase === 'undefined' || !firebase.apps.length) {
-          throw new Error("Firebase ಸರಿಯಾಗಿ initialize ಆಗಿಲ್ಲ! ದಯವಿಟ್ಟು firebase-config.js ಪರಿಶೀಲಿಸಿ.");
+          throw new Error("Firebase ಸರಿಯಾಗಿ ಲೋಡ್ ಆಗಿಲ್ಲ.");
         }
 
         var db = firebase.firestore();
         await db.collection("ads").add({
+          planType: planType,      // free, standard, super, premium
           plan: plan,
           amount: amt,
+          priority: amt,           // 199, 99, 49, 0 (ಶ್ರೇಣೀಕರಣಕ್ಕಾಗಿ)
           utr: utr,
-          city: cityCode,          // ಫಿಲ್ಟರ್ ಮಾಡಲು (shivamogga)
-          cityName: cityName,      // ಪೇಜ್‌ನಲ್ಲಿ ತೋರಿಸಲು (ಶಿವಮೊಗ್ಗ)
+          city: cityCode,
+          cityName: cityName,
           category: cat,
           title: title,
           price: price,
           desc: desc,
           phone: phone,
           imageUrl: imageUrl,
-          status: "pending",       // ಅಡ್ಮಿನ್ ಅಪ್ರೂವಲ್‌ಗೆ
+          status: "pending",
           createdAt: firebase.firestore.FieldValue.serverTimestamp()
         });
 
       } catch(err) {
         console.error("Firebase Error:", err);
-        alert("ದೋಷ: ಜಾಹೀರಾತು ಸೇವ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಿಲ್ಲ. (" + err.message + ")");
+        alert("ದೋಷ: ಜಾಹೀರಾತು ಸೇವ್ ಆಗಿಲ್ಲ: " + err.message);
         btn.innerText = "🚀 ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ";
         btn.disabled = false;
         return;
       }
 
-      // 3. Setup Social Share Message & Links (ಫೋನ್ ನಂಬರ್ ಮುಕ್ತ & ವೆಬ್‌ಸೈಟ್ ಲಿಂಕ್‌ನೊಂದಿಗೆ)
       var currentDomain = window.location.origin;
-      var targetCityUrl = currentDomain + "/" + cityCode + ".html";
+      var targetCityUrl = (cityCode === "index") ? currentDomain : (currentDomain + "/" + cityCode + ".html");
       
       var shareText = `🌾 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಹೊಸ ಜಾಹೀರಾತು:*%0A📌 *${title}*%0A📍 ಸ್ಥಳ: ${cityName}%0A💰 ಬೆಲೆ: ${price}%0A📝 ವಿವರ: ${desc}%0A%0A👉 ಪೂರ್ತಿ ವಿವರಗಳಿಗೆ ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ: ${targetCityUrl}`;
 
@@ -414,32 +420,28 @@
       document.getElementById('shareFbBtn').href = "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(targetCityUrl);
       document.getElementById('shareTgBtn').href = "https://t.me/share/url?url=" + encodeURIComponent(targetCityUrl) + "&text=" + shareText;
 
-      // 4. Admin WhatsApp Alert
-      var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು ಸಲ್ಲಿಕೆಯಾಗಿದೆ*%0A%0A" +
+      var waMsg = "📢 *ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ಗೆ ಹೊಸ ಜಾಹೀರಾತು ಬಂದಿದೆ*%0A%0A" +
                   "📌 *ಪ್ಲಾನ್:* " + encodeURIComponent(plan) + "%0A" +
-                  "📍 *ನಗರ:* " + encodeURIComponent(cityName) + "%0A" +
+                  "📍 *ಸ್ಥಳ:* " + encodeURIComponent(cityName) + "%0A" +
                   "🏷️ *ಶೀರ್ಷಿಕೆ:* " + encodeURIComponent(title) + "%0A" +
                   "💰 *ಬೆಲೆ:* " + encodeURIComponent(price) + "%0A" +
-                  "📄 *ವಿವರ:* " + encodeURIComponent(desc) + "%0A" +
                   "📱 *ಮೊಬೈಲ್:* " + encodeURIComponent(phone);
 
       if (amt > 0) {
         waMsg += "%0A🧾 *UTR:* " + encodeURIComponent(utr || 'ಪಾವತಿಸಲಾಗಿದೆ');
       }
 
-      // Open admin alert in background/new tab
       window.open("https://wa.me/918431649984?text=" + waMsg, "_blank");
 
-      // 5. Show Share Card to User
       document.getElementById('adFormCard').style.display = 'none';
       document.getElementById('shareSuccessCard').style.display = 'block';
     }
 
     function copyShareLink() {
       var cityCode = document.getElementById('ad_city').value;
-      var link = window.location.origin + "/" + cityCode + ".html";
+      var link = (cityCode === "index") ? window.location.origin : (window.location.origin + "/" + cityCode + ".html");
       navigator.clipboard.writeText(link);
-      alert("✅ ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ! ನಿಮ್ಮ ಗ್ರೂಪ್‌ಗಳಿಗೆ ಶೇರ್ ಮಾಡಿ.");
+      alert("✅ ಲಿಂಕ್ ಕಾಪಿ ಮಾಡಲಾಗಿದೆ!");
     }
   </script>
 
