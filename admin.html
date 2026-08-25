@@ -193,7 +193,7 @@
   </nav>
 
   <script>
-    // 🔑 ನಿಮ್ಮ ಅಡ್ಮಿನ್ ಪಾಸ್‌ವರ್ಡ್
+    // 🔑 ನಿಮ್ಮ ಅಡ್ಮಿನ್ ಪಾಸ್‌ವರ್ಡ್ (ಇಲ್ಲಿ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು)
     const ADMIN_PASSWORD = "7799";
 
     function checkAuth() {
@@ -253,11 +253,11 @@
           });
         }
 
-        // Local Storage ನಲ್ಲೂ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ
+        // Local Storage ನಲ್ಲೂ ಸೇವ್ ಮಾಡಿ
         let localNews = JSON.parse(localStorage.getItem('samruddhi_news_data') || '{}');
-        if (target === "market_news") localNews.market_content = content;
-        else if (target === "top_news") localNews.top1 = title;
-        else localNews[target] = { title, content };
+        localNews[target] = { title: title, content: content };
+        if (target === "top_news") localNews.top_news_title = title;
+        if (target === "market_news") localNews.market_news_title = title;
         localStorage.setItem('samruddhi_news_data', JSON.stringify(localNews));
 
         alert("🎉 ಸುದ್ದಿ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟಗೊಂಡಿದೆ!");

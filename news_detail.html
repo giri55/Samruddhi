@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>ತಾಜಾ ಸುದ್ದಿ ವರದಿ - ಸಮೃದ್ಧಿ</title>
+  <title>ತಾಜಾ ಸುದ್ದಿ ವಿವರ - ಸಮೃದ್ಧಿ</title>
   <link rel="stylesheet" href="style.css">
 
   <!-- Firebase SDKs -->
@@ -18,19 +18,23 @@
       <div class="brand-icon">📰</div>
       <div class="brand-title-box">
         <span class="brand-name">ಸಮೃದ್ಧಿ ವಾರ್ತೆ</span>
-        <span class="brand-tag">ವಿಶೇಷ ವರದಿ</span>
+        <span class="brand-tag">ಸಂಪೂರ್ಣ ವಿವರ</span>
       </div>
     </a>
-    <a href="index.html" class="header-post-btn" style="background:#475569;">🔙 ಹಿಂದಕ್ಕೆ</a>
+    <a href="javascript:history.back()" class="header-post-btn" style="background:#475569;">🔙 ಹಿಂದಕ್ಕೆ</a>
   </header>
 
   <div style="padding: 16px; margin-bottom: 80px;">
-    <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 14px; padding: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.04);">
-      <span id="newsTag" style="background: #059669; color: #fff; font-size: 10.5px; font-weight: 800; padding: 3px 8px; border-radius: 6px; display: inline-block;">📢 ವಿಶೇಷ ವರದಿ</span>
-      <h2 id="newsHeading" style="font-size: 17px; font-weight: 800; color: #0f172a; margin: 10px 0 8px; line-height: 1.4;">ಸುದ್ದಿಯನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</h2>
-      <div style="font-size: 11px; color: #94a3b8; margin-bottom: 12px;">📅 ಪ್ರಕಟಣೆ: ಇಂದಿನ ತಾಜಾ ವರದಿ</div>
-      <hr style="border: 0; border-top: 1px solid #f1f5f9; margin-bottom: 12px;">
-      <div id="newsBody" style="font-size: 13.5px; color: #334155; line-height: 1.7; white-space: pre-line;">
+    <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
+      <span id="newsTag" style="background: #059669; color: #fff; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-block;">📢 ಲೈವ್ ವರದಿ</span>
+      
+      <h1 id="newsHeading" style="font-size: 18.5px; font-weight: 800; color: #0f172a; margin: 12px 0 10px; line-height: 1.4;">ಸುದ್ದಿಯನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</h1>
+      
+      <div style="font-size: 11px; color: #64748b; margin-bottom: 14px;">📅 ದಿನಾಂಕ: ಇಂದಿನ ಪ್ರಕಟಣೆ | ✍️ ಸಮೃದ್ಧಿ ಸ್ಥಳೀಯ ವರದಿ</div>
+      
+      <hr style="border: 0; border-top: 1.5px solid #f1f5f9; margin-bottom: 14px;">
+      
+      <div id="newsBody" style="font-size: 14.5px; color: #334155; line-height: 1.8; white-space: pre-line; font-weight: 500;">
         ಮಾಹಿತಿಯನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ...
       </div>
     </div>
@@ -46,13 +50,22 @@
   </nav>
 
   <script>
-    async function loadNewsDetail() {
+    async function loadFullNews() {
       const urlParams = new URLSearchParams(window.location.search);
       const city = urlParams.get('city');
       const type = urlParams.get('type');
 
       const targetKey = city || (type === 'market' ? 'market_news' : 'top_news');
 
+      // 1. ಮೊದಲು LocalStorage ಬ್ಯಾಕಪ್ ಚೆಕ್
+      const local = JSON.parse(localStorage.getItem('samruddhi_news_data') || '{}');
+      if (local[targetKey]) {
+        document.getElementById('newsHeading').innerText = local[targetKey].title;
+        document.getElementById('newsBody').innerText = local[targetKey].content;
+        document.getElementById('newsTag').innerText = `📍 ${targetKey.toUpperCase()} ತಾಜಾ ಸುದ್ದಿ`;
+      }
+
+      // 2. Firebase ನಿಂದ ಲೈವ್ ಸುದ್ದಿ ಲೋಡ್ ಮಾಡಿ
       try {
         if (typeof db !== 'undefined') {
           const snapshot = await db.collection("news")
@@ -65,39 +78,22 @@
             const data = snapshot.docs[0].data();
             document.getElementById('newsHeading').innerText = data.title;
             document.getElementById('newsBody').innerText = data.content;
-            if (city) document.getElementById('newsTag').innerText = `📍 ${city.toUpperCase()} ತಾಜಾ ಸುದ್ದಿ`;
+            document.getElementById('newsTag').innerText = `📍 ${data.category.toUpperCase()} ತಾಜಾ ಸುದ್ದಿ`;
             return;
           }
         }
       } catch (err) {
-        console.warn("Firebase news fetch:", err);
+        console.warn("Firebase fetch note:", err);
       }
 
-      // ಡಿಫಾಲ್ಟ್ ಕಂಟೆಂಟ್ (ಬ್ಯಾಕಪ್)
-      const cityNames = {
-        shivamogga: "ಶಿವಮೊಗ್ಗ & ಮಲೆನಾಡು ಸುದ್ದಿ",
-        davanagere: "ದಾವಣಗೆರೆ ಬೆಣ್ಣೆ ನಗರಿ ಸುದ್ದಿ",
-        mysuru: "ಮೈಸೂರು ಸಾಂಸ್ಕೃತಿಕ ನಗರಿ ಸುದ್ದಿ",
-        belagavi: "ಬೆಳಗಾವಿ ಕುಂದಾನಗರಿ ಸುದ್ದಿ",
-        mangaluru: "ಮಂಗಳೂರು ಕರಾವಳಿ ಸುದ್ದಿ",
-        "hubballi-dharwad": "ಹುಬ್ಬಳ್ಳಿ-ಧಾರವಾಡ ವಾಣಿಜ್ಯ ಸುದ್ದಿ",
-        tumakuru: "ತುಮಕೂರು ಕಲ್ಪತರು ಸುದ್ದಿ"
-      };
-
-      if (city && cityNames[city]) {
-        document.getElementById('newsHeading').innerText = cityNames[city];
-        document.getElementById('newsBody').innerText = `ಸ್ಥಳೀಯ ರೈತರು, ವ್ಯಾಪಾರಿಗಳು ಮತ್ತು ನಾಗರಿಕರ ಅನುಕೂಲಕ್ಕಾಗಿ ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್‌ನಲ್ಲಿ ನಿತ್ಯದ ಕೃಷಿ ಮಾರುಕಟ್ಟೆ ದರಗಳು ಹಾಗೂ ಸ್ಥಳೀಯ ಜಾಹೀರಾತುಗಳನ್ನು ನೇರವಾಗಿ ಪ್ರಕಟಿಸಲಾಗುತ್ತಿದೆ. ನಿಮ್ಮ ಭಾಗದ ಸುದ್ದಿ ಹಾಗೂ ಉತ್ಪನ್ನಗಳ ಮಾರಾಟಕ್ಕೆ 'ಆ್ಯಡ್ ಹಾಕಿ' ಬಟನ್ ಬಳಸಿ.`;
-        document.getElementById('newsTag').innerText = `📍 ${cityNames[city]}`;
-      } else if (type === 'market') {
-        document.getElementById('newsHeading').innerText = "ಕೃಷಿ & ಜಿನ್ನಿಸ್ ಮಾರುಕಟ್ಟೆ ಇಂದಿನ ದರ ವರದಿ";
-        document.getElementById('newsBody').innerText = "ಕರ್ನಾಟಕದ ಪ್ರಮುಖ ಮಾರುಕಟ್ಟೆಗಳಲ್ಲಿ ಅಡಿಕೆ, ಕೊಬ್ಬರಿ, ಮೆಕ್ಕೆಜೋಳ, ಹತ್ತಿ ಹಾಗೂ ದವಸ ಧಾನ್ಯಗಳ ಧಾರಣೆ ಸ್ಥಿರವಾಗಿದ್ದು, ಸ್ಥಳೀಯ ರೈತರಿಗೆ ಉತ್ತಮ ಬೇಡಿಕೆ ಕಂಡುಬರುತ್ತಿದೆ.";
-      } else {
-        document.getElementById('newsHeading').innerText = "ಸ್ಥಳೀಯ ವ್ಯಾಪಾರ & ವಾಣಿಜ್ಯ ತಾಜಾ ಮಾಹಿತಿ";
-        document.getElementById('newsBody').innerText = "ಸಮೃದ್ಧಿ ಪೋರ್ಟಲ್ ಮೂಲಕ ಗ್ರಾಮೀಣ ಮತ್ತು ನಗರ ಪ್ರದೇಶಗಳ ವ್ಯಾಪಾರಿಗಳು ನೇರವಾಗಿ ಗ್ರಾಹಕರನ್ನು ತಲುಪುತ್ತಿದ್ದು, ಮಧ್ಯವರ್ತಿಗಳಿಲ್ಲದೆ ವ್ಯಾಪಾರ ವಹಿವಾಟು ನಡೆಸುತ್ತಿದ್ದಾರೆ.";
+      // ಒಂದು ವೇಳೆ ಅಡ್ಮಿನ್‌ನಲ್ಲಿ ಇನ್ನೂ ಸುದ್ದಿ ಹಾಕಿರದಿದ್ದರೆ ಮಾತ್ರ ಡೀಫಾಲ್ಟ್ ಸಂದೇಶ
+      if (!local[targetKey]) {
+        document.getElementById('newsHeading').innerText = "ಸ್ಥಳೀಯ ತಾಜಾ ಸುದ್ದಿ ಮತ್ತು ಮಾರುಕಟ್ಟೆ ವರದಿ";
+        document.getElementById('newsBody').innerText = "ಈ ವಿಭಾಗಕ್ಕೆ ಅಡ್ಮಿನ್ ಪ್ಯಾನೆಲ್ ಮೂಲಕ ಶೀಘ್ರದಲ್ಲೇ ತಾಜಾ ಸುದ್ದಿಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗುವುದು.\n\nಸ್ಥಳೀಯ ಜಾಹೀರಾತುಗಳು ಹಾಗೂ ವ್ಯಾಪಾರ ಮಾಹಿತಿಗಾಗಿ ಮುಖಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ.";
       }
     }
 
-    window.addEventListener('DOMContentLoaded', loadNewsDetail);
+    window.addEventListener('DOMContentLoaded', loadFullNews);
   </script>
 </body>
 </html>
