@@ -21,21 +21,21 @@
         <span class="brand-tag">ಸಂಪೂರ್ಣ ವಿವರ</span>
       </div>
     </a>
-    <a href="javascript:history.back()" class="header-post-btn" style="background:#475569;">🔙 ಹಿಂದಕ್ಕೆ</a>
+    <a href="index.html" class="header-post-btn" style="background:#475569;">🔙 ಮುಖಪುಟ</a>
   </header>
 
   <div style="padding: 16px; margin-bottom: 80px;">
     <div style="background: #ffffff; border: 1.5px solid #e2e8f0; border-radius: 16px; padding: 18px; box-shadow: 0 4px 14px rgba(0,0,0,0.05);">
       <span id="newsTag" style="background: #059669; color: #fff; font-size: 11px; font-weight: 800; padding: 4px 10px; border-radius: 6px; display: inline-block;">📢 ಲೈವ್ ವರದಿ</span>
       
-      <h1 id="newsHeading" style="font-size: 18.5px; font-weight: 800; color: #0f172a; margin: 12px 0 10px; line-height: 1.4;">ಸುದ್ದಿಯನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</h1>
+      <h1 id="newsHeading" style="font-size: 18px; font-weight: 800; color: #0f172a; margin: 12px 0 10px; line-height: 1.4;">ಸುದ್ದಿಯನ್ನು ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ...</h1>
       
-      <div style="font-size: 11px; color: #64748b; margin-bottom: 14px;">📅 ದಿನಾಂಕ: ಇಂದಿನ ಪ್ರಕಟಣೆ | ✍️ ಸಮೃದ್ಧಿ ಸ್ಥಳೀಯ ವರದಿ</div>
+      <div style="font-size: 11px; color: #64748b; margin-bottom: 14px;">📅 ದಿನಾಂಕ: ಇಂದಿನ ಪ್ರಕಟಣೆ | ✍️ ಸಮೃದ್ಧಿ ವಿಶೇಷ ವರದಿ</div>
       
       <hr style="border: 0; border-top: 1.5px solid #f1f5f9; margin-bottom: 14px;">
       
       <div id="newsBody" style="font-size: 14.5px; color: #334155; line-height: 1.8; white-space: pre-line; font-weight: 500;">
-        ಮಾಹಿತಿಯನ್ನು ಪಡೆಯಲಾಗುತ್ತಿದೆ...
+        ದಯವಿಟ್ಟು ನಿರೀಕ್ಷಿಸಿ, ಮಾಹಿತಿ ಲೋಡ್ ಆಗುತ್ತಿದೆ...
       </div>
     </div>
   </div>
@@ -57,39 +57,30 @@
 
       const targetKey = city || (type === 'market' ? 'market_news' : 'top_news');
 
-      // 1. ಮೊದಲು LocalStorage ಬ್ಯಾಕಪ್ ಚೆಕ್
-      const local = JSON.parse(localStorage.getItem('samruddhi_news_data') || '{}');
-      if (local[targetKey]) {
-        document.getElementById('newsHeading').innerText = local[targetKey].title;
-        document.getElementById('newsBody').innerText = local[targetKey].content;
-        document.getElementById('newsTag').innerText = `📍 ${targetKey.toUpperCase()} ತಾಜಾ ಸುದ್ದಿ`;
-      }
-
-      // 2. Firebase ನಿಂದ ಲೈವ್ ಸುದ್ದಿ ಲೋಡ್ ಮಾಡಿ
+      // 1. Firebase Cloud ನಿಂದ ನೇರವಾಗಿ ತಕ್ಷಣ ತರುವುದು
       try {
         if (typeof db !== 'undefined') {
-          const snapshot = await db.collection("news")
-            .where("category", "==", targetKey)
-            .orderBy("timestamp", "desc")
-            .limit(1)
-            .get();
-
-          if (!snapshot.empty) {
-            const data = snapshot.docs[0].data();
+          const doc = await db.collection("news").doc(targetKey).get();
+          if (doc.exists) {
+            const data = doc.data();
             document.getElementById('newsHeading').innerText = data.title;
             document.getElementById('newsBody').innerText = data.content;
-            document.getElementById('newsTag').innerText = `📍 ${data.category.toUpperCase()} ತಾಜಾ ಸುದ್ದಿ`;
+            document.getElementById('newsTag').innerText = city ? `📍 ${city.toUpperCase()} ತಾಜಾ ಸುದ್ದಿ` : `📢 ${targetKey === 'market_news' ? 'ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್' : 'TOP ನ್ಯೂಸ್'}`;
             return;
           }
         }
       } catch (err) {
-        console.warn("Firebase fetch note:", err);
+        console.warn("Cloud fetch error:", err);
       }
 
-      // ಒಂದು ವೇಳೆ ಅಡ್ಮಿನ್‌ನಲ್ಲಿ ಇನ್ನೂ ಸುದ್ದಿ ಹಾಕಿರದಿದ್ದರೆ ಮಾತ್ರ ಡೀಫಾಲ್ಟ್ ಸಂದೇಶ
-      if (!local[targetKey]) {
+      // 2. ಬ್ಯಾಕಪ್
+      const local = JSON.parse(localStorage.getItem('samruddhi_news_data') || '{}');
+      if (local[targetKey]) {
+        document.getElementById('newsHeading').innerText = local[targetKey].title;
+        document.getElementById('newsBody').innerText = local[targetKey].content;
+      } else {
         document.getElementById('newsHeading').innerText = "ಸ್ಥಳೀಯ ತಾಜಾ ಸುದ್ದಿ ಮತ್ತು ಮಾರುಕಟ್ಟೆ ವರದಿ";
-        document.getElementById('newsBody').innerText = "ಈ ವಿಭಾಗಕ್ಕೆ ಅಡ್ಮಿನ್ ಪ್ಯಾನೆಲ್ ಮೂಲಕ ಶೀಘ್ರದಲ್ಲೇ ತಾಜಾ ಸುದ್ದಿಗಳನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗುವುದು.\n\nಸ್ಥಳೀಯ ಜಾಹೀರಾತುಗಳು ಹಾಗೂ ವ್ಯಾಪಾರ ಮಾಹಿತಿಗಾಗಿ ಮುಖಪುಟವನ್ನು ವೀಕ್ಷಿಸಿ.";
+        document.getElementById('newsBody').innerText = "ಈ ವಿಭಾಗಕ್ಕೆ ಅಡ್ಮಿನ್ ಪ್ಯಾನೆಲ್ ಮೂಲಕ ಹೊಸ ಸುದ್ದಿ ಪ್ರಕಟಿಸಲಾಗುವುದು.\n\nನಿಮ್ಮೂರ ವ್ಯಾಪಾರ ಮತ್ತು ಸ್ಥಳೀಯ ಉತ್ಪನ್ನಗಳ ವಿವರಗಳನ್ನು ನೋಡಲು ಮುಖಪುಟಕ್ಕೆ ಭೇಟಿ ನೀಡಿ.";
       }
     }
 

@@ -112,7 +112,7 @@
     <button onclick="logoutAdmin()" class="logout-btn">🔒 ಲಾಕ್‌ಔಟ್</button>
   </header>
 
-  <!-- 1. ಸುದ್ದಿ ಪ್ರಕಟಣೆ (News Publisher) -->
+  <!-- 1. ಸುದ್ದಿ ಪ್ರಕಟಣೆ (Direct Cloud Save) -->
   <div class="admin-card" style="border: 1.5px solid #059669;">
     <h3 style="font-size: 13.5px; font-weight: 800; color: #065f46; margin: 0 0 10px;">📰 ಹೊಸ ಸುದ್ದಿ ಪ್ರಕಟಿಸಿ (Post News)</h3>
     <div style="font-size: 11.5px; display: flex; flex-direction: column; gap: 8px;">
@@ -132,13 +132,13 @@
       </div>
       <div>
         <label><strong>ಸುದ್ದಿ ಶೀರ್ಷಿಕೆ (Title):</strong></label>
-        <input type="text" id="news_title" class="form-input" placeholder="ಉದಾ: ಮೈಸೂರಿನಲ್ಲಿ ಭಾರಿ ಮಳೆ...">
+        <input type="text" id="news_title" class="form-input" placeholder="ಉದಾ: ಎರಡನೇ ಟೆಸ್ಟ್ ಕೂಡ ಭಾರತ ಗೆಲ್ಲಬಹುದು...">
       </div>
       <div>
         <label><strong>ಸಂಪೂರ್ಣ ಸುದ್ದಿ ವಿವರ (Full Content):</strong></label>
-        <textarea id="news_content" class="form-input" rows="4" placeholder="ಸುದ್ದಿಯ ಸಂಪೂರ್ಣ ವಿವರಗಳನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."></textarea>
+        <textarea id="news_content" class="form-input" rows="5" placeholder="ಸುದ್ದಿಯ ಸಂಪೂರ್ಣ ವಿವರಗಳನ್ನು ಇಲ್ಲಿ ಬರೆಯಿರಿ..."></textarea>
       </div>
-      <button onclick="publishNews()" style="background:#059669; color:#fff; border:none; padding:10px; border-radius:8px; font-weight:800; font-size:12px; cursor:pointer; margin-top:4px;">🚀 ಸುದ್ದಿಯನ್ನು ಪ್ರಕಟಿಸಿ</button>
+      <button onclick="publishNews()" style="background:#059669; color:#fff; border:none; padding:10px; border-radius:8px; font-weight:800; font-size:12px; cursor:pointer; margin-top:4px;">🚀 ಎಲ್ಲರ ಮೊಬೈಲ್‌ನಲ್ಲೂ ಲೈವ್ ಮಾಡಿ</button>
     </div>
   </div>
 
@@ -183,7 +183,6 @@
     <p style="text-align:center; font-size:12px; color:#64748b; padding:20px 0;">ಪರಿಶೀಲಿಸಲಾಗುತ್ತಿದೆ...</p>
   </div>
 
-  <!-- Bottom Nav -->
   <nav class="modern-bottom-nav">
     <a href="index.html" class="nav-tab-link"><span class="nav-tab-icon">🏠</span><span>ಮುಖಪುಟ</span></a>
     <a href="order_poster.html" class="nav-tab-link"><span class="nav-tab-icon">🎨</span><span>ಪೋಸ್ಟರ್ ₹59</span></a>
@@ -193,7 +192,6 @@
   </nav>
 
   <script>
-    // 🔑 ನಿಮ್ಮ ಅಡ್ಮಿನ್ ಪಾಸ್‌ವರ್ಡ್ (ಇಲ್ಲಿ ಬದಲಾಯಿಸಿಕೊಳ್ಳಬಹುದು)
     const ADMIN_PASSWORD = "7799";
 
     function checkAuth() {
@@ -232,7 +230,7 @@
       location.reload();
     }
 
-    // ಸುದ್ದಿ ಪ್ರಕಟಣೆ ಫಂಕ್ಷನ್
+    // 100% ನೇರವಾಗಿ ಕ್ಲೌಡ್‌ಗೆ ಸೇವ್ ಮಾಡುವ ಫಂಕ್ಷನ್
     async function publishNews() {
       const target = document.getElementById('news_target').value;
       const title = document.getElementById('news_title').value.trim();
@@ -245,22 +243,18 @@
 
       try {
         if (typeof db !== 'undefined') {
-          await db.collection("news").add({
-            category: target,
+          await db.collection("news").doc(target).set({
             title: title,
             content: content,
-            timestamp: firebase.firestore.FieldValue.serverTimestamp()
+            updatedAt: new Date().toISOString()
           });
         }
 
-        // Local Storage ನಲ್ಲೂ ಸೇವ್ ಮಾಡಿ
         let localNews = JSON.parse(localStorage.getItem('samruddhi_news_data') || '{}');
         localNews[target] = { title: title, content: content };
-        if (target === "top_news") localNews.top_news_title = title;
-        if (target === "market_news") localNews.market_news_title = title;
         localStorage.setItem('samruddhi_news_data', JSON.stringify(localNews));
 
-        alert("🎉 ಸುದ್ದಿ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟಗೊಂಡಿದೆ!");
+        alert("🎉 ಸುದ್ದಿ ಯಶಸ್ವಿಯಾಗಿ ಪ್ರಕಟವಾಗಿದೆ! ಜಗತ್ತಿನ ಯಾರೇ ಓಪನ್ ಮಾಡಿದರೂ ಲೈವ್ ಕಾಣಿಸುತ್ತದೆ.");
         document.getElementById('news_title').value = "";
         document.getElementById('news_content').value = "";
       } catch (err) {
@@ -268,7 +262,6 @@
       }
     }
 
-    // ದರಗಳ ಸೇವ್
     async function saveLiveRates() {
       const data = {
         gold22: document.getElementById('adm_gold22').value || "₹6,745/g",
@@ -286,22 +279,25 @@
         localStorage.setItem('samruddhi_rates_data', JSON.stringify(data));
         alert("✅ ದರಗಳನ್ನು ಯಶಸ್ವಿಯಾಗಿ ನವೀಕರಿಸಲಾಗಿದೆ!");
       } catch (e) {
-        localStorage.setItem('samruddhi_rates_data', JSON.stringify(data));
-        alert("✅ ದರಗಳು ಲೋಕಲ್ ಆಗಿ ಸೇವ್ ಆಗಿವೆ!");
+        alert("ದೋಷ: " + e.message);
       }
     }
 
-    function loadExistingRates() {
-      const saved = localStorage.getItem('samruddhi_rates_data');
-      if (saved) {
-        const d = JSON.parse(saved);
-        if(d.gold22) document.getElementById('adm_gold22').value = d.gold22;
-        if(d.silver) document.getElementById('adm_silver').value = d.silver;
-        if(d.adike) document.getElementById('adm_adike').value = d.adike;
-        if(d.kobbari) document.getElementById('adm_kobbari').value = d.kobbari;
-        if(d.maize) document.getElementById('adm_maize').value = d.maize;
-        if(d.petrol) document.getElementById('adm_petrol').value = d.petrol;
-      }
+    async function loadExistingRates() {
+      try {
+        if (typeof db !== 'undefined') {
+          const doc = await db.collection("settings").doc("rates").get();
+          if (doc.exists) {
+            const d = doc.data();
+            if(d.gold22) document.getElementById('adm_gold22').value = d.gold22;
+            if(d.silver) document.getElementById('adm_silver').value = d.silver;
+            if(d.adike) document.getElementById('adm_adike').value = d.adike;
+            if(d.kobbari) document.getElementById('adm_kobbari').value = d.kobbari;
+            if(d.maize) document.getElementById('adm_maize').value = d.maize;
+            if(d.petrol) document.getElementById('adm_petrol').value = d.petrol;
+          }
+        }
+      } catch (e) {}
     }
 
     async function loadPendingAds() {

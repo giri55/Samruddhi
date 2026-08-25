@@ -21,14 +21,59 @@
   <script src="firebase-config.js"></script>
 
   <style>
-    /* ಶೇರ್ ಬಟನ್ ಸ್ಟೈಲ್ */
     .ad-share-row { display: flex; gap: 6px; margin-top: 8px; justify-content: flex-end; }
     .share-btn-action { padding: 4px 10px; border-radius: 6px; font-size: 11px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; color: #ffffff; border: none; cursor: pointer; }
     .btn-wa-green { background: #25d366; }
     .btn-fb-blue { background: #1877f2; }
     .ad-city-tag { background: #ecfdf5; color: #065f46; font-size: 10px; font-weight: 800; padding: 2px 8px; border-radius: 6px; display: inline-block; margin-bottom: 4px; }
 
-    /* 🔥 1. ದೊಡ್ಡ ಮತ್ತು ವಿಶಾಲವಾದ ಸುದ್ದಿ ಬಾಕ್ಸ್‌ಗಳು */
+    /* 🔥 1. ವಿಶೇಷ ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಬ್ಯಾನರ್ ಕಾರ್ಡ್ */
+    .pwa-download-banner {
+      background: linear-gradient(135deg, #065f46 0%, #047857 50%, #0f766e 100%);
+      border: 2px solid #34d399;
+      border-radius: 16px;
+      padding: 16px 14px;
+      margin: 12px 14px;
+      color: #ffffff;
+      box-shadow: 0 6px 18px rgba(5, 150, 105, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    .pwa-top-title {
+      font-size: 14px;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #ffffff;
+    }
+    .pwa-sub-text {
+      font-size: 11.5px;
+      color: #a7f3d0;
+      font-style: italic;
+      margin: 6px 0 12px;
+      line-height: 1.4;
+    }
+    .pwa-install-btn {
+      background: #f59e0b;
+      color: #000000;
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 13.5px;
+      font-weight: 900;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(245, 158, 11, 0.35);
+    }
+    .pwa-install-btn:active {
+      transform: scale(0.98);
+      background: #d97706;
+    }
+
+    /* 🔥 2. ದೊಡ್ಡ ಸುದ್ದಿ ಬಾಕ್ಸ್‌ಗಳು */
     .news-dual-wrapper {
       display: flex;
       flex-direction: column;
@@ -43,7 +88,6 @@
       text-decoration: none;
       display: block;
       box-shadow: 0 3px 10px rgba(0,0,0,0.06);
-      transition: transform 0.2s ease;
     }
     .big-news-card.market-theme {
       border: 2px solid #10b981;
@@ -81,7 +125,7 @@
       margin-top: 6px;
     }
 
-    /* 🏷️ 2. ಕಾಂಪ್ಯಾಕ್ಟ್ (ಸಣ್ಣ ಸೈಜ್) ನಗರಗಳ ಚಿಪ್ಸ್ */
+    /* 🔥 3. ಕಾಂಪ್ಯಾಕ್ಟ್ ನಗರಗಳ ಚಿಪ್ಸ್ */
     .compact-city-scroll {
       display: flex;
       flex-wrap: wrap;
@@ -100,22 +144,13 @@
       text-decoration: none;
       box-shadow: 0 1px 3px rgba(0,0,0,0.04);
     }
-    .city-chip:active {
-      background: #f1f5f9;
-    }
-    .city-chip-icon {
-      font-size: 14px;
-    }
-    .city-chip-name {
-      font-size: 12px;
-      font-weight: 800;
-      color: #1e293b;
-    }
+    .city-chip-icon { font-size: 14px; }
+    .city-chip-name { font-size: 12px; font-weight: 800; color: #1e293b; }
   </style>
 </head>
 <body>
 
-  <!-- App Header -->
+  <!-- Header -->
   <header class="app-header-modern">
     <a href="index.html" class="brand-logo-wrap">
       <div class="brand-icon">
@@ -159,21 +194,33 @@
     </div>
   </div>
 
-  <!-- ⚡ 1. ವಿಶಾಲವಾದ ದೊಡ್ಡ ಸುದ್ದಿ ವಿಭಾಗ -->
-  <div class="section-title-strip" style="margin-top: 14px;">
+  <!-- 📲 ವಿಶೇಷ ಆ್ಯಪ್ ಡೌನ್‌ಲೋಡ್ ಬ್ಯಾನರ್ (PWA Install Card) -->
+  <div class="pwa-download-banner">
+    <div style="display: flex; align-items: flex-start; gap: 10px;">
+      <div style="font-size: 32px; line-height: 1;">📱</div>
+      <div>
+        <div class="pwa-top-title">ಉಚಿತ ಹಾಗೂ ಅತಿ ಕಡಿಮೆ ದರದಲ್ಲಿ ಜಾಹೀರಾತು ಹಾಕಲು ಸಮೃದ್ಧಿ ತಾಣದ ಆ್ಯಪ್ ಅನ್ನು ಈಗಲೇ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿಕೊಳ್ಳಿ!</div>
+        <div class="pwa-sub-text">✨ ಸ್ವತಃ ನೀವೇ ನಿಮ್ಮ ಜಾಹೀರಾತನ್ನು ಅಪ್‌ಲೋಡ್ ಮಾಡಿಕೊಳ್ಳಬಹುದು.</div>
+      </div>
+    </div>
+    <button onclick="triggerPwaInstall()" class="pwa-install-btn" id="pwaInstallBtn">
+      <span>📲</span> <span>Samruddhi App ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ</span>
+    </button>
+  </div>
+
+  <!-- ⚡ 1. ದೊಡ್ಡ ಸುದ್ದಿ ವಿಭಾಗ -->
+  <div class="section-title-strip" style="margin-top: 10px;">
     <span class="sec-head">⚡ ತಾಜಾ ಸಮಾಚಾರ & ಮಾರುಕಟ್ಟೆ</span>
     <span style="font-size: 11px; color: #059669; font-weight: 800;">🔴 ಲೈವ್ ಅಪ್‌ಡೇಟ್</span>
   </div>
 
   <div class="news-dual-wrapper">
-    <!-- Top News (ದೊಡ್ಡ ಬಾಕ್ಸ್) -->
     <a href="news_detail.html?type=top" class="big-news-card topnews-theme">
       <div class="news-pill-tag tag-amber">⚡ TOP ನ್ಯೂಸ್</div>
       <div class="news-box-title" id="front_top_news">🏛️ ಸ್ಥಳೀಯ ವಾಣಿಜ್ಯ ಹಾಗೂ ಪ್ರಮುಖ ತಾಜಾ ಸುದ್ದಿ ಓದಲು ಇಲ್ಲಿ ಕ್ಲಿಕ್ ಮಾಡಿ...</div>
       <div class="news-read-cta" style="color: #d97706;">ಸಂಪೂರ್ಣ ಸುದ್ದಿ ಓದಿ ➔</div>
     </a>
 
-    <!-- Market News (ದೊಡ್ಡ ಬಾಕ್ಸ್) -->
     <a href="news_detail.html?type=market" class="big-news-card market-theme">
       <div class="news-pill-tag tag-green">📈 ಮಾರ್ಕೆಟ್ ನ್ಯೂಸ್</div>
       <div class="news-box-title" id="front_market_news">📊 ಇಂದಿನ ಕೃಷಿ ಉತ್ಪನ್ನಗಳು & ಮಾರುಕಟ್ಟೆ ದರಗಳ ಸಂಪೂರ್ಣ ವರದಿ...</div>
@@ -181,7 +228,7 @@
     </a>
   </div>
 
-  <!-- 📍 2. ಕಾಂಪ್ಯಾಕ್ಟ್ ನಗರಗಳ ಸೆಲೆಕ್ಷನ್ (ಜಾಗ ಉಳಿಸುವ ಸ್ಮಾರ್ಟ್ ಚಿಪ್ಸ್) -->
+  <!-- 📍 2. ಕಾಂಪ್ಯಾಕ್ಟ್ ನಗರಗಳು -->
   <div class="section-title-strip" style="margin-top: 16px;">
     <span class="sec-head">📍 ನಗರಗಳು (Select City)</span>
     <span style="font-size: 10.5px; color: #64748b; font-weight: 700;">7 ಊರುಗಳು</span>
@@ -206,28 +253,57 @@
     <a href="https://wa.me/918431649984" class="nav-tab-link"><span class="nav-tab-icon">💬</span><span>ಹೆಲ್ಪ್‌ಲೈನ್</span></a>
   </nav>
 
+  <!-- PWA Install Trigger Logic -->
+  <script>
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    async function triggerPwaInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          console.log('App Installed');
+        }
+        deferredPrompt = null;
+      } else {
+        // ಐಫೋನ್ ಅಥವಾ ಮ್ಯಾನುಯಲ್ ಬ್ರೌಸರ್‌ಗಳಿಗೆ ಗೈಡ್
+        const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+        if (isIos) {
+          alert("📱 iPhone ನಲ್ಲಿ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\n1. ಕೆಳಗಿನ Share 📤 ಬಟನ್ ಒತ್ತಿ\n2. 'Add to Home Screen' (➕) ಆಯ್ಕೆ ಮಾಡಿ!");
+        } else {
+          alert("📱 ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಲು:\nGoogle Chrome ನ ಮೇಲ್ಭಾಗದ 3 ಚುಕ್ಕೆಗಳನ್ನು ಒತ್ತಿ 'Install app' ಅಥವಾ 'Add to Home screen' ಆಯ್ಕೆ ಮಾಡಿ!");
+        }
+      }
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js');
+      });
+    }
+  </script>
+
+  <!-- News & Live Ads Loader -->
   <script>
     var currentSlide = 1, totalSlides = 1, maxSeconds = 30, remaining = maxSeconds, timerInterval = null;
 
     async function fetchFrontNews() {
-      const local = JSON.parse(localStorage.getItem('samruddhi_news_data') || '{}');
-      if (local.top_news_title) document.getElementById('front_top_news').innerText = local.top_news_title;
-      if (local.market_news_title) document.getElementById('front_market_news').innerText = local.market_news_title;
-
       try {
         if (typeof db !== 'undefined') {
-          const topSnap = await db.collection("news").where("category", "==", "top_news").orderBy("timestamp", "desc").limit(1).get();
-          if (!topSnap.empty) {
-            document.getElementById('front_top_news').innerText = topSnap.docs[0].data().title;
+          const topDoc = await db.collection("news").doc("top_news").get();
+          if (topDoc.exists) {
+            document.getElementById('front_top_news').innerText = topDoc.data().title;
           }
-          const mktSnap = await db.collection("news").where("category", "==", "market_news").orderBy("timestamp", "desc").limit(1).get();
-          if (!mktSnap.empty) {
-            document.getElementById('front_market_news').innerText = mktSnap.docs[0].data().title;
+          const mktDoc = await db.collection("news").doc("market_news").get();
+          if (mktDoc.exists) {
+            document.getElementById('front_market_news').innerText = mktDoc.data().title;
           }
         }
-      } catch (e) {
-        console.log("News fetch note:", e);
-      }
+      } catch (e) {}
     }
 
     async function fetchLiveApprovedAds() {
